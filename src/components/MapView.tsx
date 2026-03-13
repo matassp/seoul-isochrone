@@ -2,7 +2,7 @@ import { useEffect, useRef, useCallback } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { useMapStore } from "../store/useMapStore";
-import { LINE_COLORS, ISOCHRONE_COLORS, ISOCHRONE_STROKES, ISOCHRONE_INTERVALS } from "../constants/lines";
+import { LINE_COLORS, LINE_NAMES, ISOCHRONE_COLORS, ISOCHRONE_STROKES, ISOCHRONE_INTERVALS } from "../constants/lines";
 import { loadIsochrone } from "../services/isochroneLoader";
 import type { LineId } from "../types";
 
@@ -332,27 +332,50 @@ export default function MapView() {
   }, [enabledLines]);
 
   // Pulse marker element factory
-  const createPulseEl = useCallback((color: string) => {
+  const createPulseEl = useCallback((lines: string[]) => {
     const el = document.createElement("div");
     el.className = "station-pulse-marker";
-    el.style.cssText = `
-      width: 20px; height: 20px; position: relative;
-      display: flex; align-items: center; justify-content: center;
-    `;
-    const ring = document.createElement("div");
-    ring.style.cssText = `
-      position: absolute; width: 20px; height: 20px; border-radius: 50%;
-      border: 2.5px solid ${color}; animation: pulse-ring 1.6s ease-out infinite;
-      opacity: 0;
-    `;
-    const dot = document.createElement("div");
-    dot.style.cssText = `
-      width: 10px; height: 10px; border-radius: 50%;
-      background: ${color}; border: 2px solid #fff;
-      box-shadow: 0 0 0 2px ${color};
-    `;
-    el.appendChild(ring);
-    el.appendChild(dot);
+    const primaryColor = LINE_COLORS[lines[0] as LineId] ?? "#333";
+
+    if (lines.length <= 1) {
+      el.style.cssText = `
+        width: 20px; height: 20px; position: relative;
+        display: flex; align-items: center; justify-content: center;
+      `;
+      const ring = document.createElement("div");
+      ring.style.cssText = `
+        position: absolute; width: 20px; height: 20px; border-radius: 50%;
+        border: 2.5px solid ${primaryColor}; animation: pulse-ring 1.6s ease-out infinite;
+        opacity: 0;
+      `;
+      const dot = document.createElement("div");
+      dot.style.cssText = `
+        width: 10px; height: 10px; border-radius: 50%;
+        background: ${primaryColor}; border: 2px solid #fff;
+        box-shadow: 0 0 0 2px ${primaryColor};
+      `;
+      el.appendChild(ring);
+      el.appendChild(dot);
+    } else {
+      el.style.cssText = "position: relative; display: flex; align-items: center; justify-content: center;";
+      const pill = document.createElement("div");
+      pill.style.cssText = `
+        display: flex; align-items: center; gap: 3px;
+        padding: 4px 7px; background: #fff; border-radius: 999px;
+        border: 1.5px solid #c8c8c8;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+        animation: pulse-pill 1.6s ease-out infinite;
+      `;
+      lines.forEach((line) => {
+        const dot = document.createElement("div");
+        dot.style.cssText = `
+          width: 9px; height: 9px; border-radius: 50%;
+          background: ${LINE_COLORS[line as LineId] ?? "#888"}; flex-shrink: 0;
+        `;
+        pill.appendChild(dot);
+      });
+      el.appendChild(pill);
+    }
     return el;
   }, []);
 
@@ -369,8 +392,7 @@ export default function MapView() {
 
     if (selectedStation) {
       map.flyTo({ center: [selectedStation.lng, selectedStation.lat], zoom: 14, duration: 800 });
-      const color = LINE_COLORS[selectedStation.lines[0] as keyof typeof LINE_COLORS] ?? "#333";
-      const el = createPulseEl(color);
+      const el = createPulseEl([...selectedStation.lines]);
       markerRef.current = new maplibregl.Marker({ element: el, anchor: "center" })
         .setLngLat([selectedStation.lng, selectedStation.lat])
         .addTo(map);
@@ -465,5 +487,25 @@ export default function MapView() {
     }
   }, [isochrones]);
 
-  return <div ref={mapContainer} className="map-container" />;
+  return (
+    <div className="map-wrapper">
+      <div ref={mapContainer} className="map-container" />
+      {selectedStation && (
+        <div className="station-chip" key={selectedStation.id}>
+          <div className="station-chip-names">
+            <span className="station-chip-ko">{selectedStation.nameKo}</span>
+            <span className="station-chip-en">{selectedStation.name}</span>
+          </div>
+          <div className="station-chip-lines">
+            {selectedStation.lines.map((l) => (
+              <span key={l} className="line-badge" style={{ backgroundColor: LINE_COLORS[l] }}>
+                {LINE_NAMES[l]}
+              </span>
+            ))}
+          </div>
+          <button className="station-chip-close" onClick={() => selectStation(null)}>✕</button>
+        </div>
+      )}
+    </div>
+  );
 }
