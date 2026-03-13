@@ -113,7 +113,6 @@ export const NAME_OVERRIDES: Record<string, string> = {
   "6048953571": "Nam-guro",
   "6048955086": "Gwangmyeong Sageori",
   "6050655875": "Cheonwang",
-  "6046634697": "Suraksan",
   "6050655863": "Kkachiul",
   "6050655851": "Bucheon Stadium",
   "6050655850": "Chunui",
