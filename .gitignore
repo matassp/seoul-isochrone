@@ -17,7 +17,7 @@ docker/data/*.pbf
 docker/data/graph-cache/
 docker/gtfs/*.zip
 docker/gtfs/*/
-public/data/isochrones/
+# public/data/isochrones/
 
 # Claude Code local settings
 .claude/
