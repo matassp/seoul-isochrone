@@ -73,7 +73,7 @@ export default function Sidebar() {
               {results.map((s) => (
                 <li key={s.id} onClick={() => handleSelectStation(s)}>
                   <span className="result-name">{s.nameKo}</span>
-                  <span className="result-en">{s.name}</span>
+                  {s.name !== s.nameKo && <span className="result-en">{s.name}</span>}
                   <span className="result-lines">
                     {s.lines.map((l) => (
                       <span
@@ -96,7 +96,9 @@ export default function Sidebar() {
           <div className="selected-station">
             <div className="selected-header">
               <h2>{selectedStation.nameKo}</h2>
-              <span className="selected-en">{selectedStation.name}</span>
+              {selectedStation.name !== selectedStation.nameKo && (
+                <span className="selected-en">{selectedStation.name}</span>
+              )}
               <button className="deselect" onClick={() => selectStation(null)}>
                 &times;
               </button>

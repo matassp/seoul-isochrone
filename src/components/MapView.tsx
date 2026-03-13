@@ -116,6 +116,7 @@ export default function MapView() {
   const selectedStation = useMapStore((s) => s.selectedStation);
   const isochrones = useMapStore((s) => s.isochrones);
   const intervals = useMapStore((s) => s.intervals);
+  const isochronesLoading = useMapStore((s) => s.isochronesLoading);
   const selectStation = useMapStore((s) => s.selectStation);
   const setIsochrones = useMapStore((s) => s.setIsochrones);
   const setIsochronesLoading = useMapStore((s) => s.setIsochronesLoading);
@@ -412,49 +413,58 @@ export default function MapView() {
   // Rebuild isochrone source + layers when data changes
   useEffect(() => {
     const map = mapRef.current;
-    if (!map || !map.isStyleLoaded()) return;
+    if (!map) return;
 
-    // Remove existing isochrone layers and source
-    for (let i = 0; i < ISOCHRONE_INTERVALS.length; i++) {
-      if (map.getLayer(`isochrone-fill-${i}`)) map.removeLayer(`isochrone-fill-${i}`);
-      if (map.getLayer(`isochrone-line-${i}`)) map.removeLayer(`isochrone-line-${i}`);
+    const apply = () => {
+      // Remove existing isochrone layers and source
+      for (let i = 0; i < ISOCHRONE_INTERVALS.length; i++) {
+        if (map.getLayer(`isochrone-fill-${i}`)) map.removeLayer(`isochrone-fill-${i}`);
+        if (map.getLayer(`isochrone-line-${i}`)) map.removeLayer(`isochrone-line-${i}`);
+      }
+      if (map.getSource("isochrones")) map.removeSource("isochrones");
+
+      if (!isochrones || isochrones.features.length === 0) return;
+
+      map.addSource("isochrones", { type: "geojson", data: isochrones });
+
+      // Add layers largest-first so smaller rings render on top
+      const sorted = [...ISOCHRONE_INTERVALS].reverse();
+      sorted.forEach((interval) => {
+        const colorIdx = ISOCHRONE_INTERVALS.indexOf(interval);
+        const visible = intervals.includes(interval);
+        const beforeId = map.getLayer("subway-lines-casing") ? "subway-lines-casing" : "station-icons";
+
+        map.addLayer(
+          {
+            id: `isochrone-fill-${colorIdx}`,
+            type: "fill",
+            source: "isochrones",
+            filter: ["==", ["get", "interval"], interval],
+            layout: { visibility: visible ? "visible" : "none" },
+            paint: { "fill-color": ISOCHRONE_COLORS[colorIdx] },
+          },
+          beforeId
+        );
+        map.addLayer(
+          {
+            id: `isochrone-line-${colorIdx}`,
+            type: "line",
+            source: "isochrones",
+            filter: ["==", ["get", "interval"], interval],
+            layout: { visibility: visible ? "visible" : "none" },
+            paint: { "line-color": ISOCHRONE_STROKES[colorIdx], "line-width": 1.5 },
+          },
+          beforeId
+        );
+      });
+    };
+
+    if (map.isStyleLoaded()) {
+      apply();
+    } else {
+      map.once("load", apply);
+      return () => { map.off("load", apply); };
     }
-    if (map.getSource("isochrones")) map.removeSource("isochrones");
-
-    if (!isochrones || isochrones.features.length === 0) return;
-
-    map.addSource("isochrones", { type: "geojson", data: isochrones });
-
-    // Add layers largest-first so smaller rings render on top
-    const sorted = [...ISOCHRONE_INTERVALS].reverse();
-    sorted.forEach((interval) => {
-      const colorIdx = ISOCHRONE_INTERVALS.indexOf(interval);
-      const visible = intervals.includes(interval);
-      const beforeId = map.getLayer("subway-lines-casing") ? "subway-lines-casing" : "station-icons";
-
-      map.addLayer(
-        {
-          id: `isochrone-fill-${colorIdx}`,
-          type: "fill",
-          source: "isochrones",
-          filter: ["==", ["get", "interval"], interval],
-          layout: { visibility: visible ? "visible" : "none" },
-          paint: { "fill-color": ISOCHRONE_COLORS[colorIdx] },
-        },
-        beforeId
-      );
-      map.addLayer(
-        {
-          id: `isochrone-line-${colorIdx}`,
-          type: "line",
-          source: "isochrones",
-          filter: ["==", ["get", "interval"], interval],
-          layout: { visibility: visible ? "visible" : "none" },
-          paint: { "line-color": ISOCHRONE_STROKES[colorIdx], "line-width": 1.5 },
-        },
-        beforeId
-      );
-    });
   }, [isochrones]);
 
   // Update layer visibility when interval toggles change (no layer rebuild)
@@ -472,18 +482,24 @@ export default function MapView() {
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
-    const hasIso = isochrones && isochrones.features.length > 0;
-    if (map.getLayer("station-icons")) {
-      map.setPaintProperty("station-icons", "icon-opacity", hasIso ? 0.3 : 1);
-    }
-    if (map.getLayer("station-labels")) {
-      map.setLayoutProperty("station-labels", "visibility", hasIso ? "none" : "visible");
-    }
-    if (map.getLayer("subway-lines-inner")) {
-      map.setPaintProperty("subway-lines-inner", "line-opacity", hasIso ? 0.3 : 1);
-    }
-    if (map.getLayer("subway-lines-casing")) {
-      map.setPaintProperty("subway-lines-casing", "line-opacity", hasIso ? 0.2 : 0.7);
+
+    const applyDimming = () => {
+      const hasIso = isochrones && isochrones.features.length > 0;
+      if (map.getLayer("station-icons"))
+        map.setPaintProperty("station-icons", "icon-opacity", hasIso ? 0.3 : 1);
+      if (map.getLayer("station-labels"))
+        map.setLayoutProperty("station-labels", "visibility", hasIso ? "none" : "visible");
+      if (map.getLayer("subway-lines-inner"))
+        map.setPaintProperty("subway-lines-inner", "line-opacity", hasIso ? 0.3 : 1);
+      if (map.getLayer("subway-lines-casing"))
+        map.setPaintProperty("subway-lines-casing", "line-opacity", hasIso ? 0.2 : 0.7);
+    };
+
+    if (map.isStyleLoaded()) {
+      applyDimming();
+    } else {
+      map.once("load", applyDimming);
+      return () => { map.off("load", applyDimming); };
     }
   }, [isochrones]);
 
@@ -494,7 +510,9 @@ export default function MapView() {
         <div className="station-chip" key={selectedStation.id}>
           <div className="station-chip-names">
             <span className="station-chip-ko">{selectedStation.nameKo}</span>
-            <span className="station-chip-en">{selectedStation.name}</span>
+            {selectedStation.name !== selectedStation.nameKo && (
+              <span className="station-chip-en">{selectedStation.name}</span>
+            )}
           </div>
           <div className="station-chip-lines">
             {selectedStation.lines.map((l) => (
@@ -503,6 +521,7 @@ export default function MapView() {
               </span>
             ))}
           </div>
+          {isochronesLoading && <span className="chip-spinner" />}
           <button className="station-chip-close" onClick={() => selectStation(null)}>✕</button>
         </div>
       )}

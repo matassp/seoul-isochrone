@@ -21,6 +21,8 @@ public/data/isochrones/
 
 # Claude Code local settings
 .claude/
+CLAUDE.md
+.lsp.json
 
 # Editor directories and files
 .vscode/*

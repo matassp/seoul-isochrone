@@ -51,7 +51,7 @@ const TARGET_TIME = "14:00:00";
 const DATE_PREFIX = "2024-06-05T"; // Wednesday — GraphHopper uses this for GTFS calendar matching
 
 const MIN_BBOX_METERS = 500;
-const CONCURRENCY = 16;
+const CONCURRENCY = 2;
 
 interface StationGeoJSON {
   type: "FeatureCollection";
