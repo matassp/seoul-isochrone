@@ -432,7 +432,11 @@ export default function MapView() {
       sorted.forEach((interval) => {
         const colorIdx = ISOCHRONE_INTERVALS.indexOf(interval);
         const visible = intervals.includes(interval);
-        const beforeId = map.getLayer("subway-lines-casing") ? "subway-lines-casing" : "station-icons";
+        const beforeId = map.getLayer("subway-lines-casing")
+          ? "subway-lines-casing"
+          : map.getLayer("station-icons")
+            ? "station-icons"
+            : undefined;
 
         map.addLayer(
           {
