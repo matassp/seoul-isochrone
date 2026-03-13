@@ -22,14 +22,11 @@ export type LineId =
   | "bundang"
   | "shinbundang";
 
-export type TimeProfile = "off-peak" | "peak";
-
 export interface IsochroneFeature {
   type: "Feature";
   properties: {
     interval: number; // minutes
     stationId: string;
-    profile: TimeProfile;
   };
   geometry: GeoJSON.Polygon;
 }

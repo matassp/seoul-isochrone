@@ -1,29 +1,19 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import Fuse from "fuse.js";
 import { useMapStore } from "../store/useMapStore";
 import { LINE_COLORS, LINE_NAMES, ISOCHRONE_INTERVALS, ISOCHRONE_STROKES } from "../constants/lines";
-import { loadIsochrone } from "../services/isochroneLoader";
-import type { LineId, Station, TimeProfile } from "../types";
-
-const TIME_PROFILES: { value: TimeProfile; label: string; desc: string }[] = [
-  { value: "off-peak", label: "Off-peak", desc: "14:00 weekday" },
-  { value: "peak", label: "Peak", desc: "08:00 weekday" },
-];
+import type { LineId, Station } from "../types";
 
 export default function Sidebar() {
   const stations = useMapStore((s) => s.stations);
   const selectedStation = useMapStore((s) => s.selectedStation);
-  const timeProfile = useMapStore((s) => s.timeProfile);
   const intervals = useMapStore((s) => s.intervals);
   const enabledLines = useMapStore((s) => s.enabledLines);
   const isochronesLoading = useMapStore((s) => s.isochronesLoading);
   const sidebarOpen = useMapStore((s) => s.sidebarOpen);
   const selectStation = useMapStore((s) => s.selectStation);
-  const setTimeProfile = useMapStore((s) => s.setTimeProfile);
   const setIntervals = useMapStore((s) => s.setIntervals);
   const toggleLine = useMapStore((s) => s.toggleLine);
-  const setIsochrones = useMapStore((s) => s.setIsochrones);
-  const setIsochronesLoading = useMapStore((s) => s.setIsochronesLoading);
   const toggleSidebar = useMapStore((s) => s.toggleSidebar);
 
   const [query, setQuery] = useState("");
@@ -42,23 +32,9 @@ export default function Sidebar() {
     return fuse.search(query).slice(0, 8).map((r) => r.item);
   }, [query, fuse]);
 
-  // Load isochrones whenever the selected station or time profile changes
-  useEffect(() => {
-    if (!selectedStation) {
-      setIsochrones(null);
-      return;
-    }
-    setIsochronesLoading(true);
-    loadIsochrone(selectedStation.id, timeProfile).then(setIsochrones);
-  }, [selectedStation, timeProfile]);
-
   function handleSelectStation(station: Station) {
     selectStation(station);
     setQuery("");
-  }
-
-  function handleProfileChange(profile: TimeProfile) {
-    setTimeProfile(profile);
   }
 
   function toggleInterval(interval: number) {
@@ -139,23 +115,6 @@ export default function Sidebar() {
             {isochronesLoading && <div className="loading">Loading isochrones...</div>}
           </div>
         )}
-
-        {/* Time Profile */}
-        <div className="section">
-          <h3>Departure Time</h3>
-          <div className="profile-buttons">
-            {TIME_PROFILES.map((p) => (
-              <button
-                key={p.value}
-                className={`profile-btn ${timeProfile === p.value ? "active" : ""}`}
-                onClick={() => handleProfileChange(p.value)}
-              >
-                <span className="profile-label">{p.label}</span>
-                <span className="profile-desc">{p.desc}</span>
-              </button>
-            ))}
-          </div>
-        </div>
 
         {/* Travel Time Intervals */}
         <div className="section">

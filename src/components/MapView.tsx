@@ -3,6 +3,7 @@ import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { useMapStore } from "../store/useMapStore";
 import { LINE_COLORS, ISOCHRONE_COLORS, ISOCHRONE_STROKES, ISOCHRONE_INTERVALS } from "../constants/lines";
+import { loadIsochrone } from "../services/isochroneLoader";
 import type { LineId } from "../types";
 
 /**
@@ -116,6 +117,8 @@ export default function MapView() {
   const isochrones = useMapStore((s) => s.isochrones);
   const intervals = useMapStore((s) => s.intervals);
   const selectStation = useMapStore((s) => s.selectStation);
+  const setIsochrones = useMapStore((s) => s.setIsochrones);
+  const setIsochronesLoading = useMapStore((s) => s.setIsochronesLoading);
 
   // Init map
   useEffect(() => {
@@ -374,65 +377,93 @@ export default function MapView() {
     }
   }, [selectedStation, createPulseEl]);
 
-  // Isochrone layer
+  // Load isochrones when selected station changes
+  useEffect(() => {
+    if (!selectedStation) {
+      setIsochrones(null);
+      return;
+    }
+    setIsochronesLoading(true);
+    loadIsochrone(selectedStation.id).then(setIsochrones);
+  }, [selectedStation]);
+
+  // Rebuild isochrone source + layers when data changes
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !map.isStyleLoaded()) return;
+
+    // Remove existing isochrone layers and source
+    for (let i = 0; i < ISOCHRONE_INTERVALS.length; i++) {
+      if (map.getLayer(`isochrone-fill-${i}`)) map.removeLayer(`isochrone-fill-${i}`);
+      if (map.getLayer(`isochrone-line-${i}`)) map.removeLayer(`isochrone-line-${i}`);
+    }
+    if (map.getSource("isochrones")) map.removeSource("isochrones");
+
+    if (!isochrones || isochrones.features.length === 0) return;
+
+    map.addSource("isochrones", { type: "geojson", data: isochrones });
+
+    // Add layers largest-first so smaller rings render on top
+    const sorted = [...ISOCHRONE_INTERVALS].reverse();
+    sorted.forEach((interval) => {
+      const colorIdx = ISOCHRONE_INTERVALS.indexOf(interval);
+      const visible = intervals.includes(interval);
+      const beforeId = map.getLayer("subway-lines-casing") ? "subway-lines-casing" : "station-icons";
+
+      map.addLayer(
+        {
+          id: `isochrone-fill-${colorIdx}`,
+          type: "fill",
+          source: "isochrones",
+          filter: ["==", ["get", "interval"], interval],
+          layout: { visibility: visible ? "visible" : "none" },
+          paint: { "fill-color": ISOCHRONE_COLORS[colorIdx] },
+        },
+        beforeId
+      );
+      map.addLayer(
+        {
+          id: `isochrone-line-${colorIdx}`,
+          type: "line",
+          source: "isochrones",
+          filter: ["==", ["get", "interval"], interval],
+          layout: { visibility: visible ? "visible" : "none" },
+          paint: { "line-color": ISOCHRONE_STROKES[colorIdx], "line-width": 1.5 },
+        },
+        beforeId
+      );
+    });
+  }, [isochrones]);
+
+  // Update layer visibility when interval toggles change (no layer rebuild)
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
+    ISOCHRONE_INTERVALS.forEach((interval, i) => {
+      const vis = intervals.includes(interval) ? "visible" : "none";
+      if (map.getLayer(`isochrone-fill-${i}`)) map.setLayoutProperty(`isochrone-fill-${i}`, "visibility", vis);
+      if (map.getLayer(`isochrone-line-${i}`)) map.setLayoutProperty(`isochrone-line-${i}`, "visibility", vis);
+    });
+  }, [intervals]);
 
-    const applyIsochrones = () => {
-      // Remove old isochrone layers
-      for (let i = 0; i < ISOCHRONE_INTERVALS.length; i++) {
-        if (map.getLayer(`isochrone-fill-${i}`)) map.removeLayer(`isochrone-fill-${i}`);
-        if (map.getLayer(`isochrone-line-${i}`)) map.removeLayer(`isochrone-line-${i}`);
-      }
-      if (map.getSource("isochrones")) map.removeSource("isochrones");
-
-      if (!isochrones || isochrones.features.length === 0) return;
-
-      map.addSource("isochrones", { type: "geojson", data: isochrones });
-
-      // Add layers in reverse order (largest first = behind)
-      const sorted = [...ISOCHRONE_INTERVALS].reverse();
-      sorted.forEach((interval) => {
-        const colorIdx = ISOCHRONE_INTERVALS.indexOf(interval);
-        const visible = intervals.includes(interval);
-
-        map.addLayer(
-          {
-            id: `isochrone-fill-${colorIdx}`,
-            type: "fill",
-            source: "isochrones",
-            filter: ["==", ["get", "interval"], interval],
-            layout: { visibility: visible ? "visible" : "none" },
-            paint: {
-              "fill-color": ISOCHRONE_COLORS[colorIdx],
-            },
-          },
-          map.getLayer("subway-lines-casing") ? "subway-lines-casing" : "station-icons"
-        );
-        map.addLayer(
-          {
-            id: `isochrone-line-${colorIdx}`,
-            type: "line",
-            source: "isochrones",
-            filter: ["==", ["get", "interval"], interval],
-            layout: { visibility: visible ? "visible" : "none" },
-            paint: {
-              "line-color": ISOCHRONE_STROKES[colorIdx],
-              "line-width": 1.5,
-            },
-          },
-          map.getLayer("subway-lines-casing") ? "subway-lines-casing" : "station-icons"
-        );
-      });
-    };
-
-    if (map.isStyleLoaded()) {
-      applyIsochrones();
-    } else {
-      map.on("load", applyIsochrones);
+  // Dim stations + hide labels when isochrones are showing
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    const hasIso = isochrones && isochrones.features.length > 0;
+    if (map.getLayer("station-icons")) {
+      map.setPaintProperty("station-icons", "icon-opacity", hasIso ? 0.3 : 1);
     }
-  }, [isochrones, intervals]);
+    if (map.getLayer("station-labels")) {
+      map.setLayoutProperty("station-labels", "visibility", hasIso ? "none" : "visible");
+    }
+    if (map.getLayer("subway-lines-inner")) {
+      map.setPaintProperty("subway-lines-inner", "line-opacity", hasIso ? 0.3 : 1);
+    }
+    if (map.getLayer("subway-lines-casing")) {
+      map.setPaintProperty("subway-lines-casing", "line-opacity", hasIso ? 0.2 : 0.7);
+    }
+  }, [isochrones]);
 
   return <div ref={mapContainer} className="map-container" />;
 }

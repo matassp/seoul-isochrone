@@ -1,11 +1,10 @@
 import { create } from "zustand";
-import type { LineId, Station, TimeProfile, IsochroneCollection } from "../types";
+import type { LineId, Station, IsochroneCollection } from "../types";
 import { ISOCHRONE_INTERVALS } from "../constants/lines";
 
 interface MapState {
   stations: Station[];
   selectedStation: Station | null;
-  timeProfile: TimeProfile;
   intervals: number[];
   enabledLines: Set<LineId>;
   isochrones: IsochroneCollection | null;
@@ -14,7 +13,6 @@ interface MapState {
 
   setStations: (stations: Station[]) => void;
   selectStation: (station: Station | null) => void;
-  setTimeProfile: (profile: TimeProfile) => void;
   setIntervals: (intervals: number[]) => void;
   toggleLine: (line: LineId) => void;
   setIsochrones: (iso: IsochroneCollection | null) => void;
@@ -30,7 +28,6 @@ const ALL_LINES = new Set<LineId>([
 export const useMapStore = create<MapState>((set) => ({
   stations: [],
   selectedStation: null,
-  timeProfile: "off-peak",
   intervals: ISOCHRONE_INTERVALS,
   enabledLines: new Set(ALL_LINES),
   isochrones: null,
@@ -39,7 +36,6 @@ export const useMapStore = create<MapState>((set) => ({
 
   setStations: (stations) => set({ stations }),
   selectStation: (station) => set({ selectedStation: station, isochrones: null }),
-  setTimeProfile: (profile) => set({ timeProfile: profile }),
   setIntervals: (intervals) => set({ intervals }),
   toggleLine: (line) =>
     set((state) => {

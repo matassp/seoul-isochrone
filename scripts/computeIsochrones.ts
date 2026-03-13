@@ -1,29 +1,32 @@
 /**
  * computeIsochrones.ts
  *
- * Queries GraphHopper's isochrone API for every station × profile combination
- * and writes the results as static GeoJSON files.
+ * Queries GraphHopper's isochrone API for every station and writes the results
+ * as static GeoJSON files.
  *
  * Coordinate snapping: OSM station nodes sit on railway tracks/platforms, not
- * street exits. GraphHopper cannot snap those to the pedestrian network, producing
- * degenerate tiny polygons. This script first loads GTFS stops.txt (which uses
- * street-level coordinates from the Seoul Open Data timetable API) and snaps each
- * station to its nearest GTFS stop within 800 m before querying GraphHopper.
+ * street exits. This script snaps each station to its nearest GTFS stop (which
+ * uses street-level coordinates from KTDB) within 800 m before querying.
  *
- * Wait-time approximation: each profile is queried at two departure offsets
- * (0 and half the typical headway). The union of both polygons represents
- * "reachable area if you arrive at a random point in the headway window".
+ * Multi-direction departures: A station may serve multiple lines and directions.
+ * For each nearby GTFS stop (within 400 m), the script finds the first departure
+ * at or after 14:00 (off-peak weekday). GraphHopper is queried once per unique
+ * departure time and the results are unioned. This gives each direction the full
+ * time budget — equivalent to "every train departs at the target time."
  *
- * Post-processing: interior rings stripped, MultiPolygon islands discarded
- * (keep largest sub-polygon), simplify geometry, skip degenerate results.
+ * Degenerate recovery: If the primary coordinate fails, the script retries with
+ * alternative nearby GTFS stops, then cardinal/diagonal nudges (~100m offsets).
+ *
+ * Post-processing: interior rings stripped, MultiPolygon islands preserved
+ * (they represent real transit-reachable corridors), light simplification.
  *
  * Prerequisites:
  *   - GraphHopper running at http://localhost:8989 (via docker compose)
  *   - public/data/stations.geojson
- *   - docker/gtfs/seoul-metro.gtfs.zip  (for coordinate snapping)
+ *   - docker/gtfs/seoul-metro.gtfs.zip  (for coordinate snapping + departure lookup)
  *
  * Run: npx tsx scripts/computeIsochrones.ts
- * Output: public/data/isochrones/{off-peak,peak}/*.geojson
+ * Output: public/data/isochrones/*.geojson
  */
 
 import { readFileSync, writeFileSync, mkdirSync } from "fs";
@@ -38,33 +41,17 @@ const GH_URL = process.env.GH_URL || "http://localhost:8989";
 const ROOT = join(import.meta.dirname, "..");
 const STATIONS_PATH = join(ROOT, "public", "data", "stations.geojson");
 const GTFS_ZIP = join(ROOT, "docker", "gtfs", "seoul-metro.gtfs.zip");
-const OUT_BASE = join(ROOT, "public", "data", "isochrones");
+const OUT_DIR = join(ROOT, "public", "data", "isochrones");
 
 const INTERVALS = [15, 30, 60]; // minutes
 const INTERVAL_SECONDS = INTERVALS.map((m) => m * 60);
 
-// Minimum bounding box diagonal (meters) for a polygon to be considered valid.
-// Anything smaller is a degenerate result (GraphHopper couldn't reach the street network).
+// Off-peak weekday 14:00 — single profile
+const TARGET_TIME = "14:00:00";
+const DATE_PREFIX = "2024-06-05T"; // Wednesday — GraphHopper uses this for GTFS calendar matching
+
 const MIN_BBOX_METERS = 500;
-
-interface Profile {
-  id: string;
-  departure: string;    // ISO datetime with timezone
-  offsets: number[];    // additional departure offsets in seconds (for headway union)
-}
-
-const PROFILES: Profile[] = [
-  {
-    id: "off-peak",
-    departure: "2024-06-05T14:00:00+09:00", // Wednesday 2pm KST
-    offsets: [0, 150],                        // 0 + 2.5 min — covers ~5-min off-peak headway
-  },
-  {
-    id: "peak",
-    departure: "2024-06-05T08:00:00+09:00",  // Wednesday 8am KST
-    offsets: [0, 90],                          // 0 + 1.5 min — covers ~3-min peak headway
-  },
-];
+const CONCURRENCY = 16;
 
 interface StationGeoJSON {
   type: "FeatureCollection";
@@ -81,9 +68,8 @@ interface GtfsStop {
   lon: number;
 }
 
-// ── GTFS coordinate snapping ────────────────────────────────────────────────
+// ── GTFS loading ──────────────────────────────────────────────────────────
 
-/** Load all stops from the GTFS zip via `unzip -p`. */
 function loadGtfsStops(): GtfsStop[] {
   try {
     const csv = execSync(`unzip -p "${GTFS_ZIP}" stops.txt`, { maxBuffer: 10 * 1024 * 1024 }).toString();
@@ -99,12 +85,40 @@ function loadGtfsStops(): GtfsStop[] {
       return [{ stop_id: parts[iId]?.trim(), stop_name: parts[iName]?.trim(), lat, lon }];
     });
   } catch {
-    console.warn("⚠ Could not load GTFS stops — will use OSM coordinates (expect degenerate results)");
+    console.warn("⚠ Could not load GTFS stops — will use OSM coordinates");
     return [];
   }
 }
 
-/** Haversine distance in metres between two lat/lon points. */
+type DepartureIndex = Map<string, string[]>;
+
+function loadDepartureIndex(): DepartureIndex {
+  const index: DepartureIndex = new Map();
+  try {
+    const csv = execSync(`unzip -p "${GTFS_ZIP}" stop_times.txt`, { maxBuffer: 50 * 1024 * 1024 }).toString();
+    const lines = csv.trim().split("\n");
+    const headers = lines[0].split(",").map((h) => h.trim());
+    const iStop = headers.indexOf("stop_id");
+    const iDep = headers.indexOf("departure_time");
+    for (let i = 1; i < lines.length; i++) {
+      const parts = lines[i].split(",");
+      const stopId = parts[iStop]?.trim();
+      const dep = parts[iDep]?.trim();
+      if (!stopId || !dep) continue;
+      let arr = index.get(stopId);
+      if (!arr) { arr = []; index.set(stopId, arr); }
+      arr.push(dep);
+    }
+    index.forEach((arr) => arr.sort());
+    console.log(`  ${index.size} stops with departure times indexed.`);
+  } catch {
+    console.warn("⚠ Could not load GTFS stop_times");
+  }
+  return index;
+}
+
+// ── Coordinate + departure helpers ────────────────────────────────────────
+
 function distanceM(lat1: number, lon1: number, lat2: number, lon2: number): number {
   const R = 6_371_000;
   const dLat = (lat2 - lat1) * Math.PI / 180;
@@ -114,7 +128,6 @@ function distanceM(lat1: number, lon1: number, lat2: number, lon2: number): numb
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
-/** Return the nearest GTFS stop within maxDist metres, or null. */
 function nearestGtfsStop(lat: number, lon: number, stops: GtfsStop[], maxDist = 800): GtfsStop | null {
   let best: GtfsStop | null = null;
   let bestDist = maxDist;
@@ -125,24 +138,35 @@ function nearestGtfsStop(lat: number, lon: number, stops: GtfsStop[], maxDist = 
   return best;
 }
 
-// ── Geometry helpers ────────────────────────────────────────────────────────
-
-/** Add seconds to an ISO datetime string with offset, e.g. "2024-06-05T14:00:00+09:00" */
-function addSeconds(iso: string, seconds: number): string {
-  const date = new Date(iso);
-  date.setSeconds(date.getSeconds() + seconds);
-  const offsetMatch = iso.match(/([+-]\d{2}:\d{2})$/);
-  const tz = offsetMatch ? offsetMatch[1] : "+09:00";
-  const pad = (n: number) => String(n).padStart(2, "0");
-  return `${date.getUTCFullYear()}-${pad(date.getUTCMonth() + 1)}-${pad(date.getUTCDate())}T${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}:${pad(date.getUTCSeconds())}${tz}`;
+function nearbyGtfsStops(lat: number, lon: number, stops: GtfsStop[], maxDist = 400): GtfsStop[] {
+  return stops.filter((s) => distanceM(lat, lon, s.lat, s.lon) <= maxDist);
 }
 
-/** Fetch a single polygon for one (lat, lon, timeLimitSeconds, departure) combo. */
+function firstDeparture(stopId: string, targetTime: string, depIndex: DepartureIndex): string | null {
+  const deps = depIndex.get(stopId);
+  if (!deps || deps.length === 0) return null;
+  let lo = 0, hi = deps.length;
+  while (lo < hi) {
+    const mid = (lo + hi) >> 1;
+    if (deps[mid] < targetTime) lo = mid + 1;
+    else hi = mid;
+  }
+  return lo < deps.length ? deps[lo] : null;
+}
+
+function allFirstDepartures(stops: GtfsStop[], targetTime: string, depIndex: DepartureIndex): string[] {
+  const seen = new Set<string>();
+  for (const s of stops) {
+    const dep = firstDeparture(s.stop_id, targetTime, depIndex);
+    if (dep !== null) seen.add(dep);
+  }
+  return Array.from(seen).sort();
+}
+
+// ── Geometry helpers ──────────────────────────────────────────────────────
+
 async function fetchPolygon(
-  lat: number,
-  lon: number,
-  timeLimitSeconds: number,
-  departure: string
+  lat: number, lon: number, timeLimitSeconds: number, departure: string
 ): Promise<{ type: string; coordinates: unknown } | null> {
   const params = new URLSearchParams({
     point: `${lat},${lon}`,
@@ -162,53 +186,62 @@ async function fetchPolygon(
   }
 }
 
-/** Strip interior rings and discard small island fragments.
- *  MultiPolygon → keep only the largest sub-polygon (by vertex count), return as Polygon.
- *  Polygon → strip holes, return exterior ring only.
- */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function fillHoles(geometry: any): any {
+function stripHoles(geometry: any): any {
   if (geometry.type === "Polygon") {
     return { ...geometry, coordinates: [geometry.coordinates[0]] };
   }
   if (geometry.type === "MultiPolygon") {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const largest = geometry.coordinates.reduce((best: any, poly: any) =>
-      poly[0].length > best[0].length ? poly : best
-    );
-    return { type: "Polygon", coordinates: [largest[0]] };
+    return { ...geometry, coordinates: geometry.coordinates.map((poly: any) => [poly[0]]) };
   }
   return geometry;
 }
 
-/** Return the bounding-box diagonal in metres for a Polygon geometry. */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function bboxDiagM(geometry: any): number {
-  const ring = geometry.coordinates?.[0];
-  if (!ring || ring.length < 3) return 0;
-  const lons = ring.map((p: number[]) => p[0]);
-  const lats = ring.map((p: number[]) => p[1]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const rings: number[][][] = geometry.type === "MultiPolygon"
+    ? geometry.coordinates.map((p: number[][][]) => p[0])
+    : [geometry.coordinates?.[0]];
+  const allCoords = rings.flat().filter(Boolean);
+  if (allCoords.length < 3) return 0;
+  const lons = allCoords.map((p) => p[0]);
+  const lats = allCoords.map((p) => p[1]);
   const w = (Math.max(...lons) - Math.min(...lons)) * 111_000;
   const h = (Math.max(...lats) - Math.min(...lats)) * 111_000;
   return Math.sqrt(w * w + h * h);
 }
 
-// ── Per-station processing ──────────────────────────────────────────────────
+// ── Per-station processing ──────────────────────────────────────────────
 
-const CONCURRENCY = 8;
+const COORD_NUDGES: [number, number][] = [
+  [0.001, 0], [-0.001, 0], [0, 0.001], [0, -0.001],
+  [0.0007, 0.0007], [-0.0007, 0.0007], [0.0007, -0.0007], [-0.0007, -0.0007],
+];
 
-async function processStation(
-  lat: number, lon: number, id: string,
-  profile: Profile, outDir: string
-): Promise<"ok" | "skip" | "degenerate"> {
-  const departures = profile.offsets.map((s) => addSeconds(profile.departure, s));
-  const mergedFeatures: GeoFeature[] = [];
-
+async function computeIsochrone(
+  lat: number, lon: number, departures: string[], id: string
+): Promise<GeoFeature[] | null> {
+  // Fire ALL queries in parallel: every interval × every departure
+  type Query = { intervalIdx: number; dep: string };
+  const queries: Query[] = [];
   for (let i = 0; i < INTERVAL_SECONDS.length; i++) {
-    const t = INTERVAL_SECONDS[i];
-    const geometries = (
-      await Promise.all(departures.map((dep) => fetchPolygon(lat, lon, t, dep)))
-    ).filter(Boolean);
+    for (const dep of departures) {
+      queries.push({ intervalIdx: i, dep });
+    }
+  }
+
+  const results = await Promise.all(
+    queries.map((q) => fetchPolygon(lat, lon, INTERVAL_SECONDS[q.intervalIdx], q.dep))
+  );
+
+  // Group results by interval
+  const features: GeoFeature[] = [];
+  for (let i = 0; i < INTERVAL_SECONDS.length; i++) {
+    const geometries = queries
+      .map((q, idx) => q.intervalIdx === i ? results[idx] : null)
+      .filter(Boolean);
 
     if (geometries.length === 0) continue;
 
@@ -222,36 +255,66 @@ async function processStation(
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let smoothed: any = fillHoles(finalGeometry);
+    let smoothed: any = stripHoles(finalGeometry);
     try {
-      smoothed = simplify(turfFeature(smoothed), { tolerance: 0.003, highQuality: false }).geometry;
+      smoothed = simplify(turfFeature(smoothed), { tolerance: 0.0005, highQuality: true }).geometry;
     } catch { /* keep unsimplified */ }
 
-    mergedFeatures.push({
+    features.push({
       type: "Feature",
-      properties: { interval: INTERVALS[i], stationId: id, profile: profile.id },
+      properties: { interval: INTERVALS[i], stationId: id },
       geometry: smoothed,
     });
   }
 
-  if (mergedFeatures.length === 0) return "skip";
-
-  // Reject degenerate results: all intervals produce the same tiny polygon
-  // (GraphHopper couldn't reach the pedestrian network from this point).
-  const diags = mergedFeatures.map((f) => bboxDiagM(f.geometry));
-  const maxDiag = Math.max(...diags);
-  if (maxDiag < MIN_BBOX_METERS) return "degenerate";
-
-  writeFileSync(join(outDir, `${id}.geojson`), JSON.stringify({ type: "FeatureCollection", features: mergedFeatures }));
-  return "ok";
+  if (features.length === 0) return null;
+  const diags = features.map((f) => bboxDiagM(f.geometry));
+  if (Math.max(...diags) < MIN_BBOX_METERS) return null;
+  return features;
 }
 
-// ── Main ────────────────────────────────────────────────────────────────────
+async function processStation(
+  lat: number, lon: number, id: string,
+  departures: string[], outDir: string, nearbyStops: GtfsStop[]
+): Promise<{ status: "ok" | "skip" | "degenerate"; retryNote: string }> {
+  // 1st: primary snapped coordinate
+  let features = await computeIsochrone(lat, lon, departures, id);
+  if (features) {
+    writeFileSync(join(outDir, `${id}.geojson`), JSON.stringify({ type: "FeatureCollection", features }));
+    return { status: "ok", retryNote: "" };
+  }
+
+  // 2nd: try other nearby GTFS stops
+  for (const stop of nearbyStops) {
+    if (stop.lat === lat && stop.lon === lon) continue;
+    features = await computeIsochrone(stop.lat, stop.lon, departures, id);
+    if (features) {
+      writeFileSync(join(outDir, `${id}.geojson`), JSON.stringify({ type: "FeatureCollection", features }));
+      return { status: "ok", retryNote: " (retry: alt stop)" };
+    }
+  }
+
+  // 3rd: nudge coordinates ~100m
+  for (const [dlat, dlon] of COORD_NUDGES) {
+    features = await computeIsochrone(lat + dlat, lon + dlon, departures, id);
+    if (features) {
+      writeFileSync(join(outDir, `${id}.geojson`), JSON.stringify({ type: "FeatureCollection", features }));
+      return { status: "ok", retryNote: " (retry: nudge)" };
+    }
+  }
+
+  return { status: "degenerate", retryNote: "" };
+}
+
+// ── Main ──────────────────────────────────────────────────────────────────
 
 async function main() {
-  console.log("Loading GTFS stops for coordinate snapping...");
+  console.log("Loading GTFS stops...");
   const gtfsStops = loadGtfsStops();
   console.log(`  ${gtfsStops.length} stops loaded.`);
+
+  console.log("Loading GTFS departure times...");
+  const depIndex = loadDepartureIndex();
 
   let stations: StationGeoJSON;
   try {
@@ -261,39 +324,41 @@ async function main() {
     process.exit(1);
   }
 
-  console.log(`Computing isochrones for ${stations.features.length} stations × ${PROFILES.length} profiles...\n`);
+  mkdirSync(OUT_DIR, { recursive: true });
+  console.log(`\nComputing isochrones for ${stations.features.length} stations (off-peak 14:00)...\n`);
 
-  const total = stations.features.length * PROFILES.length;
+  const total = stations.features.length;
   let done = 0;
   const counts = { ok: 0, skip: 0, degenerate: 0 };
 
-  for (const profile of PROFILES) {
-    const outDir = join(OUT_BASE, profile.id);
-    mkdirSync(outDir, { recursive: true });
+  for (let i = 0; i < stations.features.length; i += CONCURRENCY) {
+    const batch = stations.features.slice(i, i + CONCURRENCY);
+    await Promise.all(batch.map(async (feature) => {
+      const { id, name_ko } = feature.properties;
+      const [osmLon, osmLat] = feature.geometry.coordinates;
 
-    for (let i = 0; i < stations.features.length; i += CONCURRENCY) {
-      const batch = stations.features.slice(i, i + CONCURRENCY);
-      await Promise.all(batch.map(async (feature) => {
-        const { id, name_ko } = feature.properties;
-        const [osmLon, osmLat] = feature.geometry.coordinates;
+      const snap = nearestGtfsStop(osmLat, osmLon, gtfsStops);
+      const lat = snap ? snap.lat : osmLat;
+      const lon = snap ? snap.lon : osmLon;
+      const snapNote = snap ? ` (snapped ${Math.round(distanceM(osmLat, osmLon, lat, lon))}m)` : " (OSM)";
 
-        // Prefer GTFS street-level coords over OSM platform/track coords
-        const snap = nearestGtfsStop(osmLat, osmLon, gtfsStops);
-        const lat = snap ? snap.lat : osmLat;
-        const lon = snap ? snap.lon : osmLon;
-        const snapNote = snap ? ` (snapped ${Math.round(distanceM(osmLat, osmLon, lat, lon))}m)` : " (OSM)";
+      const nearbyStops = nearbyGtfsStops(lat, lon, gtfsStops, 400);
+      const depTimes = nearbyStops.length > 0
+        ? allFirstDepartures(nearbyStops, TARGET_TIME, depIndex)
+        : [TARGET_TIME];
+      const departures = depTimes.map((t) => `${DATE_PREFIX}${t}+09:00`);
+      const depNote = depTimes.length > 1 ? ` ${depTimes.length}dirs` : "";
 
-        const result = await processStation(lat, lon, id, profile, outDir);
-        counts[result]++;
-        done++;
-        console.log(`[${done}/${total}] ${profile.id} — ${name_ko}${snapNote}: ${result.toUpperCase()}`);
-      }));
-    }
+      const { status, retryNote } = await processStation(lat, lon, id, departures, OUT_DIR, nearbyStops);
+      counts[status]++;
+      done++;
+      console.log(`[${done}/${total}] ${name_ko}${snapNote}${depNote}${retryNote}: ${status.toUpperCase()}`);
+    }));
   }
 
   console.log(`\nDone.`);
   console.log(`  OK:          ${counts.ok}`);
-  console.log(`  DEGENERATE:  ${counts.degenerate}  (no walkable network at this location)`);
+  console.log(`  DEGENERATE:  ${counts.degenerate}  (no walkable network)`);
   console.log(`  SKIP:        ${counts.skip}  (GraphHopper returned nothing)`);
 }
 
