@@ -35,7 +35,9 @@ export const useMapStore = create<MapState>((set) => ({
   sidebarOpen: true,
 
   setStations: (stations) => set({ stations }),
-  selectStation: (station) => set({ selectedStation: station, isochrones: null }),
+  // Spread to ensure a new reference on every call so [selectedStation] effects always re-run,
+  // even when the same station is re-selected (e.g. clicking it again after it was already active).
+  selectStation: (station) => set({ selectedStation: station ? { ...station } : null, isochrones: null }),
   setIntervals: (intervals) => set({ intervals }),
   toggleLine: (line) =>
     set((state) => {
