@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \":*)",
+      "Bash(pnpm run:*)",
+      "Bash(npx tsc:*)",
+      "WebSearch",
+      "WebFetch(domain:blog.transitapp.com)",
+      "WebFetch(domain:docs.mapbox.com)",
+      "WebFetch(domain:metrorouteatlas.net)",
+      "WebFetch(domain:datavizcatalogue.com)",
+      "WebFetch(domain:blog.mapbox.com)",
+      "WebFetch(domain:medium.com)",
+      "WebFetch(domain:www.smashingmagazine.com)",
+      "WebFetch(domain:en.wikipedia.org)",
+      "WebFetch(domain:data.seoul.go.kr)",
+      "WebFetch(domain:www.transit.land)",
+      "WebFetch(domain:www.data.go.kr)",
+      "WebFetch(domain:discuss.graphhopper.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:t-data.seoul.go.kr)",
+      "WebFetch(domain:www.ktdb.go.kr)",
+      "Bash(colima status:*)",
+      "Bash(colima version:*)",
+      "Bash(brew info:*)",
+      "Bash(unzip -p /Users/matas/seoul-isochrone/docker/gtfs/seoul-metro.gtfs.zip routes.txt)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\(''''scripts'''',{}\\), indent=2\\)\\)\")",
+      "Bash(curl -s \"http://localhost:8989/isochrone?point=37.4979%2C127.0276&profile=pt&pt.earliest_departure_time=2024-06-05T14%3A00%3A00%2B09%3A00&reverse_flow=false&time_limit=600&time_limit=1200&time_limit=1800&time_limit=2700&time_limit=3600\")"
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+graphhopper:
+  datareader.file: /data/south-korea-latest.osm.pbf
+
+  gtfs.file: /data/gtfs/seoul-metro.gtfs.zip
+
+  graph.location: /data/graph-cache
+
+  import.osm.ignored_highways: motorway,trunk
+
+  graph.encoded_values: foot_access, hike_rating, foot_priority, foot_average_speed
+
+  profiles:
+    - name: foot
+      custom_model_files: [foot.json]
+
+  routing.non_ch.max_visited_nodes: 1000000
+  prepare.min_network_size: 200
+
+server:
+  application_connectors:
+    - type: http
+      port: 8989
+      bind_host: 0.0.0.0
+  admin_connectors:
+    - type: http
+      port: 8990
+      bind_host: 0.0.0.0
+  request_log:
+    appenders: []

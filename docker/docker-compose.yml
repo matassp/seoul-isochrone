@@ -1,0 +1,14 @@
+services:
+  graphhopper:
+    build: .
+    ports:
+      - "8989:8989"
+    volumes:
+      - ./data:/data
+      - ./graphhopper-config.yml:/data/config.yml
+      - ./gtfs:/data/gtfs
+    environment:
+      # 10 GB heap — Korea OSM + rail GTFS (338K stop_times)
+      - JAVA_OPTS=-Xmx10g -Xms1g
+    command: ["server", "/data/config.yml"]
+    restart: unless-stopped
