@@ -416,8 +416,24 @@ export default function MapView() {
       setIsochrones(null);
       return;
     }
+    let stale = false;
     setIsochronesLoading(true);
-    loadIsochrone(selectedStation.id).then(setIsochrones);
+
+    const attempt = async (retries: number): Promise<void> => {
+      const data = await loadIsochrone(selectedStation.id);
+      if (stale) return;
+      if (data) {
+        setIsochrones(data);
+      } else if (retries > 0) {
+        await new Promise((r) => setTimeout(r, 500));
+        if (!stale) await attempt(retries - 1);
+      } else {
+        setIsochrones(null);
+      }
+    };
+
+    attempt(2);
+    return () => { stale = true; };
   }, [selectedStation]);
 
   // Rebuild isochrone source + layers when data changes
