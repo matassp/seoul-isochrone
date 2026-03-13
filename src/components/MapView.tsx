@@ -182,6 +182,8 @@ export default function MapView() {
   const stations = useMapStore((s) => s.stations);
   const enabledLines = useMapStore((s) => s.enabledLines);
   const selectedStation = useMapStore((s) => s.selectedStation);
+  const isochrones = useMapStore((s) => s.isochrones);
+  const intervals = useMapStore((s) => s.intervals);
   const isochronesLoading = useMapStore((s) => s.isochronesLoading);
   const selectStation = useMapStore((s) => s.selectStation);
   const setIsochrones = useMapStore((s) => s.setIsochrones);
@@ -220,31 +222,23 @@ export default function MapView() {
     };
   }, []);
 
-  // Subscribe to store changes and sync isochrone layers + dimming.
-  // This replaces three separate effects (render, visibility, dimming) with one
-  // imperative subscription that always reads fresh state.
+  // Sync isochrone layers + dimming whenever isochrones or intervals change.
+  // syncMapIsochrones reads fresh state, so it's always correct.
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
 
-    // Sync on map load (for URL-loaded stations where isochrones arrive before map is ready)
-    const onLoad = () => syncMapIsochrones(map);
-    map.on("load", onLoad);
-
-    // Sync whenever isochrones or intervals change in the store
-    let prev = { iso: useMapStore.getState().isochrones, intervals: useMapStore.getState().intervals };
-    const unsub = useMapStore.subscribe((state) => {
-      if (state.isochrones !== prev.iso || state.intervals !== prev.intervals) {
-        prev = { iso: state.isochrones, intervals: state.intervals };
-        syncMapIsochrones(map);
-      }
-    });
-
-    return () => {
-      map.off("load", onLoad);
-      unsub();
+    const run = () => {
+      try { syncMapIsochrones(map); } catch (e) { console.error("[isochrones] sync failed:", e); }
     };
-  }, []);
+
+    if (map.isStyleLoaded()) {
+      run();
+    } else {
+      map.once("load", run);
+      return () => { map.off("load", run); };
+    }
+  }, [isochrones, intervals]);
 
   // Add station source + layers once map + stations are ready
   useEffect(() => {
