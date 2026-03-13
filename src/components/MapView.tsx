@@ -111,6 +111,9 @@ export default function MapView() {
   const markerRef = useRef<maplibregl.Marker | null>(null);
   // Stores the layer-setup function so it can be re-called after a style change
   const setupLayersRef = useRef<(() => void) | null>(null);
+  // Latest isochrone/dimming apply fns — called after station layers finish loading
+  const applyIsochronesRef = useRef<(() => void) | null>(null);
+  const applyDimmingRef = useRef<(() => void) | null>(null);
   const stations = useMapStore((s) => s.stations);
   const enabledLines = useMapStore((s) => s.enabledLines);
   const selectedStation = useMapStore((s) => s.selectedStation);
@@ -296,10 +299,17 @@ export default function MapView() {
     // Register for re-use after style changes
     setupLayersRef.current = handler;
 
+    const wrappedHandler = async () => {
+      await handler();
+      // Re-apply isochrones and dimming in case they loaded before station layers were ready
+      applyIsochronesRef.current?.();
+      applyDimmingRef.current?.();
+    };
+
     if (map.isStyleLoaded()) {
-      handler();
+      wrappedHandler();
     } else {
-      map.on("load", handler);
+      map.on("load", wrappedHandler);
     }
   }, [stations, selectStation]);
 
@@ -463,6 +473,7 @@ export default function MapView() {
       });
     };
 
+    applyIsochronesRef.current = apply;
     if (map.isStyleLoaded()) {
       apply();
     } else {
@@ -499,6 +510,7 @@ export default function MapView() {
         map.setPaintProperty("subway-lines-casing", "line-opacity", hasIso ? 0.2 : 0.7);
     };
 
+    applyDimmingRef.current = applyDimming;
     if (map.isStyleLoaded()) {
       applyDimming();
     } else {
