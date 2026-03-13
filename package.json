@@ -9,8 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "fetch-stations": "tsx scripts/fetchStations.ts",
-    "build-gtfs": "tsx scripts/buildGtfs.ts",
-    "compute-isochrones": "tsx scripts/computeIsochrones.ts"
+"compute-isochrones": "tsx scripts/computeIsochrones.ts"
   },
   "dependencies": {
     "@turf/turf": "^7.3.4",

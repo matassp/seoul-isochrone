@@ -1,73 +1,93 @@
-# React + TypeScript + Vite
+# Seoul Metro Isochrone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Where can you reach from any Seoul Metro station in 15, 30, or 60 minutes?**
 
-Currently, two official plugins are available:
+An interactive map showing transit reachability across the Seoul Metro network — useful for apartment hunting, commute planning, or exploring the city.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- **516 stations** across Lines 1–9, Bundang, Shinbundang, Gyeongui-Jungang, and Airport Railroad
+- **Isochrone rings** at 15, 30, and 60 minutes (subway + walking)
+- **Peak / off-peak toggle** — pre-computed for 08:00 and 14:00 weekday departures
+- **Line filter** — show/hide individual lines
+- **Station search** — Korean (강남역) and English (Gangnam)
+- Fast — isochrones are static GeoJSON served from CDN, no routing server at runtime
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+| Layer | Choice |
+|-------|--------|
+| Framework | React 18 + TypeScript |
+| Map | MapLibre GL JS |
+| Basemap | MapTiler Dataviz |
+| Routing (build-time) | GraphHopper + Seoul GTFS + South Korea OSM |
+| State | Zustand |
+| Build | Vite |
+| Deploy | Vercel |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Architecture
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Isochrones are **pre-computed once** and shipped as static GeoJSON files. No routing server runs at runtime.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+```
+Build pipeline (local Docker, run once / on GTFS update)
+├── GraphHopper + Seoul Metro GTFS + South Korea OSM (Geofabrik)
+├── For each of 516 stations × 2 time profiles (off-peak, peak)
+│   └── Query isochrone at 15 / 30 / 60 min → save GeoJSON
+└── Output: public/data/isochrones/{off-peak,peak}/*.geojson
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Runtime (static site, Vercel CDN)
+└── User clicks station → fetch /data/isochrones/{profile}/{id}.geojson (~200ms)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Local Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Prerequisites
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js 18+, pnpm
+- Docker (for building isochrones)
+- [MapTiler API key](https://cloud.maptiler.com) (free tier)
+- KTDB GTFS download (free, from [ktdb.go.kr](https://www.ktdb.go.kr))
+
+### Setup
+
+```bash
+git clone https://github.com/matassp/seoul-isochrone.git
+cd seoul-isochrone
+pnpm install
+cp .env.example .env
+# Add your VITE_MAPTILER_KEY to .env
+pnpm dev
 ```
+
+The app will load with station dots but no isochrones (those are gitignored due to size). To regenerate isochrones, follow the build pipeline below.
+
+### Build Pipeline
+
+```bash
+# 1. Fetch station data from OpenStreetMap
+pnpm run fetch-stations
+
+# 2. Download GTFS from ktdb.go.kr → place as docker/gtfs/seoul-metro.gtfs.zip
+
+# 3. Start GraphHopper (ingests GTFS + OSM, takes ~5 min first run)
+docker compose -f docker/docker-compose.yml up graphhopper
+
+# 4. Compute isochrones (both profiles, ~1000 GraphHopper requests)
+pnpm run compute-isochrones
+
+# 5. Shut down Docker, run the app
+docker compose -f docker/docker-compose.yml down
+pnpm dev
+```
+
+The OSM extract (`south-korea-latest.osm.pbf`) must be placed in `docker/data/` before starting GraphHopper. Download from [Geofabrik](https://download.geofabrik.de/asia/south-korea.html).
+
+## Data Sources
+
+| Data | Source | License |
+|------|--------|---------|
+| Station locations | OpenStreetMap Overpass API | ODbL |
+| Metro timetables | KTDB 대중교통 GTFS (`ktdb.go.kr`) | Public |
+| Street network | Geofabrik South Korea OSM extract | ODbL |
+| Basemap tiles | MapTiler | Commercial (free tier) |
