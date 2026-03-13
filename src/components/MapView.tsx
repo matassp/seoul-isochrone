@@ -169,7 +169,7 @@ export default function MapView() {
 
       // ── Subway line routes ──
       try {
-        const linesRes = await fetch("/data/lines.geojson");
+        const linesRes = await fetch(`${import.meta.env.BASE_URL}data/lines.geojson`);
         if (linesRes.ok) {
           const linesData = await linesRes.json();
           map.addSource("subway-lines", { type: "geojson", data: linesData });

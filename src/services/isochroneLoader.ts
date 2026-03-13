@@ -18,7 +18,7 @@ export async function loadIsochrone(
   }
 
   try {
-    const url = `/data/isochrones/${stationId}.geojson`;
+    const url = `${import.meta.env.BASE_URL}data/isochrones/${stationId}.geojson`;
     const res = await fetch(url);
     if (!res.ok) return null;
     const data: IsochroneCollection = await res.json();
