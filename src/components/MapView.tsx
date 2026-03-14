@@ -182,7 +182,7 @@ export default function MapView() {
       // ── Cleanup all our layers/sources (needed for style-change re-init) ──
       const layerIds = [
         ...ISOCHRONE_INTERVALS.flatMap((_, i) => [`isochrone-fill-${i}`, `isochrone-line-${i}`]),
-        "subway-lines-casing", "subway-lines-inner", "station-icons", "station-labels",
+        "subway-lines-casing", "subway-lines-inner", "station-hit-area", "station-icons", "station-labels",
       ];
       layerIds.forEach((id) => { if (map.getLayer(id)) map.removeLayer(id); });
       ["isochrones", "subway-lines", "stations"].forEach((id) => {
@@ -290,33 +290,46 @@ export default function MapView() {
         paint: { "icon-opacity": 1 },
       });
 
+      // Invisible wider hit-area circle layer to make stations easier to click
+      map.addLayer({
+        id: "station-hit-area",
+        type: "circle",
+        source: "stations",
+        paint: {
+          "circle-radius": ["interpolate", ["linear"], ["zoom"], 9, 10, 14, 16, 17, 22],
+          "circle-opacity": 0,
+          "circle-stroke-opacity": 0,
+        },
+      }, "station-icons");
+
       const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
       map.addLayer({
         id: "station-labels",
         type: "symbol",
         source: "stations",
-        minzoom: 14,
+        minzoom: 12,
         layout: {
-          "text-field": ["get", "nameKo"],
-          "text-size": 11,
+          "text-field": ["step", ["zoom"], ["get", "nameKo"], 14, ["format", ["get", "nameKo"], {}, "\n", {}, ["get", "name"], { "text-font": ["literal", ["Noto Sans Regular"]], "font-scale": 0.85 }]],
+          "text-size": ["interpolate", ["linear"], ["zoom"], 12, 11, 14, 13, 17, 15],
           "text-offset": [0, 1.2],
           "text-anchor": "top",
+          "text-max-width": 8,
         },
         paint: {
-          "text-color": isDark ? "#c8c8d8" : "#1a1a2e",
-          "text-halo-color": isDark ? "#1a1a24" : "#fff",
-          "text-halo-width": 1.5,
+          "text-color": isDark ? "#e0e0f0" : "#0f0f1a",
+          "text-halo-color": isDark ? "#18181e" : "#ffffff",
+          "text-halo-width": 2,
         },
       });
 
-      map.on("click", "station-icons", (e) => {
+      map.on("click", "station-hit-area", (e) => {
         const feature = e.features?.[0];
         if (!feature || !feature.properties) return;
         const station = stations.find((s) => s.id === feature.properties!.id);
         if (station) selectStation(station);
       });
-      map.on("mouseenter", "station-icons", () => { map.getCanvas().style.cursor = "pointer"; });
-      map.on("mouseleave", "station-icons", () => { map.getCanvas().style.cursor = ""; });
+      map.on("mouseenter", "station-hit-area", () => { map.getCanvas().style.cursor = "pointer"; });
+      map.on("mouseleave", "station-hit-area", () => { map.getCanvas().style.cursor = ""; });
 
       // ── Apply current state to freshly-created layers ──
       const state = useMapStore.getState();
@@ -362,6 +375,7 @@ export default function MapView() {
         (line) => ["in", line, ["get", "lines"]] as maplibregl.ExpressionSpecification
       ),
     ];
+    map.setFilter("station-hit-area", stationFilter);
     map.setFilter("station-icons", stationFilter);
     map.setFilter("station-labels", stationFilter);
 
@@ -469,6 +483,18 @@ export default function MapView() {
           <button className="station-chip-close" onClick={() => selectStation(null)}>✕</button>
         </div>
       )}
+      <div className="map-legend">
+        <div className="map-legend-title">Legend</div>
+        {ISOCHRONE_INTERVALS.map((min, i) => (
+          <div key={min} className="legend-row">
+            <span
+              className="legend-swatch"
+              style={{ background: ISOCHRONE_COLORS[i], border: `1.5px solid ${ISOCHRONE_STROKES[i]}` }}
+            />
+            <span>{min} min</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

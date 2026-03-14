@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import Fuse from "fuse.js";
 import { useMapStore } from "../store/useMapStore";
 import { LINE_COLORS, LINE_NAMES, ISOCHRONE_INTERVALS, ISOCHRONE_STROKES } from "../constants/lines";
@@ -17,6 +17,8 @@ export default function Sidebar() {
   const toggleSidebar = useMapStore((s) => s.toggleSidebar);
 
   const [query, setQuery] = useState("");
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const fuse = useMemo(
     () =>
@@ -35,6 +37,25 @@ export default function Sidebar() {
   function handleSelectStation(station: Station) {
     selectStation(station);
     setQuery("");
+    setActiveIndex(-1);
+  }
+
+  function handleSearchKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (results.length === 0) return;
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActiveIndex((i) => Math.min(i + 1, results.length - 1));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActiveIndex((i) => Math.max(i - 1, 0));
+    } else if (e.key === "Enter") {
+      const target = activeIndex >= 0 ? results[activeIndex] : results[0];
+      if (target) handleSelectStation(target);
+    } else if (e.key === "Escape") {
+      setQuery("");
+      setActiveIndex(-1);
+      inputRef.current?.blur();
+    }
   }
 
   function toggleInterval(interval: number) {
@@ -62,16 +83,23 @@ export default function Sidebar() {
         {/* Search */}
         <div className="search-section">
           <input
+            ref={inputRef}
             type="text"
             className="search-input"
             placeholder="Search station..."
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => { setQuery(e.target.value); setActiveIndex(-1); }}
+            onKeyDown={handleSearchKeyDown}
           />
           {results.length > 0 && (
             <ul className="search-results">
-              {results.map((s) => (
-                <li key={s.id} onClick={() => handleSelectStation(s)}>
+              {results.map((s, idx) => (
+                <li
+                  key={s.id}
+                  className={idx === activeIndex ? "active" : ""}
+                  onClick={() => handleSelectStation(s)}
+                  onMouseEnter={() => setActiveIndex(idx)}
+                >
                   <span className="result-name">{s.nameKo}</span>
                   {s.name !== s.nameKo && <span className="result-en">{s.name}</span>}
                   <span className="result-lines">
