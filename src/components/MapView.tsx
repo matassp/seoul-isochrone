@@ -4,11 +4,10 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import { useMapStore } from "../store/useMapStore";
 import { LINE_COLORS, LINE_NAMES, ISOCHRONE_COLORS, ISOCHRONE_STROKES, ISOCHRONE_INTERVALS } from "../constants/lines";
 import { loadIsochrone } from "../services/isochroneLoader";
-import type { LineId } from "../types";
+import type { LineId, IsochroneCollection } from "../types";
 
-/**
- * Draw a pill / rounded-rect path on a canvas context.
- */
+// ─── Canvas helpers (unchanged) ─────────────────────────────────────────────
+
 function drawPill(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
   r = Math.min(r, h / 2, w / 2);
   ctx.beginPath();
@@ -20,16 +19,10 @@ function drawPill(ctx: CanvasRenderingContext2D, x: number, y: number, w: number
   ctx.closePath();
 }
 
-/**
- * Generate a canvas ImageData for a station marker.
- * Single-line  → solid colored circle with white border.
- * Multi-line   → colored dots inside a rounded pill (like Naver Maps transfer markers).
- */
 function createStationImage(lines: string[]): ImageData {
-  const dotR = 4;           // radius of each colored dot
+  const dotR = 4;
 
   if (lines.length <= 1) {
-    // Single dot with white border
     const border = 1.5;
     const size = Math.ceil((dotR + border) * 2) + 2;
     const canvas = document.createElement("canvas");
@@ -48,40 +41,31 @@ function createStationImage(lines: string[]): ImageData {
     return ctx.getImageData(0, 0, size, size);
   }
 
-  // Multi-line: pill capsule containing colored dots
   const n = lines.length;
-  const gap = 2;              // space between dots
-  const padX = 5;             // horizontal padding inside pill
-  const padY = 3.5;           // vertical padding inside pill
-  const borderW = 1.5;        // pill outline thickness
-
+  const gap = 2;
+  const padX = 5;
+  const padY = 3.5;
+  const borderW = 1.5;
   const dotsWidth = n * dotR * 2 + (n - 1) * gap;
   const pillW = dotsWidth + padX * 2;
   const pillH = dotR * 2 + padY * 2;
-  const cornerR = pillH / 2;  // fully rounded ends
-
+  const cornerR = pillH / 2;
   const width = Math.ceil(pillW + borderW * 2) + 2;
   const height = Math.ceil(pillH + borderW * 2) + 2;
-
   const canvas = document.createElement("canvas");
   canvas.width = width;
   canvas.height = height;
   const ctx = canvas.getContext("2d")!;
-
   const ox = (width - pillW) / 2;
   const oy = (height - pillH) / 2;
 
-  // Pill border
   drawPill(ctx, ox - borderW, oy - borderW, pillW + borderW * 2, pillH + borderW * 2, cornerR + borderW);
   ctx.fillStyle = "#c8c8c8";
   ctx.fill();
-
-  // Pill fill
   drawPill(ctx, ox, oy, pillW, pillH, cornerR);
   ctx.fillStyle = "#fff";
   ctx.fill();
 
-  // Colored dots
   const cy = height / 2;
   lines.forEach((line, i) => {
     const cx = ox + padX + dotR + i * (dotR * 2 + gap);
@@ -94,6 +78,8 @@ function createStationImage(lines: string[]): ImageData {
   return ctx.getImageData(0, 0, width, height);
 }
 
+// ─── Map config ─────────────────────────────────────────────────────────────
+
 const MAPTILER_KEY = import.meta.env.VITE_MAPTILER_KEY || "DEMO_KEY";
 const STYLE_LIGHT = `https://api.maptiler.com/maps/dataviz/style.json?key=${MAPTILER_KEY}`;
 const STYLE_DARK  = `https://api.maptiler.com/maps/dataviz-dark/style.json?key=${MAPTILER_KEY}`;
@@ -104,65 +90,27 @@ function getStyleUrl() {
 
 const SEOUL_CENTER: [number, number] = [126.978, 37.5665];
 const INITIAL_ZOOM = 11;
+const EMPTY_FC: GeoJSON.FeatureCollection = { type: "FeatureCollection", features: [] };
 
-/**
- * Imperatively sync isochrone layers + dimming on the map.
- * Always reads fresh state from the store — no stale closures.
- * Safe to call multiple times (idempotent).
- */
-function syncMapIsochrones(map: maplibregl.Map) {
-  if (!map.isStyleLoaded()) return;
+// ─── Declarative map-property update functions ──────────────────────────────
+// These only set properties on existing sources/layers. They never add/remove.
+// If the source/layer doesn't exist yet, they're no-ops. Safe to call anytime.
 
-  const { isochrones, intervals } = useMapStore.getState();
+function applyIsochroneData(map: maplibregl.Map, isochrones: IsochroneCollection | null) {
+  const src = map.getSource("isochrones") as maplibregl.GeoJSONSource | undefined;
+  if (!src) return;
+  src.setData(isochrones ?? EMPTY_FC);
+}
 
-  // Remove existing isochrone layers and source
-  for (let i = 0; i < ISOCHRONE_INTERVALS.length; i++) {
-    if (map.getLayer(`isochrone-fill-${i}`)) map.removeLayer(`isochrone-fill-${i}`);
-    if (map.getLayer(`isochrone-line-${i}`)) map.removeLayer(`isochrone-line-${i}`);
-  }
-  if (map.getSource("isochrones")) map.removeSource("isochrones");
+function applyIntervalVisibility(map: maplibregl.Map, intervals: number[]) {
+  ISOCHRONE_INTERVALS.forEach((interval, i) => {
+    const vis = intervals.includes(interval) ? "visible" : "none";
+    if (map.getLayer(`isochrone-fill-${i}`)) map.setLayoutProperty(`isochrone-fill-${i}`, "visibility", vis);
+    if (map.getLayer(`isochrone-line-${i}`)) map.setLayoutProperty(`isochrone-line-${i}`, "visibility", vis);
+  });
+}
 
-  const hasIso = isochrones && isochrones.features.length > 0;
-
-  if (hasIso) {
-    map.addSource("isochrones", { type: "geojson", data: isochrones });
-
-    const sorted = [...ISOCHRONE_INTERVALS].reverse();
-    sorted.forEach((interval) => {
-      const colorIdx = ISOCHRONE_INTERVALS.indexOf(interval);
-      const visible = intervals.includes(interval);
-      const beforeId = map.getLayer("subway-lines-casing")
-        ? "subway-lines-casing"
-        : map.getLayer("station-icons")
-          ? "station-icons"
-          : undefined;
-
-      map.addLayer(
-        {
-          id: `isochrone-fill-${colorIdx}`,
-          type: "fill",
-          source: "isochrones",
-          filter: ["==", ["get", "interval"], interval],
-          layout: { visibility: visible ? "visible" : "none" },
-          paint: { "fill-color": ISOCHRONE_COLORS[colorIdx] },
-        },
-        beforeId
-      );
-      map.addLayer(
-        {
-          id: `isochrone-line-${colorIdx}`,
-          type: "line",
-          source: "isochrones",
-          filter: ["==", ["get", "interval"], interval],
-          layout: { visibility: visible ? "visible" : "none" },
-          paint: { "line-color": ISOCHRONE_STROKES[colorIdx], "line-width": 1.5 },
-        },
-        beforeId
-      );
-    });
-  }
-
-  // Dimming
+function applyDimming(map: maplibregl.Map, hasIso: boolean) {
   if (map.getLayer("station-icons"))
     map.setPaintProperty("station-icons", "icon-opacity", hasIso ? 0.3 : 1);
   if (map.getLayer("station-labels"))
@@ -173,12 +121,14 @@ function syncMapIsochrones(map: maplibregl.Map) {
     map.setPaintProperty("subway-lines-casing", "line-opacity", hasIso ? 0.2 : 0.7);
 }
 
+// ─── Component ──────────────────────────────────────────────────────────────
+
 export default function MapView() {
   const mapContainer = useRef<HTMLDivElement>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
   const markerRef = useRef<maplibregl.Marker | null>(null);
-  // Stores the layer-setup function so it can be re-called after a style change
   const setupLayersRef = useRef<(() => void) | null>(null);
+
   const stations = useMapStore((s) => s.stations);
   const enabledLines = useMapStore((s) => s.enabledLines);
   const selectedStation = useMapStore((s) => s.selectedStation);
@@ -189,7 +139,7 @@ export default function MapView() {
   const setIsochrones = useMapStore((s) => s.setIsochrones);
   const setIsochronesLoading = useMapStore((s) => s.setIsochronesLoading);
 
-  // Init map
+  // ── 1. Init map ───────────────────────────────────────────────────────────
   useEffect(() => {
     if (!mapContainer.current || mapRef.current) return;
 
@@ -205,7 +155,6 @@ export default function MapView() {
     map.addControl(new maplibregl.NavigationControl(), "top-right");
     mapRef.current = map;
 
-    // Switch map style when OS theme changes; re-add layers after style reloads
     const mq = window.matchMedia("(prefers-color-scheme: dark)");
     const onThemeChange = () => {
       map.setStyle(getStyleUrl());
@@ -222,53 +171,57 @@ export default function MapView() {
     };
   }, []);
 
-  // Sync isochrone layers + dimming whenever isochrones or intervals change.
-  // syncMapIsochrones reads fresh state, so it's always correct.
-  useEffect(() => {
-    const map = mapRef.current;
-    if (!map) return;
-
-    const run = () => {
-      try { syncMapIsochrones(map); } catch (e) { console.error("[isochrones] sync failed:", e); }
-    };
-
-    if (map.isStyleLoaded()) {
-      run();
-    } else {
-      map.once("load", run);
-      return () => { map.off("load", run); };
-    }
-  }, [isochrones, intervals]);
-
-  // Add station source + layers once map + stations are ready
+  // ── 2. Create all sources + layers once (stations + isochrones) ───────────
+  //    Isochrone layers are created with empty data. Updates go through setData().
+  //    Layer order (bottom→top): isochrones → subway-lines → station-icons → labels
   useEffect(() => {
     const map = mapRef.current;
     if (!map || stations.length === 0) return;
 
     const handler = async () => {
-      // Remove existing sources/layers before re-adding (needed after style change)
-      ["subway-lines-casing", "subway-lines-inner", "station-icons", "station-labels"].forEach((id) => {
-        if (map.getLayer(id)) map.removeLayer(id);
+      // ── Cleanup all our layers/sources (needed for style-change re-init) ──
+      const layerIds = [
+        ...ISOCHRONE_INTERVALS.flatMap((_, i) => [`isochrone-fill-${i}`, `isochrone-line-${i}`]),
+        "subway-lines-casing", "subway-lines-inner", "station-icons", "station-labels",
+      ];
+      layerIds.forEach((id) => { if (map.getLayer(id)) map.removeLayer(id); });
+      ["isochrones", "subway-lines", "stations"].forEach((id) => {
+        if (map.getSource(id)) map.removeSource(id);
       });
-      if (map.getSource("subway-lines")) map.removeSource("subway-lines");
-      if (map.getSource("stations")) map.removeSource("stations");
 
-      // ── Subway line routes ──
+      // ── Isochrone source + layers (empty, bottom of our stack) ──
+      map.addSource("isochrones", { type: "geojson", data: EMPTY_FC });
+      [...ISOCHRONE_INTERVALS].reverse().forEach((interval) => {
+        const i = ISOCHRONE_INTERVALS.indexOf(interval);
+        map.addLayer({
+          id: `isochrone-fill-${i}`,
+          type: "fill",
+          source: "isochrones",
+          filter: ["==", ["get", "interval"], interval],
+          paint: { "fill-color": ISOCHRONE_COLORS[i] },
+        });
+        map.addLayer({
+          id: `isochrone-line-${i}`,
+          type: "line",
+          source: "isochrones",
+          filter: ["==", ["get", "interval"], interval],
+          paint: { "line-color": ISOCHRONE_STROKES[i], "line-width": 1.5 },
+        });
+      });
+
+      // ── Subway line routes (on top of isochrones) ──
       try {
         const linesRes = await fetch(`${import.meta.env.BASE_URL}data/lines.geojson`);
         if (linesRes.ok) {
           const linesData = await linesRes.json();
           map.addSource("subway-lines", { type: "geojson", data: linesData });
 
-          const lineColorEntries = Object.entries(LINE_COLORS).flat();
           const lineColorExpr = [
-            "match",
-            ["get", "lineId"],
-            ...lineColorEntries,
+            "match", ["get", "lineId"],
+            ...Object.entries(LINE_COLORS).flat(),
             "#888",
           ] as unknown as maplibregl.ExpressionSpecification;
 
-          // White casing for legibility on the basemap
           map.addLayer({
             id: "subway-lines-casing",
             type: "line",
@@ -280,14 +233,13 @@ export default function MapView() {
               "line-opacity": 0.7,
             },
           });
-
           map.addLayer({
             id: "subway-lines-inner",
             type: "line",
             source: "subway-lines",
             layout: { "line-join": "round", "line-cap": "round" },
             paint: {
-              "line-color": lineColorExpr as maplibregl.ExpressionSpecification,
+              "line-color": lineColorExpr,
               "line-width": ["interpolate", ["linear"], ["zoom"], 9, 1, 14, 2, 17, 3.5],
               "line-opacity": 1,
             },
@@ -297,35 +249,33 @@ export default function MapView() {
         console.warn("Could not load subway line geometries");
       }
 
-      // ── Station points ──
-      // Pre-generate and register a canvas image for every unique line-combo
+      // ── Station dots + labels (on top of everything) ──
       const uniqueCombos = new Set(stations.map((s) => [...s.lines].sort().join(",")));
       uniqueCombos.forEach((combo) => {
         const key = `station-${combo}`;
         if (!map.hasImage(key)) {
-          const imgData = createStationImage(combo.split(","));
-          map.addImage(key, imgData);
+          map.addImage(key, createStationImage(combo.split(",")));
         }
       });
 
-      const geojson: GeoJSON.FeatureCollection = {
-        type: "FeatureCollection",
-        features: stations.map((s) => ({
-          type: "Feature",
-          geometry: { type: "Point", coordinates: [s.lng, s.lat] },
-          properties: {
-            id: s.id,
-            name: s.name,
-            nameKo: s.nameKo,
-            lines: s.lines.join(","),
-            linesSorted: [...s.lines].sort().join(","),
-          },
-        })),
-      };
+      map.addSource("stations", {
+        type: "geojson",
+        data: {
+          type: "FeatureCollection",
+          features: stations.map((s) => ({
+            type: "Feature" as const,
+            geometry: { type: "Point" as const, coordinates: [s.lng, s.lat] },
+            properties: {
+              id: s.id,
+              name: s.name,
+              nameKo: s.nameKo,
+              lines: s.lines.join(","),
+              linesSorted: [...s.lines].sort().join(","),
+            },
+          })),
+        },
+      });
 
-      map.addSource("stations", { type: "geojson", data: geojson });
-
-      // Station icons — canvas sprite per line combo
       map.addLayer({
         id: "station-icons",
         type: "symbol",
@@ -337,12 +287,9 @@ export default function MapView() {
           "icon-allow-overlap": true,
           "icon-ignore-placement": true,
         },
-        paint: {
-          "icon-opacity": 1,
-        },
+        paint: { "icon-opacity": 1 },
       });
 
-      // Station labels (visible at higher zoom)
       const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
       map.addLayer({
         id: "station-labels",
@@ -362,27 +309,22 @@ export default function MapView() {
         },
       });
 
-      // Click handler
       map.on("click", "station-icons", (e) => {
         const feature = e.features?.[0];
         if (!feature || !feature.properties) return;
-        const id = feature.properties.id;
-        const station = stations.find((s) => s.id === id);
+        const station = stations.find((s) => s.id === feature.properties!.id);
         if (station) selectStation(station);
       });
+      map.on("mouseenter", "station-icons", () => { map.getCanvas().style.cursor = "pointer"; });
+      map.on("mouseleave", "station-icons", () => { map.getCanvas().style.cursor = ""; });
 
-      map.on("mouseenter", "station-icons", () => {
-        map.getCanvas().style.cursor = "pointer";
-      });
-      map.on("mouseleave", "station-icons", () => {
-        map.getCanvas().style.cursor = "";
-      });
-
-      // Station layers are now ready — sync isochrones in case they loaded first
-      syncMapIsochrones(map);
+      // ── Apply current state to freshly-created layers ──
+      const state = useMapStore.getState();
+      applyIsochroneData(map, state.isochrones);
+      applyIntervalVisibility(map, state.intervals);
+      applyDimming(map, state.isochrones != null && state.isochrones.features.length > 0);
     };
 
-    // Register for re-use after style changes
     setupLayersRef.current = handler;
 
     if (map.isStyleLoaded()) {
@@ -392,19 +334,32 @@ export default function MapView() {
     }
   }, [stations, selectStation]);
 
-  // Filter stations and lines by enabled lines
+  // ── 3. Sync isochrone data + dimming to map (pure property updates) ───────
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    applyIsochroneData(map, isochrones);
+    const hasIso = isochrones != null && isochrones.features.length > 0;
+    applyDimming(map, hasIso);
+  }, [isochrones]);
+
+  // ── 4. Sync interval visibility (pure property update) ───────────────────
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    applyIntervalVisibility(map, intervals);
+  }, [intervals]);
+
+  // ── 5. Filter stations by enabled lines ──────────────────────────────────
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !map.getLayer("station-icons")) return;
 
     const lineArr = Array.from(enabledLines);
-
-    // Show station if any of its lines are enabled
     const stationFilter: maplibregl.FilterSpecification = [
       "any",
       ...lineArr.map(
-        (line) =>
-          ["in", line, ["get", "lines"]] as maplibregl.ExpressionSpecification
+        (line) => ["in", line, ["get", "lines"]] as maplibregl.ExpressionSpecification
       ),
     ];
     map.setFilter("station-icons", stationFilter);
@@ -412,56 +367,34 @@ export default function MapView() {
 
     if (map.getLayer("subway-lines-casing")) {
       const lineFilter: maplibregl.FilterSpecification = [
-        "in",
-        ["get", "lineId"],
-        ["literal", lineArr],
+        "in", ["get", "lineId"], ["literal", lineArr],
       ];
       map.setFilter("subway-lines-casing", lineFilter);
       map.setFilter("subway-lines-inner", lineFilter);
     }
   }, [enabledLines]);
 
-  // Pulse marker element factory
+  // ── 6. Pulse marker on selected station ──────────────────────────────────
   const createPulseEl = useCallback((lines: string[]) => {
     const el = document.createElement("div");
     el.className = "station-pulse-marker";
     const primaryColor = LINE_COLORS[lines[0] as LineId] ?? "#333";
 
     if (lines.length <= 1) {
-      el.style.cssText = `
-        width: 20px; height: 20px; position: relative;
-        display: flex; align-items: center; justify-content: center;
-      `;
+      el.style.cssText = `width:20px;height:20px;position:relative;display:flex;align-items:center;justify-content:center;`;
       const ring = document.createElement("div");
-      ring.style.cssText = `
-        position: absolute; width: 20px; height: 20px; border-radius: 50%;
-        border: 2.5px solid ${primaryColor}; animation: pulse-ring 1.6s ease-out infinite;
-        opacity: 0;
-      `;
+      ring.style.cssText = `position:absolute;width:20px;height:20px;border-radius:50%;border:2.5px solid ${primaryColor};animation:pulse-ring 1.6s ease-out infinite;opacity:0;`;
       const dot = document.createElement("div");
-      dot.style.cssText = `
-        width: 10px; height: 10px; border-radius: 50%;
-        background: ${primaryColor}; border: 2px solid #fff;
-        box-shadow: 0 0 0 2px ${primaryColor};
-      `;
+      dot.style.cssText = `width:10px;height:10px;border-radius:50%;background:${primaryColor};border:2px solid #fff;box-shadow:0 0 0 2px ${primaryColor};`;
       el.appendChild(ring);
       el.appendChild(dot);
     } else {
-      el.style.cssText = "position: relative; display: flex; align-items: center; justify-content: center;";
+      el.style.cssText = "position:relative;display:flex;align-items:center;justify-content:center;";
       const pill = document.createElement("div");
-      pill.style.cssText = `
-        display: flex; align-items: center; gap: 3px;
-        padding: 4px 7px; background: #fff; border-radius: 999px;
-        border: 1.5px solid #c8c8c8;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.25);
-        animation: pulse-pill 1.6s ease-out infinite;
-      `;
+      pill.style.cssText = `display:flex;align-items:center;gap:3px;padding:4px 7px;background:#fff;border-radius:999px;border:1.5px solid #c8c8c8;box-shadow:0 1px 4px rgba(0,0,0,0.25);animation:pulse-pill 1.6s ease-out infinite;`;
       lines.forEach((line) => {
         const dot = document.createElement("div");
-        dot.style.cssText = `
-          width: 9px; height: 9px; border-radius: 50%;
-          background: ${LINE_COLORS[line as LineId] ?? "#888"}; flex-shrink: 0;
-        `;
+        dot.style.cssText = `width:9px;height:9px;border-radius:50%;background:${LINE_COLORS[line as LineId] ?? "#888"};flex-shrink:0;`;
         pill.appendChild(dot);
       });
       el.appendChild(pill);
@@ -469,12 +402,10 @@ export default function MapView() {
     return el;
   }, []);
 
-  // Highlight selected station
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
 
-    // Remove old marker
     if (markerRef.current) {
       markerRef.current.remove();
       markerRef.current = null;
@@ -489,7 +420,7 @@ export default function MapView() {
     }
   }, [selectedStation, createPulseEl]);
 
-  // Load isochrones when selected station changes
+  // ── 7. Load isochrone data when station changes ──────────────────────────
   useEffect(() => {
     if (!selectedStation) {
       setIsochrones(null);
@@ -515,6 +446,7 @@ export default function MapView() {
     return () => { stale = true; };
   }, [selectedStation]);
 
+  // ── Render ────────────────────────────────────────────────────────────────
   return (
     <div className="map-wrapper">
       <div ref={mapContainer} className="map-container" />
