@@ -426,7 +426,7 @@ export default function MapView() {
     }
 
     if (selectedStation) {
-      map.flyTo({ center: [selectedStation.lng, selectedStation.lat], zoom: 14, duration: 800 });
+      map.flyTo({ center: [selectedStation.lng, selectedStation.lat], zoom: 12, duration: 800 });
       const el = createPulseEl([...selectedStation.lines]);
       markerRef.current = new maplibregl.Marker({ element: el, anchor: "center" })
         .setLngLat([selectedStation.lng, selectedStation.lat])
