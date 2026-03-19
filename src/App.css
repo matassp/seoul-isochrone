@@ -136,6 +136,7 @@
   border-bottom: 1px solid var(--border);
   padding: 14px 0 13px;
   margin-bottom: 4px;
+  position: relative;
 }
 
 .sidebar-title {
@@ -445,6 +446,7 @@
   border-radius: 2px;
   transition: background 0.12s;
   letter-spacing: 0.1px;
+  touch-action: pan-y;
 }
 
 .line-filter:hover {
@@ -582,6 +584,13 @@
 
 /* ── Mobile — bottom sheet ── */
 @media (max-width: 640px) {
+  /* Chip: constrain width and allow name to wrap on small screens */
+  .station-chip {
+    max-width: calc(100vw - 32px);
+    white-space: normal;
+    flex-wrap: wrap;
+  }
+
   /* Map fills full screen; sidebar overlays from bottom */
   .map-wrapper {
     position: absolute;
