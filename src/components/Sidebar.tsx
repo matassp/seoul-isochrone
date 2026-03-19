@@ -1,7 +1,7 @@
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import Fuse from "fuse.js";
 import { useMapStore } from "../store/useMapStore";
-import { LINE_COLORS, LINE_NAMES, ISOCHRONE_INTERVALS, ISOCHRONE_STROKES } from "../constants/lines";
+import { LINE_COLORS, LINE_NAMES, ISOCHRONE_INTERVALS } from "../constants/lines";
 import type { LineId, Station } from "../types";
 
 export default function Sidebar() {
@@ -19,6 +19,13 @@ export default function Sidebar() {
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
+
+  useEffect(() => {
+    if (activeIndex < 0 || !listRef.current) return;
+    const item = listRef.current.children[activeIndex] as HTMLElement | undefined;
+    item?.scrollIntoView({ block: "nearest" });
+  }, [activeIndex]);
 
   const fuse = useMemo(
     () =>
@@ -78,7 +85,11 @@ export default function Sidebar() {
         {sidebarOpen ? "\u2039" : "\u203A"}
       </button>
       <div className={`sidebar ${sidebarOpen ? "open" : "closed"}`}>
-        <h1 className="sidebar-title">Seoul Isochrone</h1>
+        <div className="sidebar-masthead" onClick={toggleSidebar}>
+          <h1 className="sidebar-title">Seoul<br />Isochrone</h1>
+          <div className="sidebar-subtitle">서울 지하철 등시간선</div>
+          <div className="sidebar-meta">Off-peak · Weekday · 14:00 KST</div>
+        </div>
 
         {/* Search */}
         <div className="search-section">
@@ -92,7 +103,7 @@ export default function Sidebar() {
             onKeyDown={handleSearchKeyDown}
           />
           {results.length > 0 && (
-            <ul className="search-results">
+            <ul className="search-results" ref={listRef}>
               {results.map((s, idx) => (
                 <li
                   key={s.id}
@@ -142,7 +153,7 @@ export default function Sidebar() {
                 </span>
               ))}
             </div>
-            {isochronesLoading && <div className="loading">Loading isochrones...</div>}
+            {isochronesLoading && <div className="loading">Loading…</div>}
           </div>
         )}
 
@@ -150,22 +161,17 @@ export default function Sidebar() {
         <div className="section">
           <h3>Travel Time</h3>
           <div className="interval-pills">
-            {ISOCHRONE_INTERVALS.map((min, i) => (
+            {ISOCHRONE_INTERVALS.map((min) => (
               <button
                 key={min}
                 className={`interval-pill ${intervals.includes(min) ? "active" : ""}`}
-                style={{
-                  borderColor: ISOCHRONE_STROKES[i],
-                  ...(intervals.includes(min)
-                    ? { backgroundColor: ISOCHRONE_STROKES[i], color: "#fff" }
-                    : {}),
-                }}
                 onClick={() => toggleInterval(min)}
               >
                 {min}m
               </button>
             ))}
           </div>
+          <div className="section-note">Subway + walking time from station</div>
         </div>
 
         {/* Line Filter */}

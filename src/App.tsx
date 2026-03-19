@@ -26,13 +26,12 @@ export default function App() {
     setStations(PATCHED_STATIONS);
   }, [setStations]);
 
-  // Restore selected station from URL, then mark restore as done
+  // Restore selected station from URL (or default to City Hall), then mark restore as done
   useEffect(() => {
     if (stations.length === 0) return;
-    if (INITIAL_URL_STATION_ID) {
-      const station = stations.find((s) => s.id === INITIAL_URL_STATION_ID);
-      if (station) selectStation(station);
-    }
+    const targetId = INITIAL_URL_STATION_ID ?? "1797562528"; // City Hall (시청)
+    const station = stations.find((s) => s.id === targetId);
+    if (station) selectStation(station);
     setUrlRestored(true);
   }, [stations]);
 

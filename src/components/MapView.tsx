@@ -89,7 +89,7 @@ function getStyleUrl() {
 }
 
 const SEOUL_CENTER: [number, number] = [126.978, 37.5665];
-const INITIAL_ZOOM = 11;
+const INITIAL_ZOOM = 12.5;
 const EMPTY_FC: GeoJSON.FeatureCollection = { type: "FeatureCollection", features: [] };
 
 // ─── Declarative map-property update functions ──────────────────────────────
@@ -322,14 +322,21 @@ export default function MapView() {
         },
       });
 
-      map.on("click", "station-hit-area", (e) => {
+      const handleStationClick = (e: maplibregl.MapLayerMouseEvent) => {
         const feature = e.features?.[0];
         if (!feature || !feature.properties) return;
         const station = stations.find((s) => s.id === feature.properties!.id);
         if (station) selectStation(station);
-      });
-      map.on("mouseenter", "station-hit-area", () => { map.getCanvas().style.cursor = "pointer"; });
-      map.on("mouseleave", "station-hit-area", () => { map.getCanvas().style.cursor = ""; });
+      };
+      const setCursorPointer = () => { map.getCanvas().style.cursor = "pointer"; };
+      const setCursorDefault = () => { map.getCanvas().style.cursor = ""; };
+
+      map.on("click", "station-hit-area", handleStationClick);
+      map.on("click", "station-icons", handleStationClick);
+      map.on("mouseenter", "station-hit-area", setCursorPointer);
+      map.on("mouseleave", "station-hit-area", setCursorDefault);
+      map.on("mouseenter", "station-icons", setCursorPointer);
+      map.on("mouseleave", "station-icons", setCursorDefault);
 
       // ── Apply current state to freshly-created layers ──
       const state = useMapStore.getState();
@@ -484,14 +491,14 @@ export default function MapView() {
         </div>
       )}
       <div className="map-legend">
-        <div className="map-legend-title">Legend</div>
+        <div className="map-legend-title">Fig. 1 — Isochrone Zones</div>
         {ISOCHRONE_INTERVALS.map((min, i) => (
           <div key={min} className="legend-row">
             <span
               className="legend-swatch"
               style={{ background: ISOCHRONE_COLORS[i], border: `1.5px solid ${ISOCHRONE_STROKES[i]}` }}
             />
-            <span>{min} min</span>
+            <span>≤ {min} min</span>
           </div>
         ))}
       </div>

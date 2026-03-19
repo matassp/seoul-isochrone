@@ -28,54 +28,56 @@
 }
 
 :root {
-  --bg-page:        #f5f5f5;
+  --bg-page:        #ebebeb;
   --bg-sidebar:     #ffffff;
-  --bg-section:     #f7f9fc;
+  --bg-section:     #f5f4f2;
   --bg-input:       #ffffff;
-  --bg-hover:       #f0f4ff;
-  --bg-pill-active: #1a1a2e;
+  --bg-hover:       #f0efed;
+  --bg-pill-active: #111111;
 
-  --border:         #e0e0e0;
-  --border-input:   #d0d0d0;
-  --border-subtle:  #f0f0f0;
+  --border:         #d8d5d0;
+  --border-input:   #c8c5c0;
+  --border-subtle:  #e4e2df;
 
-  --text-primary:   #1a1a2e;
-  --text-secondary: #333333;
-  --text-muted:     #666666;
-  --text-faint:     #888888;
-  --text-deselect:  #999999;
+  --text-primary:   #111111;
+  --text-secondary: #2c2c2c;
+  --text-muted:     #5a5a5a;
+  --text-faint:     #888880;
+  --text-deselect:  #aaa8a0;
 
-  --shadow-sm:      0 1px 4px rgba(0, 0, 0, 0.15);
-  --shadow-md:      0 4px 12px rgba(0, 0, 0, 0.10);
-  --shadow-sidebar: 2px 0 12px rgba(0, 0, 0, 0.15);
+  --shadow-sm:      0 1px 3px rgba(0, 0, 0, 0.12);
+  --shadow-md:      0 4px 16px rgba(0, 0, 0, 0.10);
+  --shadow-sidebar: 2px 0 16px rgba(0, 0, 0, 0.12);
 
-  --accent:         #4a90d9;
+  --accent:         #111111;
+  --font-serif:     Georgia, "Times New Roman", serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-page:        #0f0f14;
-    --bg-sidebar:     #1a1a24;
-    --bg-section:     #22222e;
-    --bg-input:       #22222e;
-    --bg-hover:       #1e2035;
-    --bg-pill-active: #e0e0f0;
+    --bg-page:        #0c0b09;
+    --bg-sidebar:     #111110;
+    --bg-section:     #1a1917;
+    --bg-input:       #1a1917;
+    --bg-hover:       #222120;
+    --bg-pill-active: #f0ede8;
 
-    --border:         #2e2e3e;
-    --border-input:   #3a3a4e;
-    --border-subtle:  #252530;
+    --border:         #2a2825;
+    --border-input:   #363330;
+    --border-subtle:  #201f1d;
 
-    --text-primary:   #e8e8f0;
-    --text-secondary: #c8c8d8;
-    --text-muted:     #8888a0;
-    --text-faint:     #666680;
-    --text-deselect:  #666677;
+    --text-primary:   #f0ede8;
+    --text-secondary: #d0ccc6;
+    --text-muted:     #888880;
+    --text-faint:     #5a5852;
+    --text-deselect:  #4a4844;
 
-    --shadow-sm:      0 1px 4px rgba(0, 0, 0, 0.4);
-    --shadow-md:      0 4px 12px rgba(0, 0, 0, 0.35);
-    --shadow-sidebar: 2px 0 12px rgba(0, 0, 0, 0.4);
+    --shadow-sm:      0 1px 4px rgba(0, 0, 0, 0.5);
+    --shadow-md:      0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-sidebar: 2px 0 16px rgba(0, 0, 0, 0.5);
 
-    --accent:         #5a9fe8;
+    --accent:         #f0ede8;
+    --font-serif:     Georgia, "Times New Roman", serif;
   }
 }
 

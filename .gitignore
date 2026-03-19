@@ -23,6 +23,9 @@ docker/gtfs/*/
 .claude/
 CLAUDE.md
 .lsp.json
+.agents/
+AGENTS.md
+skills-lock.json
 
 # Editor directories and files
 .vscode/*
