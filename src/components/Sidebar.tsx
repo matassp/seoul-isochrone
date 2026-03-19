@@ -18,6 +18,7 @@ export default function Sidebar() {
 
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [aboutOpen, setAboutOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
 
@@ -194,6 +195,42 @@ export default function Sidebar() {
             ))}
           </div>
         </div>
+
+        {/* About */}
+        <div className="about-section">
+          <button className="about-toggle" onClick={() => setAboutOpen((o) => !o)}>
+            <span>About this project</span>
+            <span className="about-chevron">{aboutOpen ? "−" : "+"}</span>
+          </button>
+          {aboutOpen && (
+            <div className="about-body">
+              <p>
+                Isochrone maps showing travel reach from any Seoul Metro station
+                by subway and walking. Select a station to see how far you can
+                get in 15, 30, or 60 minutes.
+              </p>
+              <p>
+                Routes computed with GraphHopper using GTFS schedules and
+                OpenStreetMap data. All times reflect off-peak conditions
+                (weekday, 14:00 KST).
+              </p>
+              <p className="about-sources">
+                Data: Seoul Metro GTFS · OpenStreetMap · MapTiler
+              </p>
+            </div>
+          )}
+        </div>
+
+        <p className="about-credit">
+          Matas Speičys · {new Date().getFullYear()} ·{" "}
+          <a
+            href="https://github.com/matassp/seoul-isochrone"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+        </p>
 
       </div>
     </>

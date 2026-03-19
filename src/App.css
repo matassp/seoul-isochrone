@@ -505,6 +505,80 @@
   flex-shrink: 0;
 }
 
+/* ── About section ── */
+.about-section {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  margin-top: 28px;
+}
+
+.about-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: 1px solid var(--border-input);
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 7px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--text-muted);
+  transition: color 0.12s, border-color 0.12s, background 0.12s;
+}
+
+.about-toggle:hover {
+  color: var(--text-primary);
+  border-color: var(--text-muted);
+  background: var(--bg-hover);
+}
+
+.about-chevron {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.about-body {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.about-body p {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.about-sources {
+  font-size: 11px;
+  color: var(--text-faint);
+  font-style: italic;
+}
+
+.about-credit {
+  font-size: 11px;
+  color: var(--text-faint);
+  margin-top: auto;
+  padding-top: 16px;
+  padding-bottom: 4px;
+}
+
+.about-credit a {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.about-credit a:hover {
+  color: var(--text-primary);
+}
+
 /* ── Mobile — bottom sheet ── */
 @media (max-width: 640px) {
   /* Map fills full screen; sidebar overlays from bottom */
