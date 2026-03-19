@@ -102,6 +102,16 @@ function applyIsochroneData(map: maplibregl.Map, isochrones: IsochroneCollection
   src.setData(isochrones ?? EMPTY_FC);
 }
 
+function applySelectedLabel(map: maplibregl.Map, station: { nameKo: string; name: string; lat: number; lng: number } | null) {
+  const src = map.getSource("selected-station-label") as maplibregl.GeoJSONSource | undefined;
+  if (!src) return;
+  if (!station) { src.setData(EMPTY_FC); return; }
+  src.setData({
+    type: "FeatureCollection",
+    features: [{ type: "Feature", geometry: { type: "Point", coordinates: [station.lng, station.lat] }, properties: { nameKo: station.nameKo, name: station.name } }],
+  });
+}
+
 function applyIntervalVisibility(map: maplibregl.Map, intervals: number[]) {
   ISOCHRONE_INTERVALS.forEach((interval, i) => {
     const vis = intervals.includes(interval) ? "visible" : "none";
@@ -114,7 +124,7 @@ function applyDimming(map: maplibregl.Map, hasIso: boolean) {
   if (map.getLayer("station-icons"))
     map.setPaintProperty("station-icons", "icon-opacity", hasIso ? 0.3 : 1);
   if (map.getLayer("station-labels"))
-    map.setLayoutProperty("station-labels", "visibility", hasIso ? "none" : "visible");
+    map.setPaintProperty("station-labels", "text-opacity", hasIso ? 0.3 : 1);
   if (map.getLayer("subway-lines-inner"))
     map.setPaintProperty("subway-lines-inner", "line-opacity", hasIso ? 0.3 : 1);
   if (map.getLayer("subway-lines-casing"))
@@ -182,10 +192,10 @@ export default function MapView() {
       // ── Cleanup all our layers/sources (needed for style-change re-init) ──
       const layerIds = [
         ...ISOCHRONE_INTERVALS.flatMap((_, i) => [`isochrone-fill-${i}`, `isochrone-line-${i}`]),
-        "subway-lines-casing", "subway-lines-inner", "station-hit-area", "station-icons", "station-labels",
+        "subway-lines-casing", "subway-lines-inner", "station-icons", "station-labels", "selected-station-label",
       ];
       layerIds.forEach((id) => { if (map.getLayer(id)) map.removeLayer(id); });
-      ["isochrones", "subway-lines", "stations"].forEach((id) => {
+      ["isochrones", "subway-lines", "stations", "selected-station-label"].forEach((id) => {
         if (map.getSource(id)) map.removeSource(id);
       });
 
@@ -290,18 +300,6 @@ export default function MapView() {
         paint: { "icon-opacity": 1 },
       });
 
-      // Invisible wider hit-area circle layer to make stations easier to click
-      map.addLayer({
-        id: "station-hit-area",
-        type: "circle",
-        source: "stations",
-        paint: {
-          "circle-radius": ["interpolate", ["linear"], ["zoom"], 9, 10, 14, 16, 17, 22],
-          "circle-opacity": 0,
-          "circle-stroke-opacity": 0,
-        },
-      }, "station-icons");
-
       const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
       map.addLayer({
         id: "station-labels",
@@ -322,27 +320,45 @@ export default function MapView() {
         },
       });
 
-      const handleStationClick = (e: maplibregl.MapLayerMouseEvent) => {
+      // ── Selected station label (separate layer, never dimmed) ──
+      map.addSource("selected-station-label", { type: "geojson", data: EMPTY_FC });
+      map.addLayer({
+        id: "selected-station-label",
+        type: "symbol",
+        source: "selected-station-label",
+        layout: {
+          "text-field": ["format", ["get", "nameKo"], {}, "\n", {}, ["get", "name"], { "font-scale": 0.85 }],
+          "text-size": ["interpolate", ["linear"], ["zoom"], 12, 12, 14, 14, 17, 16],
+          "text-offset": [0, 1.2],
+          "text-anchor": "top",
+          "text-max-width": 8,
+        },
+        paint: {
+          "text-color": isDark ? "#e0e0f0" : "#0f0f1a",
+          "text-halo-color": isDark ? "#18181e" : "#ffffff",
+          "text-halo-width": 2.5,
+          "text-opacity": 1,
+        },
+      });
+
+      map.on("click", "station-icons", (e) => {
         const feature = e.features?.[0];
-        if (!feature || !feature.properties) return;
+        if (!feature?.properties) return;
         const station = stations.find((s) => s.id === feature.properties!.id);
         if (station) selectStation(station);
-      };
-      const setCursorPointer = () => { map.getCanvas().style.cursor = "pointer"; };
-      const setCursorDefault = () => { map.getCanvas().style.cursor = ""; };
+      });
 
-      map.on("click", "station-hit-area", handleStationClick);
-      map.on("click", "station-icons", handleStationClick);
-      map.on("mouseenter", "station-hit-area", setCursorPointer);
-      map.on("mouseleave", "station-hit-area", setCursorDefault);
-      map.on("mouseenter", "station-icons", setCursorPointer);
-      map.on("mouseleave", "station-icons", setCursorDefault);
+      map.on("mousemove", (e) => {
+        const features = map.queryRenderedFeatures(e.point, { layers: ["station-icons"] });
+        map.getCanvas().style.cursor = features.length > 0 ? "pointer" : "";
+      });
 
       // ── Apply current state to freshly-created layers ──
       const state = useMapStore.getState();
       applyIsochroneData(map, state.isochrones);
       applyIntervalVisibility(map, state.intervals);
       applyDimming(map, state.isochrones != null && state.isochrones.features.length > 0);
+      applySelectedLabel(map, state.selectedStation);
     };
 
     setupLayersRef.current = handler;
@@ -382,7 +398,6 @@ export default function MapView() {
         (line) => ["in", line, ["get", "lines"]] as maplibregl.ExpressionSpecification
       ),
     ];
-    map.setFilter("station-hit-area", stationFilter);
     map.setFilter("station-icons", stationFilter);
     map.setFilter("station-labels", stationFilter);
 
@@ -441,7 +456,14 @@ export default function MapView() {
     }
   }, [selectedStation, createPulseEl]);
 
-  // ── 7. Load isochrone data when station changes ──────────────────────────
+  // ── 7. Keep selected-station-label source in sync ────────────────────────
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    applySelectedLabel(map, selectedStation);
+  }, [selectedStation]);
+
+  // ── 8. Load isochrone data when station changes ──────────────────────────
   useEffect(() => {
     if (!selectedStation) {
       setIsochrones(null);

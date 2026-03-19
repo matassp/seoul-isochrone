@@ -45,8 +45,9 @@
 }
 
 .station-chip-ko {
-  font-size: 15px;
-  font-weight: 700;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: normal;
   color: var(--text-primary);
 }
 
