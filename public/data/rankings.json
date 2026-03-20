@@ -1,0 +1,6294 @@
+[
+  {
+    "rank": 1,
+    "id": "6312484938",
+    "nameKo": "강남구청",
+    "name": "Gangnam-gu Office",
+    "lines": [
+      "7",
+      "bundang"
+    ],
+    "area15": 15.5,
+    "area30": 125.2,
+    "area60": 622.1
+  },
+  {
+    "rank": 2,
+    "id": "5801559319",
+    "nameKo": "왕십리",
+    "name": "Wangsimni(Seongdong-Gu Office)",
+    "lines": [
+      "2",
+      "5",
+      "bundang",
+      "gyeongui"
+    ],
+    "area15": 15,
+    "area30": 142.5,
+    "area60": 677.8
+  },
+  {
+    "rank": 3,
+    "id": "287321417",
+    "nameKo": "성신여대입구",
+    "name": "Sungshin Women's University",
+    "lines": [
+      "4"
+    ],
+    "area15": 13.9,
+    "area30": 80.5,
+    "area60": 530.9
+  },
+  {
+    "rank": 4,
+    "id": "5924284356",
+    "nameKo": "선릉",
+    "name": "Seolleung",
+    "lines": [
+      "2",
+      "bundang"
+    ],
+    "area15": 13.8,
+    "area30": 108.4,
+    "area60": 591
+  },
+  {
+    "rank": 5,
+    "id": "3833429767",
+    "nameKo": "종로3가",
+    "name": "Jongno 3(sam)-ga",
+    "lines": [
+      "1",
+      "3",
+      "5"
+    ],
+    "area15": 13.7,
+    "area30": 109.7,
+    "area60": 672
+  },
+  {
+    "rank": 6,
+    "id": "6039313614",
+    "nameKo": "군자",
+    "name": "Gunja",
+    "lines": [
+      "5",
+      "7"
+    ],
+    "area15": 13.1,
+    "area30": 120.3,
+    "area60": 618
+  },
+  {
+    "rank": 7,
+    "id": "5919544689",
+    "nameKo": "공덕",
+    "name": "Gongdeok",
+    "lines": [
+      "5",
+      "6",
+      "airport",
+      "gyeongui"
+    ],
+    "area15": 13,
+    "area30": 102.5,
+    "area60": 737.2
+  },
+  {
+    "rank": 8,
+    "id": "7908597444",
+    "nameKo": "선정릉",
+    "name": "Seonjeongneung",
+    "lines": [
+      "9",
+      "bundang"
+    ],
+    "area15": 12.7,
+    "area30": 117.2,
+    "area60": 615.8
+  },
+  {
+    "rank": 9,
+    "id": "5747397251",
+    "nameKo": "보문",
+    "name": "Bomun",
+    "lines": [
+      "6"
+    ],
+    "area15": 11.7,
+    "area30": 83.7,
+    "area60": 523.4
+  },
+  {
+    "rank": 10,
+    "id": "5907762740",
+    "nameKo": "강남",
+    "name": "Gangnam",
+    "lines": [
+      "2",
+      "shinbundang"
+    ],
+    "area15": 11.6,
+    "area30": 106.8,
+    "area60": 633.1
+  },
+  {
+    "rank": 11,
+    "id": "5935738070",
+    "nameKo": "동대문역사문화공원",
+    "name": "Dongdaemun History & Culture Park Station (DDP)",
+    "lines": [
+      "2",
+      "4",
+      "5"
+    ],
+    "area15": 11.6,
+    "area30": 103.8,
+    "area60": 615.4
+  },
+  {
+    "rank": 12,
+    "id": "6039313640",
+    "nameKo": "청구",
+    "name": "Cheonggu",
+    "lines": [
+      "5",
+      "6"
+    ],
+    "area15": 11.4,
+    "area30": 124.6,
+    "area60": 592.5
+  },
+  {
+    "rank": 13,
+    "id": "5909995037",
+    "nameKo": "수서",
+    "name": "Suseo",
+    "lines": [
+      "3",
+      "bundang"
+    ],
+    "area15": 11.1,
+    "area30": 96.9,
+    "area60": 514
+  },
+  {
+    "rank": 14,
+    "id": "3824606377",
+    "nameKo": "고속터미널",
+    "name": "Express Bus Terminal",
+    "lines": [
+      "3",
+      "7",
+      "9"
+    ],
+    "area15": 11,
+    "area30": 108.6,
+    "area60": 670.2
+  },
+  {
+    "rank": 15,
+    "id": "3833429777",
+    "nameKo": "충무로",
+    "name": "Chungmuro",
+    "lines": [
+      "3",
+      "4"
+    ],
+    "area15": 11,
+    "area30": 104.3,
+    "area60": 669.8
+  },
+  {
+    "rank": 16,
+    "id": "5917210895",
+    "nameKo": "여의도",
+    "name": "Yeouido",
+    "lines": [
+      "5",
+      "9"
+    ],
+    "area15": 10.9,
+    "area30": 102.3,
+    "area60": 604.7
+  },
+  {
+    "rank": 17,
+    "id": "1906684759",
+    "nameKo": "구룡",
+    "name": "Guryong",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 10.7,
+    "area30": 91.7,
+    "area60": 532.2
+  },
+  {
+    "rank": 18,
+    "id": "5933947005",
+    "nameKo": "교대",
+    "name": "Seoul Nat'l Univ. of Education (Court & Public Prosecutors' Office)",
+    "lines": [
+      "2",
+      "3"
+    ],
+    "area15": 10.7,
+    "area30": 88.6,
+    "area60": 597.6
+  },
+  {
+    "rank": 19,
+    "id": "5826564342",
+    "nameKo": "충정로",
+    "name": "Chungjeongno(Kyonggi University)",
+    "lines": [
+      "2",
+      "5"
+    ],
+    "area15": 10.2,
+    "area30": 83.9,
+    "area60": 665.5
+  },
+  {
+    "rank": 20,
+    "id": "8337914284",
+    "nameKo": "잠실",
+    "name": "Jamsil(Songpa-gu Office)",
+    "lines": [
+      "2",
+      "8"
+    ],
+    "area15": 10.2,
+    "area30": 104.2,
+    "area60": 534.8
+  },
+  {
+    "rank": 21,
+    "id": "8390160499",
+    "nameKo": "청량리",
+    "name": "Cheongnyangni (University of Seoul)",
+    "lines": [
+      "1",
+      "bundang",
+      "gyeongui"
+    ],
+    "area15": 10.2,
+    "area30": 85.4,
+    "area60": 611.3
+  },
+  {
+    "rank": 22,
+    "id": "3833429765",
+    "nameKo": "동대문",
+    "name": "Dongdaemun",
+    "lines": [
+      "1",
+      "4"
+    ],
+    "area15": 10,
+    "area30": 79.5,
+    "area60": 562.9
+  },
+  {
+    "rank": 23,
+    "id": "355173372",
+    "nameKo": "장한평",
+    "name": "Janghhanpyeong",
+    "lines": [
+      "5"
+    ],
+    "area15": 9.9,
+    "area30": 105.7,
+    "area60": 562.6
+  },
+  {
+    "rank": 24,
+    "id": "5902086048",
+    "nameKo": "주안",
+    "name": "Juan",
+    "lines": [
+      "1"
+    ],
+    "area15": 9.8,
+    "area30": 68.7,
+    "area60": 380.4
+  },
+  {
+    "rank": 25,
+    "id": "1918413725",
+    "nameKo": "신촌",
+    "name": "Sinchon",
+    "lines": [
+      "2",
+      "gyeongui"
+    ],
+    "area15": 9.7,
+    "area30": 83.2,
+    "area60": 643.3
+  },
+  {
+    "rank": 26,
+    "id": "355173429",
+    "nameKo": "월드컵경기장",
+    "name": "World Cup Stadium",
+    "lines": [
+      "6"
+    ],
+    "area15": 9.6,
+    "area30": 64.9,
+    "area60": 630.2
+  },
+  {
+    "rank": 27,
+    "id": "2244637619",
+    "nameKo": "신사",
+    "name": "Sinsa",
+    "lines": [
+      "3",
+      "shinbundang"
+    ],
+    "area15": 9.5,
+    "area30": 106.8,
+    "area60": 614.2
+  },
+  {
+    "rank": 28,
+    "id": "3279010922",
+    "nameKo": "동묘앞",
+    "name": "Dongmyo",
+    "lines": [
+      "1",
+      "6"
+    ],
+    "area15": 9.5,
+    "area30": 76.7,
+    "area60": 520.8
+  },
+  {
+    "rank": 29,
+    "id": "5585685809",
+    "nameKo": "부평",
+    "name": "Bupyeong",
+    "lines": [
+      "1"
+    ],
+    "area15": 9.5,
+    "area30": 81.3,
+    "area60": 566.5
+  },
+  {
+    "rank": 30,
+    "id": "355172983",
+    "nameKo": "상왕십리",
+    "name": "Sangwangsimni",
+    "lines": [
+      "2"
+    ],
+    "area15": 9.4,
+    "area30": 100.2,
+    "area60": 563.8
+  },
+  {
+    "rank": 31,
+    "id": "436832405",
+    "nameKo": "학동",
+    "name": "Hakdong",
+    "lines": [
+      "7"
+    ],
+    "area15": 9.3,
+    "area30": 97.4,
+    "area60": 580.7
+  },
+  {
+    "rank": 32,
+    "id": "5349724970",
+    "nameKo": "을지로4가",
+    "name": "Euljiro 4(sa)-ga",
+    "lines": [
+      "2",
+      "5"
+    ],
+    "area15": 9.3,
+    "area30": 90.1,
+    "area60": 563.9
+  },
+  {
+    "rank": 33,
+    "id": "6033312682",
+    "nameKo": "당산",
+    "name": "Dangsan",
+    "lines": [
+      "2",
+      "9"
+    ],
+    "area15": 9,
+    "area30": 104.4,
+    "area60": 592.9
+  },
+  {
+    "rank": 34,
+    "id": "3824606374",
+    "nameKo": "봉은사역",
+    "name": "Bongeunsa",
+    "lines": [
+      "9"
+    ],
+    "area15": 8.8,
+    "area30": 108.8,
+    "area60": 590.3
+  },
+  {
+    "rank": 35,
+    "id": "5801302006",
+    "nameKo": "천호",
+    "name": "Cheonho",
+    "lines": [
+      "5",
+      "8"
+    ],
+    "area15": 8.8,
+    "area30": 73.5,
+    "area60": 470.6
+  },
+  {
+    "rank": 36,
+    "id": "6033314482",
+    "nameKo": "신림",
+    "name": "Sillim",
+    "lines": [
+      "2"
+    ],
+    "area15": 8.8,
+    "area30": 66.8,
+    "area60": 570.1
+  },
+  {
+    "rank": 37,
+    "id": "6102706374",
+    "nameKo": "올림픽공원",
+    "name": "Olympic Park",
+    "lines": [
+      "5",
+      "9"
+    ],
+    "area15": 8.8,
+    "area30": 71.6,
+    "area60": 493.8
+  },
+  {
+    "rank": 38,
+    "id": "660843668",
+    "nameKo": "옥수",
+    "name": "Oksu",
+    "lines": [
+      "3",
+      "gyeongui"
+    ],
+    "area15": 8.8,
+    "area30": 119,
+    "area60": 678.5
+  },
+  {
+    "rank": 39,
+    "id": "287525731",
+    "nameKo": "삼성",
+    "name": "Samseong(World Trade Center Seoul)",
+    "lines": [
+      "2"
+    ],
+    "area15": 8.6,
+    "area30": 88.2,
+    "area60": 556
+  },
+  {
+    "rank": 40,
+    "id": "5933896999",
+    "nameKo": "약수",
+    "name": "Yaksu",
+    "lines": [
+      "3",
+      "6"
+    ],
+    "area15": 8.6,
+    "area30": 100.6,
+    "area60": 597
+  },
+  {
+    "rank": 41,
+    "id": "355173195",
+    "nameKo": "명동",
+    "name": "Myeong-dong",
+    "lines": [
+      "4"
+    ],
+    "area15": 8.5,
+    "area30": 84,
+    "area60": 602.2
+  },
+  {
+    "rank": 42,
+    "id": "355173443",
+    "nameKo": "효창공원앞",
+    "name": "Hyochang Park",
+    "lines": [
+      "6",
+      "gyeongui"
+    ],
+    "area15": 8.5,
+    "area30": 98.3,
+    "area60": 670.5
+  },
+  {
+    "rank": 43,
+    "id": "5914759508",
+    "nameKo": "노원",
+    "name": "Nowon",
+    "lines": [
+      "4",
+      "7"
+    ],
+    "area15": 8.5,
+    "area30": 60.7,
+    "area60": 403.6
+  },
+  {
+    "rank": 44,
+    "id": "6046634750",
+    "nameKo": "중곡",
+    "name": "Junggok",
+    "lines": [
+      "7"
+    ],
+    "area15": 8.4,
+    "area30": 95.6,
+    "area60": 557.8
+  },
+  {
+    "rank": 45,
+    "id": "8049297383",
+    "nameKo": "신설동",
+    "name": "Sinseol-dong",
+    "lines": [
+      "1",
+      "2"
+    ],
+    "area15": 8.4,
+    "area30": 72.3,
+    "area60": 518.7
+  },
+  {
+    "rank": 46,
+    "id": "6033314402",
+    "nameKo": "영등포구청",
+    "name": "Yeongdeungpo-gu Office",
+    "lines": [
+      "2",
+      "5"
+    ],
+    "area15": 8.2,
+    "area30": 100.5,
+    "area60": 607.3
+  },
+  {
+    "rank": 47,
+    "id": "6041673025",
+    "nameKo": "태릉입구",
+    "name": "Taereung",
+    "lines": [
+      "6",
+      "7"
+    ],
+    "area15": 8.1,
+    "area30": 71.4,
+    "area60": 464.4
+  },
+  {
+    "rank": 48,
+    "id": "6050655840",
+    "nameKo": "부평구청",
+    "name": "Bupyeong-gu Office",
+    "lines": [
+      "7"
+    ],
+    "area15": 8.1,
+    "area30": 64.5,
+    "area60": 498.5
+  },
+  {
+    "rank": 49,
+    "id": "5225311375",
+    "nameKo": "도곡",
+    "name": "Dogok",
+    "lines": [
+      "3",
+      "bundang"
+    ],
+    "area15": 8,
+    "area30": 78.4,
+    "area60": 569.3
+  },
+  {
+    "rank": 50,
+    "id": "5919544686",
+    "nameKo": "홍대입구",
+    "name": "Hongik University",
+    "lines": [
+      "2",
+      "gyeongui"
+    ],
+    "area15": 8,
+    "area30": 77,
+    "area60": 663.3
+  },
+  {
+    "rank": 51,
+    "id": "5887972151",
+    "nameKo": "모란",
+    "name": "Moran",
+    "lines": [
+      "8",
+      "bundang"
+    ],
+    "area15": 7.9,
+    "area30": 49.7,
+    "area60": 392
+  },
+  {
+    "rank": 52,
+    "id": "6048955183",
+    "nameKo": "이수",
+    "name": "Isu",
+    "lines": [
+      "7"
+    ],
+    "area15": 7.9,
+    "area30": 92.6,
+    "area60": 691.5
+  },
+  {
+    "rank": 53,
+    "id": "355173433",
+    "nameKo": "대흥",
+    "name": "Daeheung",
+    "lines": [
+      "6"
+    ],
+    "area15": 7.8,
+    "area30": 81.4,
+    "area60": 708.8
+  },
+  {
+    "rank": 54,
+    "id": "5937884697",
+    "nameKo": "이대",
+    "name": "Ewha Womans University",
+    "lines": [
+      "2"
+    ],
+    "area15": 7.8,
+    "area30": 69.5,
+    "area60": 594.7
+  },
+  {
+    "rank": 55,
+    "id": "6048955112",
+    "nameKo": "신대방삼거리",
+    "name": "Sindaebang·Samgeori",
+    "lines": [
+      "7"
+    ],
+    "area15": 7.8,
+    "area30": 58.4,
+    "area60": 556.5
+  },
+  {
+    "rank": 56,
+    "id": "6050655851",
+    "nameKo": "부천종합운동장",
+    "name": "Bucheon Stadium",
+    "lines": [
+      "7"
+    ],
+    "area15": 7.8,
+    "area30": 73.8,
+    "area60": 658.5
+  },
+  {
+    "rank": 57,
+    "id": "353186868",
+    "nameKo": "길음",
+    "name": "Gireum",
+    "lines": [
+      "4"
+    ],
+    "area15": 7.7,
+    "area30": 60.9,
+    "area60": 478.3
+  },
+  {
+    "rank": 58,
+    "id": "355173360",
+    "nameKo": "서대문",
+    "name": "Seodaemun",
+    "lines": [
+      "5"
+    ],
+    "area15": 7.7,
+    "area30": 68.8,
+    "area60": 537.5
+  },
+  {
+    "rank": 59,
+    "id": "6033544483",
+    "nameKo": "연신내",
+    "name": "Yeonsinnae",
+    "lines": [
+      "3",
+      "6",
+      "gyeongui"
+    ],
+    "area15": 7.7,
+    "area30": 49,
+    "area60": 500.5
+  },
+  {
+    "rank": 60,
+    "id": "1797562528",
+    "nameKo": "시청",
+    "name": "City Hall",
+    "lines": [
+      "1",
+      "2"
+    ],
+    "area15": 7.6,
+    "area30": 75.1,
+    "area60": 590.2
+  },
+  {
+    "rank": 61,
+    "id": "353186877",
+    "nameKo": "마포",
+    "name": "Mapo",
+    "lines": [
+      "5"
+    ],
+    "area15": 7.6,
+    "area30": 78.7,
+    "area60": 586.5
+  },
+  {
+    "rank": 62,
+    "id": "355173138",
+    "nameKo": "수유",
+    "name": "Suyu (Gangbuk-gu Office)",
+    "lines": [
+      "4"
+    ],
+    "area15": 7.6,
+    "area30": 67.5,
+    "area60": 428.1
+  },
+  {
+    "rank": 63,
+    "id": "355173408",
+    "nameKo": "고려대",
+    "name": "Korea Univ.",
+    "lines": [
+      "6"
+    ],
+    "area15": 7.6,
+    "area30": 66.2,
+    "area60": 468.8
+  },
+  {
+    "rank": 64,
+    "id": "6048955111",
+    "nameKo": "보라매",
+    "name": "Boramae",
+    "lines": [
+      "7"
+    ],
+    "area15": 7.6,
+    "area30": 59.1,
+    "area60": 560.2
+  },
+  {
+    "rank": 65,
+    "id": "9482998436",
+    "nameKo": "샛강",
+    "name": "Saetgang",
+    "lines": [
+      "9"
+    ],
+    "area15": 7.6,
+    "area30": 102.2,
+    "area60": 596.9
+  },
+  {
+    "rank": 66,
+    "id": "1797587546",
+    "nameKo": "신당",
+    "name": "Sindang",
+    "lines": [
+      "2",
+      "6"
+    ],
+    "area15": 7.5,
+    "area30": 98,
+    "area60": 553.6
+  },
+  {
+    "rank": 67,
+    "id": "2385324651",
+    "nameKo": "삼각지",
+    "name": "Samgakji",
+    "lines": [
+      "4",
+      "6"
+    ],
+    "area15": 7.5,
+    "area30": 98.6,
+    "area60": 629.8
+  },
+  {
+    "rank": 68,
+    "id": "6033314712",
+    "nameKo": "서울대입구",
+    "name": "Seoul Nat'l University (Gwanak-gu Office)",
+    "lines": [
+      "2"
+    ],
+    "area15": 7.5,
+    "area30": 61.7,
+    "area60": 549.6
+  },
+  {
+    "rank": 69,
+    "id": "6046634739",
+    "nameKo": "사가정",
+    "name": "Sagajeong",
+    "lines": [
+      "7"
+    ],
+    "area15": 7.5,
+    "area30": 78.4,
+    "area60": 546.6
+  },
+  {
+    "rank": 70,
+    "id": "660871450",
+    "nameKo": "종각",
+    "name": "Jonggak",
+    "lines": [
+      "1"
+    ],
+    "area15": 7.5,
+    "area30": 79.6,
+    "area60": 626.6
+  },
+  {
+    "rank": 71,
+    "id": "3824606392",
+    "nameKo": "신논현역",
+    "name": "Sinnonhyeon",
+    "lines": [
+      "9"
+    ],
+    "area15": 7.4,
+    "area30": 90.8,
+    "area60": 592.3
+  },
+  {
+    "rank": 72,
+    "id": "414685965",
+    "nameKo": "안국",
+    "name": "Anguk",
+    "lines": [
+      "3"
+    ],
+    "area15": 7.4,
+    "area30": 69.5,
+    "area60": 543.2
+  },
+  {
+    "rank": 73,
+    "id": "5801559318",
+    "nameKo": "건대입구",
+    "name": "Konkuk University",
+    "lines": [
+      "2",
+      "7"
+    ],
+    "area15": 7.4,
+    "area30": 99.3,
+    "area60": 565.7
+  },
+  {
+    "rank": 74,
+    "id": "5914829686",
+    "nameKo": "한성대입구",
+    "name": "Hansung Univ. (Samseongyo)",
+    "lines": [
+      "4"
+    ],
+    "area15": 7.4,
+    "area30": 61.5,
+    "area60": 478.5
+  },
+  {
+    "rank": 75,
+    "id": "6033314757",
+    "nameKo": "사당",
+    "name": "Sadang",
+    "lines": [
+      "2",
+      "4"
+    ],
+    "area15": 7.4,
+    "area30": 91,
+    "area60": 656.9
+  },
+  {
+    "rank": 76,
+    "id": "9776192970",
+    "nameKo": "신논현",
+    "name": "Sinnonhyeon",
+    "lines": [
+      "9",
+      "shinbundang"
+    ],
+    "area15": 7.4,
+    "area30": 90.8,
+    "area60": 592.3
+  },
+  {
+    "rank": 77,
+    "id": "1790519133",
+    "nameKo": "송정",
+    "name": "Songjeong",
+    "lines": [
+      "5"
+    ],
+    "area15": 7.3,
+    "area30": 41.7,
+    "area60": 628.2
+  },
+  {
+    "rank": 78,
+    "id": "355172962",
+    "nameKo": "을지로입구",
+    "name": "Euljiro 1(il)-ga (Industrial Bank of Korea)",
+    "lines": [
+      "2"
+    ],
+    "area15": 7.3,
+    "area30": 71.9,
+    "area60": 587.2
+  },
+  {
+    "rank": 79,
+    "id": "355173398",
+    "nameKo": "오목교",
+    "name": "Omokgyo",
+    "lines": [
+      "5"
+    ],
+    "area15": 7.3,
+    "area30": 44.8,
+    "area60": 418.8
+  },
+  {
+    "rank": 80,
+    "id": "5935554434",
+    "nameKo": "한양대",
+    "name": "Hanyang University",
+    "lines": [
+      "2"
+    ],
+    "area15": 7.3,
+    "area30": 88.9,
+    "area60": 528.5
+  },
+  {
+    "rank": 81,
+    "id": "4706526694",
+    "nameKo": "중화",
+    "name": "Junghwa",
+    "lines": [
+      "7"
+    ],
+    "area15": 7.2,
+    "area30": 68.3,
+    "area60": 527.2
+  },
+  {
+    "rank": 82,
+    "id": "2279487866",
+    "nameKo": "반포",
+    "name": "Banpo",
+    "lines": [
+      "7"
+    ],
+    "area15": 7.1,
+    "area30": 77.8,
+    "area60": 622.8
+  },
+  {
+    "rank": 83,
+    "id": "2360117049",
+    "nameKo": "굴포천",
+    "name": "Gulpocheon",
+    "lines": [
+      "7"
+    ],
+    "area15": 7.1,
+    "area30": 48.3,
+    "area60": 497.1
+  },
+  {
+    "rank": 84,
+    "id": "355173201",
+    "nameKo": "혜화",
+    "name": "Hyehwa",
+    "lines": [
+      "4"
+    ],
+    "area15": 7.1,
+    "area30": 65.5,
+    "area60": 523.2
+  },
+  {
+    "rank": 85,
+    "id": "5930287078",
+    "nameKo": "가락시장",
+    "name": "Garak Market",
+    "lines": [
+      "3",
+      "8"
+    ],
+    "area15": 7.1,
+    "area30": 80,
+    "area60": 474.4
+  },
+  {
+    "rank": 86,
+    "id": "6036160364",
+    "nameKo": "총신대입구",
+    "name": "Chongsin Univ. (Isu)",
+    "lines": [
+      "4"
+    ],
+    "area15": 7.1,
+    "area30": 90,
+    "area60": 657.7
+  },
+  {
+    "rank": 87,
+    "id": "4733039958",
+    "nameKo": "복정",
+    "name": "Bokjeong",
+    "lines": [
+      "8",
+      "bundang"
+    ],
+    "area15": 6.9,
+    "area30": 76.7,
+    "area60": 451.6
+  },
+  {
+    "rank": 88,
+    "id": "5812010548",
+    "nameKo": "역삼",
+    "name": "Yeoksam",
+    "lines": [
+      "2"
+    ],
+    "area15": 6.9,
+    "area30": 78.8,
+    "area60": 534.6
+  },
+  {
+    "rank": 89,
+    "id": "6046634707",
+    "nameKo": "하계",
+    "name": "Hagye",
+    "lines": [
+      "7"
+    ],
+    "area15": 6.9,
+    "area30": 56.4,
+    "area60": 387.4
+  },
+  {
+    "rank": 90,
+    "id": "6048953571",
+    "nameKo": "남구로",
+    "name": "Nam-guro",
+    "lines": [
+      "7"
+    ],
+    "area15": 6.9,
+    "area30": 61.9,
+    "area60": 545.6
+  },
+  {
+    "rank": 91,
+    "id": "355173105",
+    "nameKo": "신용산",
+    "name": "Sinyongsan",
+    "lines": [
+      "4"
+    ],
+    "area15": 6.8,
+    "area30": 96,
+    "area60": 667
+  },
+  {
+    "rank": 92,
+    "id": "5881397264",
+    "nameKo": "미금",
+    "name": "Migeum",
+    "lines": [
+      "bundang",
+      "shinbundang"
+    ],
+    "area15": 6.8,
+    "area30": 54.9,
+    "area60": 498.2
+  },
+  {
+    "rank": 93,
+    "id": "5893030219",
+    "nameKo": "용산",
+    "name": "Yongsan",
+    "lines": [
+      "1",
+      "gyeongui"
+    ],
+    "area15": 6.8,
+    "area30": 96,
+    "area60": 667
+  },
+  {
+    "rank": 94,
+    "id": "5935554449",
+    "nameKo": "뚝섬",
+    "name": "Ttukseom",
+    "lines": [
+      "2"
+    ],
+    "area15": 6.8,
+    "area30": 83,
+    "area60": 507
+  },
+  {
+    "rank": 95,
+    "id": "6312484944",
+    "nameKo": "압구정로데오",
+    "name": "Apgujungrodeo",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 6.8,
+    "area30": 86,
+    "area60": 514.5
+  },
+  {
+    "rank": 96,
+    "id": "7121505500",
+    "nameKo": "의정부",
+    "name": "Uijeongbu",
+    "lines": [
+      "1"
+    ],
+    "area15": 6.8,
+    "area30": 35.3,
+    "area60": 220.4
+  },
+  {
+    "rank": 97,
+    "id": "4963715631",
+    "nameKo": "서울숲",
+    "name": "Seoul-forest",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 6.7,
+    "area30": 92.4,
+    "area60": 538.2
+  },
+  {
+    "rank": 98,
+    "id": "5225259404",
+    "nameKo": "양재",
+    "name": "Yangjae",
+    "lines": [
+      "3",
+      "shinbundang"
+    ],
+    "area15": 6.7,
+    "area30": 74,
+    "area60": 603.7
+  },
+  {
+    "rank": 99,
+    "id": "6039313995",
+    "nameKo": "신정",
+    "name": "Sinjeong",
+    "lines": [
+      "5"
+    ],
+    "area15": 6.7,
+    "area30": 44.2,
+    "area60": 453.9
+  },
+  {
+    "rank": 100,
+    "id": "5916874392",
+    "nameKo": "합정",
+    "name": "Hapjeong",
+    "lines": [
+      "2",
+      "6"
+    ],
+    "area15": 6.6,
+    "area30": 77.5,
+    "area60": 602.1
+  },
+  {
+    "rank": 101,
+    "id": "5930698988",
+    "nameKo": "독립문",
+    "name": "Dongnimmun",
+    "lines": [
+      "3"
+    ],
+    "area15": 6.6,
+    "area30": 61.9,
+    "area60": 500
+  },
+  {
+    "rank": 102,
+    "id": "6048955110",
+    "nameKo": "신풍",
+    "name": "Sinpung",
+    "lines": [
+      "7"
+    ],
+    "area15": 6.6,
+    "area30": 57.4,
+    "area60": 539.6
+  },
+  {
+    "rank": 103,
+    "id": "6048955208",
+    "nameKo": "자양",
+    "name": "Jayang",
+    "lines": [
+      "7"
+    ],
+    "area15": 6.6,
+    "area30": 85.3,
+    "area60": 509.6
+  },
+  {
+    "rank": 104,
+    "id": "6102706788",
+    "nameKo": "석촌",
+    "name": "Seokchon",
+    "lines": [
+      "8",
+      "9"
+    ],
+    "area15": 6.6,
+    "area30": 68.8,
+    "area60": 435.2
+  },
+  {
+    "rank": 105,
+    "id": "8754538368",
+    "nameKo": "석남",
+    "name": "Seongnam",
+    "lines": [
+      "7"
+    ],
+    "area15": 6.6,
+    "area30": 78.1,
+    "area60": 432.6
+  },
+  {
+    "rank": 106,
+    "id": "355172855",
+    "nameKo": "아현",
+    "name": "Ahyeon",
+    "lines": [
+      "2"
+    ],
+    "area15": 6.5,
+    "area30": 61.8,
+    "area60": 602.4
+  },
+  {
+    "rank": 107,
+    "id": "5821684795",
+    "nameKo": "장지",
+    "name": "Jangji",
+    "lines": [
+      "8"
+    ],
+    "area15": 6.5,
+    "area30": 79.8,
+    "area60": 457.6
+  },
+  {
+    "rank": 108,
+    "id": "6033364446",
+    "nameKo": "신정네거리",
+    "name": "Sinjeongnegeori",
+    "lines": [
+      "2"
+    ],
+    "area15": 6.5,
+    "area30": 42.4,
+    "area60": 436.4
+  },
+  {
+    "rank": 109,
+    "id": "6046634712",
+    "nameKo": "면목",
+    "name": "Myeonmok",
+    "lines": [
+      "7"
+    ],
+    "area15": 6.5,
+    "area30": 62.2,
+    "area60": 510
+  },
+  {
+    "rank": 110,
+    "id": "7366159452",
+    "nameKo": "서울역",
+    "name": "Seoul Station",
+    "lines": [
+      "1",
+      "4",
+      "airport",
+      "gyeongui"
+    ],
+    "area15": 6.5,
+    "area30": 80.8,
+    "area60": 594.2
+  },
+  {
+    "rank": 111,
+    "id": "355172742",
+    "nameKo": "종로5가",
+    "name": "Jongno 5(o)-ga",
+    "lines": [
+      "1"
+    ],
+    "area15": 6.4,
+    "area30": 68.7,
+    "area60": 548.4
+  },
+  {
+    "rank": 112,
+    "id": "414683380",
+    "nameKo": "새절",
+    "name": "Saejeol",
+    "lines": [
+      "6"
+    ],
+    "area15": 6.4,
+    "area30": 42.5,
+    "area60": 563.2
+  },
+  {
+    "rank": 113,
+    "id": "414684925",
+    "nameKo": "여의나루",
+    "name": "Yeouinaru",
+    "lines": [
+      "5"
+    ],
+    "area15": 6.4,
+    "area30": 69.9,
+    "area60": 549.8
+  },
+  {
+    "rank": 114,
+    "id": "5930698992",
+    "nameKo": "불광",
+    "name": "Bulgwang",
+    "lines": [
+      "3",
+      "6"
+    ],
+    "area15": 6.4,
+    "area30": 48.5,
+    "area60": 494.9
+  },
+  {
+    "rank": 115,
+    "id": "7611776393",
+    "nameKo": "제기동",
+    "name": "Jegidong",
+    "lines": [
+      "1"
+    ],
+    "area15": 6.4,
+    "area30": 62.2,
+    "area60": 499.7
+  },
+  {
+    "rank": 116,
+    "id": "2346858819",
+    "nameKo": "광화문",
+    "name": "Gwanghwamun",
+    "lines": [
+      "5"
+    ],
+    "area15": 6.3,
+    "area30": 61.4,
+    "area60": 535.2
+  },
+  {
+    "rank": 117,
+    "id": "7287842392",
+    "nameKo": "논현",
+    "name": "Nonhyeon",
+    "lines": [
+      "7",
+      "shinbundang"
+    ],
+    "area15": 6.3,
+    "area30": 81,
+    "area60": 595.5
+  },
+  {
+    "rank": 118,
+    "id": "5225259408",
+    "nameKo": "정자",
+    "name": "Jeongja",
+    "lines": [
+      "bundang",
+      "shinbundang"
+    ],
+    "area15": 6.2,
+    "area30": 55.1,
+    "area60": 533.5
+  },
+  {
+    "rank": 119,
+    "id": "5350784134",
+    "nameKo": "회룡",
+    "name": "Hoeryong",
+    "lines": [
+      "1"
+    ],
+    "area15": 6.2,
+    "area30": 55.4,
+    "area60": 285.1
+  },
+  {
+    "rank": 120,
+    "id": "798558661",
+    "nameKo": "동작",
+    "name": "Dongjak",
+    "lines": [
+      "4",
+      "9"
+    ],
+    "area15": 6.2,
+    "area30": 88.2,
+    "area60": 653.4
+  },
+  {
+    "rank": 121,
+    "id": "414685028",
+    "nameKo": "강동구청",
+    "name": "Gangdong-gu Office",
+    "lines": [
+      "8"
+    ],
+    "area15": 6.1,
+    "area30": 52.1,
+    "area60": 406.4
+  },
+  {
+    "rank": 122,
+    "id": "5899116546",
+    "nameKo": "도봉산",
+    "name": "Dobongsan",
+    "lines": [
+      "1",
+      "7"
+    ],
+    "area15": 6.1,
+    "area30": 64.4,
+    "area60": 378.1
+  },
+  {
+    "rank": 123,
+    "id": "6033314783",
+    "nameKo": "방배",
+    "name": "Bangbae",
+    "lines": [
+      "2"
+    ],
+    "area15": 6.1,
+    "area30": 74.1,
+    "area60": 567.6
+  },
+  {
+    "rank": 124,
+    "id": "6048955124",
+    "nameKo": "장승배기",
+    "name": "Jangseungbaegi",
+    "lines": [
+      "7"
+    ],
+    "area15": 6.1,
+    "area30": 54.8,
+    "area60": 556.4
+  },
+  {
+    "rank": 125,
+    "id": "6048955148",
+    "nameKo": "숭실대입구",
+    "name": "Soongsil University",
+    "lines": [
+      "7"
+    ],
+    "area15": 6.1,
+    "area30": 50.1,
+    "area60": 549.7
+  },
+  {
+    "rank": 126,
+    "id": "1915043090",
+    "nameKo": "서현",
+    "name": "Seohyeon",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 6,
+    "area30": 45.8,
+    "area60": 384.6
+  },
+  {
+    "rank": 127,
+    "id": "355172774",
+    "nameKo": "석계",
+    "name": "Seokgye",
+    "lines": [
+      "1",
+      "6"
+    ],
+    "area15": 6,
+    "area30": 62.4,
+    "area60": 432.9
+  },
+  {
+    "rank": 128,
+    "id": "355173581",
+    "nameKo": "송파",
+    "name": "Songpa",
+    "lines": [
+      "8"
+    ],
+    "area15": 6,
+    "area30": 78.1,
+    "area60": 496.4
+  },
+  {
+    "rank": 129,
+    "id": "355173368",
+    "nameKo": "마장",
+    "name": "Majang",
+    "lines": [
+      "5"
+    ],
+    "area15": 5.8,
+    "area30": 72.5,
+    "area60": 501.1
+  },
+  {
+    "rank": 130,
+    "id": "355173424",
+    "nameKo": "마포구청",
+    "name": "Mapo-gu Office",
+    "lines": [
+      "6"
+    ],
+    "area15": 5.8,
+    "area30": 41.2,
+    "area60": 559.7
+  },
+  {
+    "rank": 131,
+    "id": "5900500318",
+    "nameKo": "소사",
+    "name": "Sosa",
+    "lines": [
+      "1"
+    ],
+    "area15": 5.8,
+    "area30": 72.6,
+    "area60": 692.2
+  },
+  {
+    "rank": 132,
+    "id": "6046634697",
+    "nameKo": "수락산",
+    "name": "Suraksan",
+    "lines": [
+      "7"
+    ],
+    "area15": 5.8,
+    "area30": 50.4,
+    "area60": 377
+  },
+  {
+    "rank": 133,
+    "id": "6046634708",
+    "nameKo": "공릉",
+    "name": "Gongneung",
+    "lines": [
+      "7"
+    ],
+    "area15": 5.8,
+    "area30": 53.9,
+    "area60": 399.7
+  },
+  {
+    "rank": 134,
+    "id": "6048955158",
+    "nameKo": "남성",
+    "name": "Namseong",
+    "lines": [
+      "7"
+    ],
+    "area15": 5.8,
+    "area30": 55,
+    "area60": 577.7
+  },
+  {
+    "rank": 135,
+    "id": "6050654945",
+    "nameKo": "부천시청",
+    "name": "Bucheon City Hall",
+    "lines": [
+      "7"
+    ],
+    "area15": 5.8,
+    "area30": 49.9,
+    "area60": 421.3
+  },
+  {
+    "rank": 136,
+    "id": "2111924741",
+    "nameKo": "청담",
+    "name": "Cheongdam",
+    "lines": [
+      "7"
+    ],
+    "area15": 5.7,
+    "area30": 81.1,
+    "area60": 527.1
+  },
+  {
+    "rank": 137,
+    "id": "355173399",
+    "nameKo": "목동",
+    "name": "Mok-dong",
+    "lines": [
+      "5"
+    ],
+    "area15": 5.7,
+    "area30": 45.8,
+    "area60": 445
+  },
+  {
+    "rank": 138,
+    "id": "355173404",
+    "nameKo": "돌곶이",
+    "name": "Dalgoji",
+    "lines": [
+      "6"
+    ],
+    "area15": 5.7,
+    "area30": 56.6,
+    "area60": 422.3
+  },
+  {
+    "rank": 139,
+    "id": "355173405",
+    "nameKo": "상월곡",
+    "name": "Sangwolgok",
+    "lines": [
+      "6"
+    ],
+    "area15": 5.7,
+    "area30": 53.9,
+    "area60": 413.1
+  },
+  {
+    "rank": 140,
+    "id": "3832931179",
+    "nameKo": "회현",
+    "name": "Hoehyeon (Namdaemun Market)",
+    "lines": [
+      "4"
+    ],
+    "area15": 5.7,
+    "area30": 76.1,
+    "area60": 581.9
+  },
+  {
+    "rank": 141,
+    "id": "414684814",
+    "nameKo": "몽촌토성",
+    "name": "Mongchontoseong",
+    "lines": [
+      "8"
+    ],
+    "area15": 5.7,
+    "area30": 71.5,
+    "area60": 457.8
+  },
+  {
+    "rank": 142,
+    "id": "5930698986",
+    "nameKo": "을지로3가",
+    "name": "Euljiro 3(sam)-ga",
+    "lines": [
+      "2",
+      "3"
+    ],
+    "area15": 5.7,
+    "area30": 75.6,
+    "area60": 548.3
+  },
+  {
+    "rank": 143,
+    "id": "5934012012",
+    "nameKo": "오금",
+    "name": "Ogeum",
+    "lines": [
+      "3",
+      "5"
+    ],
+    "area15": 5.7,
+    "area30": 41.5,
+    "area60": 348.4
+  },
+  {
+    "rank": 144,
+    "id": "6033314994",
+    "nameKo": "서초",
+    "name": "Seocho",
+    "lines": [
+      "2"
+    ],
+    "area15": 5.7,
+    "area30": 65.4,
+    "area60": 567.6
+  },
+  {
+    "rank": 145,
+    "id": "6312484935",
+    "nameKo": "개포동",
+    "name": "Gaepo-dong",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 5.7,
+    "area30": 71.5,
+    "area60": 490.7
+  },
+  {
+    "rank": 146,
+    "id": "3278844040",
+    "nameKo": "김포공항",
+    "name": "Gimpo Int'l Airport",
+    "lines": [
+      "5",
+      "9",
+      "airport"
+    ],
+    "area15": 5.6,
+    "area30": 95.5,
+    "area60": 845.4
+  },
+  {
+    "rank": 147,
+    "id": "355173436",
+    "nameKo": "상수",
+    "name": "Sangsu",
+    "lines": [
+      "6"
+    ],
+    "area15": 5.6,
+    "area30": 60.9,
+    "area60": 579.3
+  },
+  {
+    "rank": 148,
+    "id": "4809472051",
+    "nameKo": "남한산성입구",
+    "name": "Namhansanseong",
+    "lines": [
+      "8"
+    ],
+    "area15": 5.6,
+    "area30": 27.5,
+    "area60": 272.4
+  },
+  {
+    "rank": 149,
+    "id": "5882162368",
+    "nameKo": "이매",
+    "name": "Imae",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 5.6,
+    "area30": 46.9,
+    "area60": 487.7
+  },
+  {
+    "rank": 150,
+    "id": "6102706837",
+    "nameKo": "한성백제",
+    "name": "Hanseong Baekje",
+    "lines": [
+      "9"
+    ],
+    "area15": 5.6,
+    "area30": 50.1,
+    "area60": 400.6
+  },
+  {
+    "rank": 151,
+    "id": "3426724594",
+    "nameKo": "의왕",
+    "name": "Uiwang",
+    "lines": [
+      "1"
+    ],
+    "area15": 5.5,
+    "area30": 48.3,
+    "area60": 457.6
+  },
+  {
+    "rank": 152,
+    "id": "355173397",
+    "nameKo": "화곡",
+    "name": "Hwagok",
+    "lines": [
+      "5"
+    ],
+    "area15": 5.5,
+    "area30": 39,
+    "area60": 424.1
+  },
+  {
+    "rank": 153,
+    "id": "355173426",
+    "nameKo": "망원",
+    "name": "Mangwon",
+    "lines": [
+      "6"
+    ],
+    "area15": 5.5,
+    "area30": 59.7,
+    "area60": 520.2
+  },
+  {
+    "rank": 154,
+    "id": "6033314468",
+    "nameKo": "신대방",
+    "name": "Sindaebang",
+    "lines": [
+      "2"
+    ],
+    "area15": 5.5,
+    "area30": 46.1,
+    "area60": 472.7
+  },
+  {
+    "rank": 155,
+    "id": "6046634710",
+    "nameKo": "먹골",
+    "name": "Meokgol",
+    "lines": [
+      "7"
+    ],
+    "area15": 5.5,
+    "area30": 55.8,
+    "area60": 414.3
+  },
+  {
+    "rank": 156,
+    "id": "8566458089",
+    "nameKo": "하남시청",
+    "name": "Hanam City Hall (Deokpung·Sinjang)",
+    "lines": [
+      "5"
+    ],
+    "area15": 5.5,
+    "area30": 28.3,
+    "area60": 232.4
+  },
+  {
+    "rank": 157,
+    "id": "355173018",
+    "nameKo": "홍제",
+    "name": "Hongje (Seoul Culture Arts Univ.)",
+    "lines": [
+      "3"
+    ],
+    "area15": 5.4,
+    "area30": 42.1,
+    "area60": 471.5
+  },
+  {
+    "rank": 158,
+    "id": "4604102197",
+    "nameKo": "신방화",
+    "name": "Sinbanghwa",
+    "lines": [
+      "9"
+    ],
+    "area15": 5.4,
+    "area30": 36.1,
+    "area60": 690.9
+  },
+  {
+    "rank": 159,
+    "id": "5935554452",
+    "nameKo": "성수",
+    "name": "Seongsu",
+    "lines": [
+      "2"
+    ],
+    "area15": 5.4,
+    "area30": 75.1,
+    "area60": 496.3
+  },
+  {
+    "rank": 160,
+    "id": "6033364443",
+    "nameKo": "까치산",
+    "name": "Kkachisan",
+    "lines": [
+      "2",
+      "5"
+    ],
+    "area15": 5.4,
+    "area30": 44.2,
+    "area60": 446.6
+  },
+  {
+    "rank": 161,
+    "id": "6048955147",
+    "nameKo": "상도",
+    "name": "Sangdo",
+    "lines": [
+      "7"
+    ],
+    "area15": 5.4,
+    "area30": 53.2,
+    "area60": 567.8
+  },
+  {
+    "rank": 162,
+    "id": "7106108484",
+    "nameKo": "미아",
+    "name": "Mia",
+    "lines": [
+      "4"
+    ],
+    "area15": 5.4,
+    "area30": 45.8,
+    "area60": 396
+  },
+  {
+    "rank": 163,
+    "id": "1994678935",
+    "nameKo": "양천향교",
+    "name": "Yangcheon Hyanggyo",
+    "lines": [
+      "9"
+    ],
+    "area15": 5.3,
+    "area30": 24,
+    "area60": 553.2
+  },
+  {
+    "rank": 164,
+    "id": "3426723656",
+    "nameKo": "군포",
+    "name": "Gunpo",
+    "lines": [
+      "1"
+    ],
+    "area15": 5.3,
+    "area30": 58.3,
+    "area60": 534.2
+  },
+  {
+    "rank": 165,
+    "id": "355173413",
+    "nameKo": "화랑대",
+    "name": "Hwarang",
+    "lines": [
+      "6"
+    ],
+    "area15": 5.3,
+    "area30": 58.6,
+    "area60": 415
+  },
+  {
+    "rank": 166,
+    "id": "355173431",
+    "nameKo": "광흥창",
+    "name": "Gwangheungchang",
+    "lines": [
+      "6"
+    ],
+    "area15": 5.3,
+    "area30": 58.6,
+    "area60": 517.1
+  },
+  {
+    "rank": 167,
+    "id": "5916874386",
+    "nameKo": "응암",
+    "name": "Eungam",
+    "lines": [
+      "6"
+    ],
+    "area15": 5.3,
+    "area30": 34.8,
+    "area60": 404.4
+  },
+  {
+    "rank": 168,
+    "id": "6046633859",
+    "nameKo": "어린이대공원",
+    "name": "Children's Grand Park",
+    "lines": [
+      "7"
+    ],
+    "area15": 5.3,
+    "area30": 70.7,
+    "area60": 499.2
+  },
+  {
+    "rank": 169,
+    "id": "1994679616",
+    "nameKo": "가양",
+    "name": "Gayang",
+    "lines": [
+      "9"
+    ],
+    "area15": 5.2,
+    "area30": 33.6,
+    "area60": 542.9
+  },
+  {
+    "rank": 170,
+    "id": "3823777524",
+    "nameKo": "용마산",
+    "name": "Yongmasan",
+    "lines": [
+      "7"
+    ],
+    "area15": 5.1,
+    "area30": 63.8,
+    "area60": 505
+  },
+  {
+    "rank": 171,
+    "id": "3824606380",
+    "nameKo": "삼성중앙",
+    "name": "Samseong Jungang",
+    "lines": [
+      "9"
+    ],
+    "area15": 5.1,
+    "area30": 72.6,
+    "area60": 526.6
+  },
+  {
+    "rank": 172,
+    "id": "6117347089",
+    "nameKo": "송파나루",
+    "name": "Songpa Naru",
+    "lines": [
+      "9"
+    ],
+    "area15": 5.1,
+    "area30": 54.2,
+    "area60": 392.6
+  },
+  {
+    "rank": 173,
+    "id": "355172911",
+    "nameKo": "종합운동장",
+    "name": "Sports Complex",
+    "lines": [
+      "2",
+      "9"
+    ],
+    "area15": 5,
+    "area30": 66,
+    "area60": 509.6
+  },
+  {
+    "rank": 174,
+    "id": "355173595",
+    "nameKo": "신흥",
+    "name": "Sinheung",
+    "lines": [
+      "8"
+    ],
+    "area15": 5,
+    "area30": 30.7,
+    "area60": 286.8
+  },
+  {
+    "rank": 175,
+    "id": "3835922764",
+    "nameKo": "미아사거리",
+    "name": "Miasageori",
+    "lines": [
+      "4"
+    ],
+    "area15": 5,
+    "area30": 45.5,
+    "area60": 413.4
+  },
+  {
+    "rank": 176,
+    "id": "6033314725",
+    "nameKo": "낙성대",
+    "name": "Nakseongdae",
+    "lines": [
+      "2"
+    ],
+    "area15": 5,
+    "area30": 64.5,
+    "area60": 581.6
+  },
+  {
+    "rank": 177,
+    "id": "6033544393",
+    "nameKo": "잠원",
+    "name": "Jamwon",
+    "lines": [
+      "3"
+    ],
+    "area15": 5,
+    "area30": 69.8,
+    "area60": 565.9
+  },
+  {
+    "rank": 178,
+    "id": "6039313073",
+    "nameKo": "둔촌동",
+    "name": "Dunchon-dong",
+    "lines": [
+      "5"
+    ],
+    "area15": 5,
+    "area30": 39.6,
+    "area60": 357.1
+  },
+  {
+    "rank": 179,
+    "id": "2803508740",
+    "nameKo": "신길",
+    "name": "Singil",
+    "lines": [
+      "1",
+      "5"
+    ],
+    "area15": 4.9,
+    "area30": 67.2,
+    "area60": 560.1
+  },
+  {
+    "rank": 180,
+    "id": "355173021",
+    "nameKo": "녹번",
+    "name": "Nokbeon",
+    "lines": [
+      "3"
+    ],
+    "area15": 4.9,
+    "area30": 46.7,
+    "area60": 500.3
+  },
+  {
+    "rank": 181,
+    "id": "355173400",
+    "nameKo": "안암",
+    "name": "Anam",
+    "lines": [
+      "6"
+    ],
+    "area15": 4.9,
+    "area30": 48.5,
+    "area60": 401.2
+  },
+  {
+    "rank": 182,
+    "id": "355173402",
+    "nameKo": "창신",
+    "name": "Changshin",
+    "lines": [
+      "6"
+    ],
+    "area15": 4.9,
+    "area30": 68.8,
+    "area60": 499.5
+  },
+  {
+    "rank": 183,
+    "id": "5887905550",
+    "nameKo": "회기",
+    "name": "Hoegi",
+    "lines": [
+      "1",
+      "gyeongui"
+    ],
+    "area15": 4.9,
+    "area30": 53,
+    "area60": 498.5
+  },
+  {
+    "rank": 184,
+    "id": "5933687061",
+    "nameKo": "잠실나루",
+    "name": "Jamsillaru",
+    "lines": [
+      "2"
+    ],
+    "area15": 4.9,
+    "area30": 70.8,
+    "area60": 472.9
+  },
+  {
+    "rank": 185,
+    "id": "6039313681",
+    "nameKo": "영등포시장",
+    "name": "Yeongdeungpo Market",
+    "lines": [
+      "5"
+    ],
+    "area15": 4.9,
+    "area30": 55.7,
+    "area60": 514
+  },
+  {
+    "rank": 186,
+    "id": "5281680295",
+    "nameKo": "구파발",
+    "name": "Gupabal",
+    "lines": [
+      "3"
+    ],
+    "area15": 4.8,
+    "area30": 39,
+    "area60": 446.8
+  },
+  {
+    "rank": 187,
+    "id": "6033314702",
+    "nameKo": "봉천",
+    "name": "Bongcheon",
+    "lines": [
+      "2"
+    ],
+    "area15": 4.8,
+    "area30": 48.2,
+    "area60": 480.2
+  },
+  {
+    "rank": 188,
+    "id": "6152750623",
+    "nameKo": "성복",
+    "name": "Seongbok",
+    "lines": [
+      "shinbundang"
+    ],
+    "area15": 4.8,
+    "area30": 31.9,
+    "area60": 291.2
+  },
+  {
+    "rank": 189,
+    "id": "2111825348",
+    "nameKo": "중계",
+    "name": "Junggye",
+    "lines": [
+      "7"
+    ],
+    "area15": 4.7,
+    "area30": 47.6,
+    "area60": 362.8
+  },
+  {
+    "rank": 190,
+    "id": "355173148",
+    "nameKo": "쌍문",
+    "name": "Ssangmun",
+    "lines": [
+      "4"
+    ],
+    "area15": 4.7,
+    "area30": 51.9,
+    "area60": 379.4
+  },
+  {
+    "rank": 191,
+    "id": "3824606383",
+    "nameKo": "사평",
+    "name": "Sapyeong",
+    "lines": [
+      "9"
+    ],
+    "area15": 4.7,
+    "area30": 60.5,
+    "area60": 566.7
+  },
+  {
+    "rank": 192,
+    "id": "5915757375",
+    "nameKo": "고덕",
+    "name": "Godeok",
+    "lines": [
+      "5"
+    ],
+    "area15": 4.7,
+    "area30": 26.3,
+    "area60": 228.7
+  },
+  {
+    "rank": 193,
+    "id": "6035746710",
+    "nameKo": "대공원",
+    "name": "Seoul Grand park",
+    "lines": [
+      "4"
+    ],
+    "area15": 4.7,
+    "area30": 40.3,
+    "area60": 489.6
+  },
+  {
+    "rank": 194,
+    "id": "6039313046",
+    "nameKo": "거여",
+    "name": "Geoyeo",
+    "lines": [
+      "5"
+    ],
+    "area15": 4.7,
+    "area30": 40.2,
+    "area60": 360.3
+  },
+  {
+    "rank": 195,
+    "id": "6050655875",
+    "nameKo": "천왕",
+    "name": "Cheonwang",
+    "lines": [
+      "7"
+    ],
+    "area15": 4.7,
+    "area30": 48.3,
+    "area60": 472.6
+  },
+  {
+    "rank": 196,
+    "id": "355173377",
+    "nameKo": "광나루",
+    "name": "Gwangnaru",
+    "lines": [
+      "5"
+    ],
+    "area15": 4.6,
+    "area30": 67.4,
+    "area60": 481.8
+  },
+  {
+    "rank": 197,
+    "id": "5899214148",
+    "nameKo": "월계",
+    "name": "Wolgye (Induk University)",
+    "lines": [
+      "1"
+    ],
+    "area15": 4.6,
+    "area30": 50.7,
+    "area60": 311.1
+  },
+  {
+    "rank": 198,
+    "id": "1996430636",
+    "nameKo": "노량진",
+    "name": "Noryangjin",
+    "lines": [
+      "1",
+      "9"
+    ],
+    "area15": 4.5,
+    "area30": 105.9,
+    "area60": 718.7
+  },
+  {
+    "rank": 199,
+    "id": "355173059",
+    "nameKo": "경복궁",
+    "name": "Gyeongbokgung (Government Complex Seoul)",
+    "lines": [
+      "3"
+    ],
+    "area15": 4.5,
+    "area30": 50.8,
+    "area60": 494.5
+  },
+  {
+    "rank": 200,
+    "id": "355173406",
+    "nameKo": "월곡",
+    "name": "Wolgok",
+    "lines": [
+      "6"
+    ],
+    "area15": 4.5,
+    "area30": 49.3,
+    "area60": 398.2
+  },
+  {
+    "rank": 201,
+    "id": "355173583",
+    "nameKo": "대모산입구",
+    "name": "Daemosan",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 4.5,
+    "area30": 71.2,
+    "area60": 472.6
+  },
+  {
+    "rank": 202,
+    "id": "5915757377",
+    "nameKo": "명일",
+    "name": "Myeongil",
+    "lines": [
+      "5"
+    ],
+    "area15": 4.5,
+    "area30": 36,
+    "area60": 357.1
+  },
+  {
+    "rank": 203,
+    "id": "6035746755",
+    "nameKo": "인덕원",
+    "name": "Indeogwon",
+    "lines": [
+      "4"
+    ],
+    "area15": 4.5,
+    "area30": 33.2,
+    "area60": 430.5
+  },
+  {
+    "rank": 204,
+    "id": "355173365",
+    "nameKo": "행당",
+    "name": "Haengdang",
+    "lines": [
+      "5"
+    ],
+    "area15": 4.4,
+    "area30": 64.3,
+    "area60": 481.4
+  },
+  {
+    "rank": 205,
+    "id": "355173390",
+    "nameKo": "마곡",
+    "name": "Magok",
+    "lines": [
+      "5"
+    ],
+    "area15": 4.4,
+    "area30": 35,
+    "area60": 520.3
+  },
+  {
+    "rank": 206,
+    "id": "355173577",
+    "nameKo": "문정",
+    "name": "Munjeong",
+    "lines": [
+      "8"
+    ],
+    "area15": 4.4,
+    "area30": 62.5,
+    "area60": 430.4
+  },
+  {
+    "rank": 207,
+    "id": "5340642724",
+    "nameKo": "걸포북변",
+    "name": "Geolpo Bukbyeon",
+    "lines": [
+      "airport"
+    ],
+    "area15": 4.4,
+    "area30": 32.6,
+    "area60": 380.3
+  },
+  {
+    "rank": 208,
+    "id": "6033364547",
+    "nameKo": "도림천",
+    "name": "Dorimcheon",
+    "lines": [
+      "2"
+    ],
+    "area15": 4.4,
+    "area30": 68.3,
+    "area60": 568.2
+  },
+  {
+    "rank": 209,
+    "id": "6039313985",
+    "nameKo": "양평",
+    "name": "Yangpyeong",
+    "lines": [
+      "5",
+      "gyeongui"
+    ],
+    "area15": 4.4,
+    "area30": 42.2,
+    "area60": 431.2
+  },
+  {
+    "rank": 210,
+    "id": "6050655845",
+    "nameKo": "신중동",
+    "name": "Sinjung-dong",
+    "lines": [
+      "7"
+    ],
+    "area15": 4.4,
+    "area30": 42.5,
+    "area60": 458.8
+  },
+  {
+    "rank": 211,
+    "id": "6102706816",
+    "nameKo": "석촌고분",
+    "name": "Seokchon Ancient Tombs",
+    "lines": [
+      "9"
+    ],
+    "area15": 4.4,
+    "area30": 39,
+    "area60": 402.2
+  },
+  {
+    "rank": 212,
+    "id": "355172924",
+    "nameKo": "용두",
+    "name": "Yongdu",
+    "lines": [
+      "2"
+    ],
+    "area15": 4.3,
+    "area30": 59,
+    "area60": 481.3
+  },
+  {
+    "rank": 213,
+    "id": "355173381",
+    "nameKo": "증산",
+    "name": "Jeungsan",
+    "lines": [
+      "6"
+    ],
+    "area15": 4.3,
+    "area30": 34,
+    "area60": 425.6
+  },
+  {
+    "rank": 214,
+    "id": "5624997112",
+    "nameKo": "판교",
+    "name": "Pangyo",
+    "lines": [
+      "shinbundang"
+    ],
+    "area15": 4.3,
+    "area30": 65.8,
+    "area60": 659.1
+  },
+  {
+    "rank": 215,
+    "id": "5904751236",
+    "nameKo": "중동",
+    "name": "Jung-dong",
+    "lines": [
+      "1"
+    ],
+    "area15": 4.3,
+    "area30": 55.3,
+    "area60": 575
+  },
+  {
+    "rank": 216,
+    "id": "1790506663",
+    "nameKo": "발산",
+    "name": "Balsan",
+    "lines": [
+      "5"
+    ],
+    "area15": 4.2,
+    "area30": 32.7,
+    "area60": 501.6
+  },
+  {
+    "rank": 217,
+    "id": "355173102",
+    "nameKo": "대치",
+    "name": "Daechi",
+    "lines": [
+      "3"
+    ],
+    "area15": 4.2,
+    "area30": 52.5,
+    "area60": 423.3
+  },
+  {
+    "rank": 218,
+    "id": "355173364",
+    "nameKo": "신금호",
+    "name": "Singeum-ho",
+    "lines": [
+      "5"
+    ],
+    "area15": 4.2,
+    "area30": 62.3,
+    "area60": 476.9
+  },
+  {
+    "rank": 219,
+    "id": "355173438",
+    "nameKo": "녹사평",
+    "name": "Noksapyeong",
+    "lines": [
+      "6"
+    ],
+    "area15": 4.2,
+    "area30": 62,
+    "area60": 524
+  },
+  {
+    "rank": 220,
+    "id": "5340662972",
+    "nameKo": "장기",
+    "name": "Janggi",
+    "lines": [
+      "airport"
+    ],
+    "area15": 4.2,
+    "area30": 28.5,
+    "area60": 146.5
+  },
+  {
+    "rank": 221,
+    "id": "5910050514",
+    "nameKo": "수원",
+    "name": "Suwon",
+    "lines": [
+      "1",
+      "bundang"
+    ],
+    "area15": 4.2,
+    "area30": 38.1,
+    "area60": 384.6
+  },
+  {
+    "rank": 222,
+    "id": "5919544688",
+    "nameKo": "디지털미디어시티",
+    "name": "Digital Media City",
+    "lines": [
+      "6",
+      "gyeongui"
+    ],
+    "area15": 4.2,
+    "area30": 45.7,
+    "area60": 610.1
+  },
+  {
+    "rank": 223,
+    "id": "7287966302",
+    "nameKo": "망포",
+    "name": "Mangpo",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 4.2,
+    "area30": 27.3,
+    "area60": 238.9
+  },
+  {
+    "rank": 224,
+    "id": "2346858827",
+    "nameKo": "매봉",
+    "name": "Maebong",
+    "lines": [
+      "3"
+    ],
+    "area15": 4.1,
+    "area30": 52.3,
+    "area60": 469.1
+  },
+  {
+    "rank": 225,
+    "id": "355173044",
+    "nameKo": "동대입구",
+    "name": "Dongguk Univ.",
+    "lines": [
+      "3"
+    ],
+    "area15": 4.1,
+    "area30": 59.8,
+    "area60": 513.4
+  },
+  {
+    "rank": 226,
+    "id": "355173593",
+    "nameKo": "단대오거리",
+    "name": "Dandaeogeori",
+    "lines": [
+      "8"
+    ],
+    "area15": 4.1,
+    "area30": 23.8,
+    "area60": 248.2
+  },
+  {
+    "rank": 227,
+    "id": "4636808676",
+    "nameKo": "풍무",
+    "name": "Pungmu",
+    "lines": [
+      "airport"
+    ],
+    "area15": 4.1,
+    "area30": 30.5,
+    "area60": 332.8
+  },
+  {
+    "rank": 228,
+    "id": "5571709416",
+    "nameKo": "망우",
+    "name": "Mangu",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 4.1,
+    "area30": 55,
+    "area60": 512.9
+  },
+  {
+    "rank": 229,
+    "id": "660878435",
+    "nameKo": "신도림",
+    "name": "Sindorim",
+    "lines": [
+      "1",
+      "2"
+    ],
+    "area15": 4.1,
+    "area30": 74.8,
+    "area60": 656.4
+  },
+  {
+    "rank": 230,
+    "id": "1914136725",
+    "nameKo": "가천대",
+    "name": "Gachon Univ.",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 4,
+    "area30": 41.9,
+    "area60": 349.6
+  },
+  {
+    "rank": 231,
+    "id": "355173030",
+    "nameKo": "지축",
+    "name": "Jichuk",
+    "lines": [
+      "3"
+    ],
+    "area15": 4,
+    "area30": 32,
+    "area60": 393.9
+  },
+  {
+    "rank": 232,
+    "id": "355173590",
+    "nameKo": "수진",
+    "name": "Sujin",
+    "lines": [
+      "8"
+    ],
+    "area15": 4,
+    "area30": 25.7,
+    "area60": 267.2
+  },
+  {
+    "rank": 233,
+    "id": "5910775615",
+    "nameKo": "인하대",
+    "name": "Inha University",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 4,
+    "area30": 16.9,
+    "area60": 174.9
+  },
+  {
+    "rank": 234,
+    "id": "6039313082",
+    "nameKo": "강동",
+    "name": "Gangdong",
+    "lines": [
+      "5"
+    ],
+    "area15": 4,
+    "area30": 50.1,
+    "area60": 405.6
+  },
+  {
+    "rank": 235,
+    "id": "7287965130",
+    "nameKo": "구성",
+    "name": "Guseong",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 4,
+    "area30": 30.8,
+    "area60": 282.2
+  },
+  {
+    "rank": 236,
+    "id": "355173034",
+    "nameKo": "백석",
+    "name": "Baekseok",
+    "lines": [
+      "3"
+    ],
+    "area15": 3.9,
+    "area30": 22.1,
+    "area60": 220
+  },
+  {
+    "rank": 237,
+    "id": "6269743768",
+    "nameKo": "수지구청",
+    "name": "Suji-gu Office",
+    "lines": [
+      "shinbundang"
+    ],
+    "area15": 3.9,
+    "area30": 29.4,
+    "area60": 265.8
+  },
+  {
+    "rank": 238,
+    "id": "6312484936",
+    "nameKo": "한티",
+    "name": "Hanti",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 3.9,
+    "area30": 52.4,
+    "area60": 456
+  },
+  {
+    "rank": 239,
+    "id": "1994679915",
+    "nameKo": "증미",
+    "name": "Jeungmi",
+    "lines": [
+      "9"
+    ],
+    "area15": 3.8,
+    "area30": 27.3,
+    "area60": 414.6
+  },
+  {
+    "rank": 240,
+    "id": "3278844465",
+    "nameKo": "애오개",
+    "name": "Ae-o-gae",
+    "lines": [
+      "5"
+    ],
+    "area15": 3.8,
+    "area30": 50.4,
+    "area60": 487.9
+  },
+  {
+    "rank": 241,
+    "id": "3418807256",
+    "nameKo": "경찰병원",
+    "name": "Nat'l Police Hospital",
+    "lines": [
+      "3"
+    ],
+    "area15": 3.8,
+    "area30": 41.4,
+    "area60": 353.5
+  },
+  {
+    "rank": 242,
+    "id": "3454026413",
+    "nameKo": "언주",
+    "name": "Eonju",
+    "lines": [
+      "9"
+    ],
+    "area15": 3.8,
+    "area30": 46.8,
+    "area60": 478.1
+  },
+  {
+    "rank": 243,
+    "id": "355173042",
+    "nameKo": "주엽",
+    "name": "Juyeop",
+    "lines": [
+      "3"
+    ],
+    "area15": 3.8,
+    "area30": 19.2,
+    "area60": 182.4
+  },
+  {
+    "rank": 244,
+    "id": "355173451",
+    "nameKo": "버티고개",
+    "name": "Beotiogae",
+    "lines": [
+      "6"
+    ],
+    "area15": 3.8,
+    "area30": 63.5,
+    "area60": 498.2
+  },
+  {
+    "rank": 245,
+    "id": "5902086026",
+    "nameKo": "도원",
+    "name": "Dowon",
+    "lines": [
+      "1"
+    ],
+    "area15": 3.8,
+    "area30": 22.7,
+    "area60": 231.8
+  },
+  {
+    "rank": 246,
+    "id": "6185441878",
+    "nameKo": "산곡",
+    "name": "Sangok",
+    "lines": [
+      "7"
+    ],
+    "area15": 3.8,
+    "area30": 47.3,
+    "area60": 396
+  },
+  {
+    "rank": 247,
+    "id": "355173026",
+    "nameKo": "무악재",
+    "name": "Muakjae",
+    "lines": [
+      "3"
+    ],
+    "area15": 3.7,
+    "area30": 46.1,
+    "area60": 493.2
+  },
+  {
+    "rank": 248,
+    "id": "355173370",
+    "nameKo": "답십리",
+    "name": "Dapsimni",
+    "lines": [
+      "5"
+    ],
+    "area15": 3.7,
+    "area30": 58.7,
+    "area60": 462
+  },
+  {
+    "rank": 249,
+    "id": "4820118359",
+    "nameKo": "동천",
+    "name": "Dongcheon",
+    "lines": [
+      "shinbundang"
+    ],
+    "area15": 3.7,
+    "area30": 33,
+    "area60": 395.5
+  },
+  {
+    "rank": 250,
+    "id": "4937987035",
+    "nameKo": "보산",
+    "name": "Bosan",
+    "lines": [
+      "1"
+    ],
+    "area15": 3.7,
+    "area30": 17,
+    "area60": 166
+  },
+  {
+    "rank": 251,
+    "id": "5814312744",
+    "nameKo": "온수",
+    "name": "Onsu",
+    "lines": [
+      "1",
+      "7"
+    ],
+    "area15": 3.7,
+    "area30": 52.3,
+    "area60": 524.3
+  },
+  {
+    "rank": 252,
+    "id": "5835544503",
+    "nameKo": "남영",
+    "name": "Namyeong",
+    "lines": [
+      "1"
+    ],
+    "area15": 3.7,
+    "area30": 67.5,
+    "area60": 546.5
+  },
+  {
+    "rank": 253,
+    "id": "5933687294",
+    "nameKo": "구의",
+    "name": "Guui(Gwangjin-gu Office)",
+    "lines": [
+      "2"
+    ],
+    "area15": 3.7,
+    "area30": 55.7,
+    "area60": 425.7
+  },
+  {
+    "rank": 254,
+    "id": "6039314019",
+    "nameKo": "우장산",
+    "name": "Ujangsan",
+    "lines": [
+      "5"
+    ],
+    "area15": 3.7,
+    "area30": 30.7,
+    "area60": 371.6
+  },
+  {
+    "rank": 255,
+    "id": "6050654943",
+    "nameKo": "상동",
+    "name": "Sangdong",
+    "lines": [
+      "7"
+    ],
+    "area15": 3.7,
+    "area30": 40.3,
+    "area60": 381.5
+  },
+  {
+    "rank": 256,
+    "id": "8761155422",
+    "nameKo": "철산",
+    "name": "Cheolsan",
+    "lines": [
+      "7"
+    ],
+    "area15": 3.7,
+    "area30": 46.5,
+    "area60": 482
+  },
+  {
+    "rank": 257,
+    "id": "1906756403",
+    "nameKo": "청계산입구",
+    "name": "Cheonggyesan",
+    "lines": [
+      "shinbundang"
+    ],
+    "area15": 3.6,
+    "area30": 53.4,
+    "area60": 497.4
+  },
+  {
+    "rank": 258,
+    "id": "355173375",
+    "nameKo": "아차산",
+    "name": "Achasan",
+    "lines": [
+      "5"
+    ],
+    "area15": 3.6,
+    "area30": 56.7,
+    "area60": 454.5
+  },
+  {
+    "rank": 259,
+    "id": "5340662955",
+    "nameKo": "운양",
+    "name": "Unyang",
+    "lines": [
+      "airport"
+    ],
+    "area15": 3.6,
+    "area30": 29.8,
+    "area60": 185.6
+  },
+  {
+    "rank": 260,
+    "id": "5991943823",
+    "nameKo": "원당",
+    "name": "Wondang",
+    "lines": [
+      "3"
+    ],
+    "area15": 3.6,
+    "area30": 37.2,
+    "area60": 366.3
+  },
+  {
+    "rank": 261,
+    "id": "6035746765",
+    "nameKo": "평촌",
+    "name": "Pyeongchon",
+    "lines": [
+      "4"
+    ],
+    "area15": 3.6,
+    "area30": 31.6,
+    "area60": 389.8
+  },
+  {
+    "rank": 262,
+    "id": "6046634703",
+    "nameKo": "마들",
+    "name": "Madeul",
+    "lines": [
+      "7"
+    ],
+    "area15": 3.6,
+    "area30": 38.2,
+    "area60": 340
+  },
+  {
+    "rank": 263,
+    "id": "3818491433",
+    "nameKo": "숙대입구",
+    "name": "Sookmyung Women's Univ.",
+    "lines": [
+      "4"
+    ],
+    "area15": 3.5,
+    "area30": 56.1,
+    "area60": 533.8
+  },
+  {
+    "rank": 264,
+    "id": "4704699992",
+    "nameKo": "서강대",
+    "name": "Sogang Univ.",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 3.5,
+    "area30": 44.8,
+    "area60": 522.7
+  },
+  {
+    "rank": 265,
+    "id": "5991943795",
+    "nameKo": "화정",
+    "name": "Hwajeong",
+    "lines": [
+      "3"
+    ],
+    "area15": 3.5,
+    "area30": 39.9,
+    "area60": 306
+  },
+  {
+    "rank": 266,
+    "id": "6102706369",
+    "nameKo": "둔촌오륜",
+    "name": "Dunchon Oryun",
+    "lines": [
+      "9"
+    ],
+    "area15": 3.5,
+    "area30": 20.2,
+    "area60": 259.1
+  },
+  {
+    "rank": 267,
+    "id": "7287966323",
+    "nameKo": "수원시청",
+    "name": "Suwon City Hall",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 3.5,
+    "area30": 22.4,
+    "area60": 206.4
+  },
+  {
+    "rank": 268,
+    "id": "1996406534",
+    "nameKo": "마곡나루",
+    "name": "Magok Naru",
+    "lines": [
+      "9",
+      "airport"
+    ],
+    "area15": 3.4,
+    "area30": 61.6,
+    "area60": 739.1
+  },
+  {
+    "rank": 269,
+    "id": "355173100",
+    "nameKo": "학여울",
+    "name": "Hangnyeoul",
+    "lines": [
+      "3"
+    ],
+    "area15": 3.4,
+    "area30": 45.8,
+    "area60": 440.7
+  },
+  {
+    "rank": 270,
+    "id": "355173383",
+    "nameKo": "역촌",
+    "name": "Yeokchon",
+    "lines": [
+      "6"
+    ],
+    "area15": 3.4,
+    "area30": 19.7,
+    "area60": 286.2
+  },
+  {
+    "rank": 271,
+    "id": "355173440",
+    "nameKo": "이태원",
+    "name": "Itaewon",
+    "lines": [
+      "6"
+    ],
+    "area15": 3.4,
+    "area30": 54.2,
+    "area60": 501.2
+  },
+  {
+    "rank": 272,
+    "id": "5891336974",
+    "nameKo": "백마",
+    "name": "Baengma",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 3.4,
+    "area30": 37.7,
+    "area60": 360.5
+  },
+  {
+    "rank": 273,
+    "id": "5891337012",
+    "nameKo": "풍산",
+    "name": "Pungsan",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 3.4,
+    "area30": 26.8,
+    "area60": 299.2
+  },
+  {
+    "rank": 274,
+    "id": "5899214142",
+    "nameKo": "광운대",
+    "name": "Kwangwoon University",
+    "lines": [
+      "1"
+    ],
+    "area15": 3.4,
+    "area30": 62.9,
+    "area60": 466.7
+  },
+  {
+    "rank": 275,
+    "id": "6035746709",
+    "nameKo": "정부과천청사",
+    "name": "Ansan Line",
+    "lines": [
+      "4"
+    ],
+    "area15": 3.4,
+    "area30": 31.1,
+    "area60": 434.3
+  },
+  {
+    "rank": 276,
+    "id": "7287966296",
+    "nameKo": "영통",
+    "name": "Yeongtong",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 3.4,
+    "area30": 24.1,
+    "area60": 227.7
+  },
+  {
+    "rank": 277,
+    "id": "355173031",
+    "nameKo": "삼송",
+    "name": "Samsong",
+    "lines": [
+      "3"
+    ],
+    "area15": 3.3,
+    "area30": 26.7,
+    "area60": 301.3
+  },
+  {
+    "rank": 278,
+    "id": "355173384",
+    "nameKo": "구산",
+    "name": "Gusan",
+    "lines": [
+      "6"
+    ],
+    "area15": 3.3,
+    "area30": 26.9,
+    "area60": 348.6
+  },
+  {
+    "rank": 279,
+    "id": "4246459937",
+    "nameKo": "신이문",
+    "name": "Sinimun (Korea National University of Arts)",
+    "lines": [
+      "1"
+    ],
+    "area15": 3.3,
+    "area30": 43.7,
+    "area60": 437.1
+  },
+  {
+    "rank": 280,
+    "id": "5891337069",
+    "nameKo": "탄현",
+    "name": "Tanhyeon",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 3.3,
+    "area30": 31.6,
+    "area60": 327.4
+  },
+  {
+    "rank": 281,
+    "id": "6033315012",
+    "nameKo": "잠실새내",
+    "name": "Jamsilsaenae",
+    "lines": [
+      "2"
+    ],
+    "area15": 3.3,
+    "area30": 44.3,
+    "area60": 417.8
+  },
+  {
+    "rank": 282,
+    "id": "1994680293",
+    "nameKo": "등촌",
+    "name": "Deungchon",
+    "lines": [
+      "9"
+    ],
+    "area15": 3.2,
+    "area30": 21,
+    "area60": 378.4
+  },
+  {
+    "rank": 283,
+    "id": "355173312",
+    "nameKo": "굽은다리",
+    "name": "Gubeundari",
+    "lines": [
+      "5"
+    ],
+    "area15": 3.2,
+    "area30": 28.8,
+    "area60": 330.2
+  },
+  {
+    "rank": 284,
+    "id": "6039313049",
+    "nameKo": "개롱",
+    "name": "Gaerong",
+    "lines": [
+      "5"
+    ],
+    "area15": 3.2,
+    "area30": 30,
+    "area60": 329
+  },
+  {
+    "rank": 285,
+    "id": "1994680392",
+    "nameKo": "염창",
+    "name": "Yeomchang",
+    "lines": [
+      "9"
+    ],
+    "area15": 3.1,
+    "area30": 48.2,
+    "area60": 494.7
+  },
+  {
+    "rank": 286,
+    "id": "355173339",
+    "nameKo": "상계",
+    "name": "Sanggye",
+    "lines": [
+      "4"
+    ],
+    "area15": 3.1,
+    "area30": 37.3,
+    "area60": 289.5
+  },
+  {
+    "rank": 287,
+    "id": "414684303",
+    "nameKo": "일원",
+    "name": "Irwon",
+    "lines": [
+      "3"
+    ],
+    "area15": 3.1,
+    "area30": 43.7,
+    "area60": 356.4
+  },
+  {
+    "rank": 288,
+    "id": "5924431380",
+    "nameKo": "죽전",
+    "name": "Jukjeon",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 3.1,
+    "area30": 27.2,
+    "area60": 286.2
+  },
+  {
+    "rank": 289,
+    "id": "6033314413",
+    "nameKo": "문래",
+    "name": "Mullae",
+    "lines": [
+      "2"
+    ],
+    "area15": 3.1,
+    "area30": 60.2,
+    "area60": 515.8
+  },
+  {
+    "rank": 290,
+    "id": "6039314031",
+    "nameKo": "개화산",
+    "name": "Gaehwasan",
+    "lines": [
+      "5"
+    ],
+    "area15": 3.1,
+    "area30": 26.9,
+    "area60": 567.3
+  },
+  {
+    "rank": 291,
+    "id": "6048955086",
+    "nameKo": "광명사거리",
+    "name": "Gwangmyeong Sageori",
+    "lines": [
+      "7"
+    ],
+    "area15": 3.1,
+    "area30": 33.9,
+    "area60": 421.5
+  },
+  {
+    "rank": 292,
+    "id": "8890027524",
+    "nameKo": "온양온천",
+    "name": "Onyangoncheon",
+    "lines": [
+      "1"
+    ],
+    "area15": 3.1,
+    "area30": 14.1,
+    "area60": 150.4
+  },
+  {
+    "rank": 293,
+    "id": "355173041",
+    "nameKo": "대화",
+    "name": "Daehwa",
+    "lines": [
+      "3"
+    ],
+    "area15": 3,
+    "area30": 18.5,
+    "area60": 158.1
+  },
+  {
+    "rank": 294,
+    "id": "355173067",
+    "nameKo": "금호",
+    "name": "Geumho",
+    "lines": [
+      "3"
+    ],
+    "area15": 3,
+    "area30": 52.5,
+    "area60": 487.8
+  },
+  {
+    "rank": 295,
+    "id": "355173323",
+    "nameKo": "길동",
+    "name": "Gildong",
+    "lines": [
+      "5"
+    ],
+    "area15": 3,
+    "area30": 23.4,
+    "area60": 309.3
+  },
+  {
+    "rank": 296,
+    "id": "5890815212",
+    "nameKo": "금촌",
+    "name": "Geumchon",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 3,
+    "area30": 24.9,
+    "area60": 215
+  },
+  {
+    "rank": 297,
+    "id": "5899116539",
+    "nameKo": "방학",
+    "name": "Banghak (Dobong-gu Office)",
+    "lines": [
+      "1"
+    ],
+    "area15": 3,
+    "area30": 42.3,
+    "area60": 294.5
+  },
+  {
+    "rank": 298,
+    "id": "5910775262",
+    "nameKo": "숭의",
+    "name": "Sungui",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 3,
+    "area30": 13.5,
+    "area60": 155.2
+  },
+  {
+    "rank": 299,
+    "id": "6035746736",
+    "nameKo": "과천",
+    "name": "Gwacheon",
+    "lines": [
+      "4"
+    ],
+    "area15": 3,
+    "area30": 31.6,
+    "area60": 441.6
+  },
+  {
+    "rank": 300,
+    "id": "6048955191",
+    "nameKo": "내방",
+    "name": "Naebang",
+    "lines": [
+      "7"
+    ],
+    "area15": 3,
+    "area30": 48.4,
+    "area60": 499.2
+  },
+  {
+    "rank": 301,
+    "id": "6117347092",
+    "nameKo": "삼전",
+    "name": "Samjeon",
+    "lines": [
+      "9"
+    ],
+    "area15": 3,
+    "area30": 35.5,
+    "area60": 338.6
+  },
+  {
+    "rank": 302,
+    "id": "7287966330",
+    "nameKo": "매교",
+    "name": "Maegyo",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 3,
+    "area30": 19.6,
+    "area60": 221.9
+  },
+  {
+    "rank": 303,
+    "id": "1915043095",
+    "nameKo": "수내",
+    "name": "Sunae",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 2.9,
+    "area30": 30.1,
+    "area60": 362.8
+  },
+  {
+    "rank": 304,
+    "id": "1939100051",
+    "nameKo": "남부터미널",
+    "name": "Nambu Bus Terminal (Seoul Arts Center)",
+    "lines": [
+      "3"
+    ],
+    "area15": 2.9,
+    "area30": 46.3,
+    "area60": 495
+  },
+  {
+    "rank": 305,
+    "id": "1994677371",
+    "nameKo": "공항시장",
+    "name": "Airport Market",
+    "lines": [
+      "9"
+    ],
+    "area15": 2.9,
+    "area30": 32.4,
+    "area60": 603.4
+  },
+  {
+    "rank": 306,
+    "id": "3153793711",
+    "nameKo": "금천구청",
+    "name": "Geumcheon-gu Office",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.9,
+    "area30": 39.5,
+    "area60": 435.5
+  },
+  {
+    "rank": 307,
+    "id": "3439039804",
+    "nameKo": "선유도",
+    "name": "Seonyudo",
+    "lines": [
+      "9"
+    ],
+    "area15": 2.9,
+    "area30": 25,
+    "area60": 401.3
+  },
+  {
+    "rank": 308,
+    "id": "3492346917",
+    "nameKo": "상현",
+    "name": "Sanghyeon",
+    "lines": [
+      "shinbundang"
+    ],
+    "area15": 2.9,
+    "area30": 26.3,
+    "area60": 214.8
+  },
+  {
+    "rank": 309,
+    "id": "5890637409",
+    "nameKo": "중랑",
+    "name": "Jungnang",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 2.9,
+    "area30": 41.5,
+    "area60": 461.2
+  },
+  {
+    "rank": 310,
+    "id": "5896638402",
+    "nameKo": "구로",
+    "name": "Guro",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.9,
+    "area30": 57,
+    "area60": 573.2
+  },
+  {
+    "rank": 311,
+    "id": "5900500328",
+    "nameKo": "역곡",
+    "name": "Yeokgok",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.9,
+    "area30": 47,
+    "area60": 580.6
+  },
+  {
+    "rank": 312,
+    "id": "1994680522",
+    "nameKo": "신목동",
+    "name": "Sinmokdong",
+    "lines": [
+      "9"
+    ],
+    "area15": 2.8,
+    "area30": 39.8,
+    "area60": 436.3
+  },
+  {
+    "rank": 313,
+    "id": "1996430673",
+    "nameKo": "노들",
+    "name": "Nodeul",
+    "lines": [
+      "9"
+    ],
+    "area15": 2.8,
+    "area30": 50.4,
+    "area60": 529.7
+  },
+  {
+    "rank": 314,
+    "id": "3214007453",
+    "nameKo": "대방",
+    "name": "Daebang",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.8,
+    "area30": 41.8,
+    "area60": 495
+  },
+  {
+    "rank": 315,
+    "id": "355173038",
+    "nameKo": "정발산",
+    "name": "Jeongbalsan",
+    "lines": [
+      "3"
+    ],
+    "area15": 2.8,
+    "area30": 19.4,
+    "area60": 202.9
+  },
+  {
+    "rank": 316,
+    "id": "355173473",
+    "nameKo": "암사",
+    "name": "Amsa",
+    "lines": [
+      "8"
+    ],
+    "area15": 2.8,
+    "area30": 28.1,
+    "area60": 332
+  },
+  {
+    "rank": 317,
+    "id": "4937987051",
+    "nameKo": "동두천중앙",
+    "name": "Dongducheonjungang (Shinhan University Campus 2)",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.8,
+    "area30": 12.9,
+    "area60": 139.8
+  },
+  {
+    "rank": 318,
+    "id": "5340663023",
+    "nameKo": "마산",
+    "name": "Masan",
+    "lines": [
+      "airport"
+    ],
+    "area15": 2.8,
+    "area30": 21.4,
+    "area60": 119.6
+  },
+  {
+    "rank": 319,
+    "id": "5910775695",
+    "nameKo": "원인재",
+    "name": "Woninjae",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 2.8,
+    "area30": 44.6,
+    "area60": 275.6
+  },
+  {
+    "rank": 320,
+    "id": "5911861568",
+    "nameKo": "한대앞",
+    "name": "Hanyang University at Ansan",
+    "lines": [
+      "4",
+      "bundang"
+    ],
+    "area15": 2.8,
+    "area30": 32.6,
+    "area60": 336.2
+  },
+  {
+    "rank": 321,
+    "id": "5933687058",
+    "nameKo": "강변",
+    "name": "Gangbyeon(Dongseoul Bus Terminal)",
+    "lines": [
+      "2"
+    ],
+    "area15": 2.8,
+    "area30": 45.9,
+    "area60": 429.7
+  },
+  {
+    "rank": 322,
+    "id": "6035746726",
+    "nameKo": "경마공원",
+    "name": "Seoul Racecourse park",
+    "lines": [
+      "4"
+    ],
+    "area15": 2.8,
+    "area30": 34.2,
+    "area60": 494.3
+  },
+  {
+    "rank": 323,
+    "id": "6039313053",
+    "nameKo": "방이",
+    "name": "Bangi",
+    "lines": [
+      "5"
+    ],
+    "area15": 2.8,
+    "area30": 23.2,
+    "area60": 282.8
+  },
+  {
+    "rank": 324,
+    "id": "6050655850",
+    "nameKo": "춘의",
+    "name": "Chunui",
+    "lines": [
+      "7"
+    ],
+    "area15": 2.8,
+    "area30": 34.4,
+    "area60": 404.3
+  },
+  {
+    "rank": 325,
+    "id": "7798230510",
+    "nameKo": "하남풍산",
+    "name": "Hanam Pungsan",
+    "lines": [
+      "5"
+    ],
+    "area15": 2.8,
+    "area30": 22.6,
+    "area60": 199.9
+  },
+  {
+    "rank": 326,
+    "id": "9213388326",
+    "nameKo": "탕정",
+    "name": "Tangjeong",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.8,
+    "area30": 23.2,
+    "area60": 147
+  },
+  {
+    "rank": 327,
+    "id": "1914136597",
+    "nameKo": "태평",
+    "name": "Taepyeong",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 2.7,
+    "area30": 33.4,
+    "area60": 318.8
+  },
+  {
+    "rank": 328,
+    "id": "1915043091",
+    "nameKo": "야탑",
+    "name": "Yatap",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 2.7,
+    "area30": 28.1,
+    "area60": 322.1
+  },
+  {
+    "rank": 329,
+    "id": "355173346",
+    "nameKo": "불암산",
+    "name": "Buramsan",
+    "lines": [
+      "4"
+    ],
+    "area15": 2.7,
+    "area30": 28.3,
+    "area60": 258.4
+  },
+  {
+    "rank": 330,
+    "id": "4939679013",
+    "nameKo": "지행",
+    "name": "Jihaeng",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.7,
+    "area30": 11.7,
+    "area60": 125.3
+  },
+  {
+    "rank": 331,
+    "id": "5340642603",
+    "nameKo": "사우",
+    "name": "Sau",
+    "lines": [
+      "airport"
+    ],
+    "area15": 2.7,
+    "area30": 22.9,
+    "area60": 284.3
+  },
+  {
+    "rank": 332,
+    "id": "5723047769",
+    "nameKo": "초지",
+    "name": "Choji",
+    "lines": [
+      "4",
+      "bundang"
+    ],
+    "area15": 2.7,
+    "area30": 31.6,
+    "area60": 323.3
+  },
+  {
+    "rank": 333,
+    "id": "5891337061",
+    "nameKo": "일산",
+    "name": "Ilsan",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 2.7,
+    "area30": 26.4,
+    "area60": 269.2
+  },
+  {
+    "rank": 334,
+    "id": "5894627116",
+    "nameKo": "배방",
+    "name": "Baebang",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.7,
+    "area30": 14.1,
+    "area60": 133.9
+  },
+  {
+    "rank": 335,
+    "id": "5902086062",
+    "nameKo": "동암",
+    "name": "Dongam",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.7,
+    "area30": 30.2,
+    "area60": 266.9
+  },
+  {
+    "rank": 336,
+    "id": "5902086886",
+    "nameKo": "부개",
+    "name": "Bugae",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.7,
+    "area30": 34.7,
+    "area60": 277.2
+  },
+  {
+    "rank": 337,
+    "id": "5911861689",
+    "nameKo": "고잔",
+    "name": "Gojan",
+    "lines": [
+      "4",
+      "bundang"
+    ],
+    "area15": 2.7,
+    "area30": 18.8,
+    "area60": 229.9
+  },
+  {
+    "rank": 338,
+    "id": "6035746706",
+    "nameKo": "범계",
+    "name": "Beomgye",
+    "lines": [
+      "4"
+    ],
+    "area15": 2.7,
+    "area30": 24.9,
+    "area60": 349.3
+  },
+  {
+    "rank": 339,
+    "id": "6050654948",
+    "nameKo": "삼산체육관",
+    "name": "Samsan Gymnasium",
+    "lines": [
+      "7"
+    ],
+    "area15": 2.7,
+    "area30": 31.7,
+    "area60": 344.7
+  },
+  {
+    "rank": 340,
+    "id": "9181579787",
+    "nameKo": "국회의사당",
+    "name": "National Assembly",
+    "lines": [
+      "9"
+    ],
+    "area15": 2.7,
+    "area30": 43,
+    "area60": 433.3
+  },
+  {
+    "rank": 341,
+    "id": "1994703274",
+    "nameKo": "구반포",
+    "name": "Gubanpo",
+    "lines": [
+      "9"
+    ],
+    "area15": 2.6,
+    "area30": 51.9,
+    "area60": 557.1
+  },
+  {
+    "rank": 342,
+    "id": "355173039",
+    "nameKo": "마두",
+    "name": "Madu",
+    "lines": [
+      "3"
+    ],
+    "area15": 2.6,
+    "area30": 16.6,
+    "area60": 191.6
+  },
+  {
+    "rank": 343,
+    "id": "5050088115",
+    "nameKo": "가능",
+    "name": "Ganeung",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.6,
+    "area30": 15.5,
+    "area60": 156.9
+  },
+  {
+    "rank": 344,
+    "id": "5812233466",
+    "nameKo": "창동",
+    "name": "Chang-dong",
+    "lines": [
+      "1",
+      "4"
+    ],
+    "area15": 2.6,
+    "area30": 42.4,
+    "area60": 327.9
+  },
+  {
+    "rank": 345,
+    "id": "5893030243",
+    "nameKo": "가좌",
+    "name": "Gajwa",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 2.6,
+    "area30": 16.4,
+    "area60": 328.8
+  },
+  {
+    "rank": 346,
+    "id": "5910775256",
+    "nameKo": "송도",
+    "name": "Songdo",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 2.6,
+    "area30": 28.9,
+    "area60": 222.1
+  },
+  {
+    "rank": 347,
+    "id": "5919544723",
+    "nameKo": "검암",
+    "name": "Geomam",
+    "lines": [
+      "airport"
+    ],
+    "area15": 2.6,
+    "area30": 29.7,
+    "area60": 455.3
+  },
+  {
+    "rank": 348,
+    "id": "5991943866",
+    "nameKo": "원흥",
+    "name": "Wonheung",
+    "lines": [
+      "3"
+    ],
+    "area15": 2.6,
+    "area30": 27.2,
+    "area60": 305.8
+  },
+  {
+    "rank": 349,
+    "id": "6039313057",
+    "nameKo": "마천",
+    "name": "Macheon",
+    "lines": [
+      "5"
+    ],
+    "area15": 2.6,
+    "area30": 13.5,
+    "area60": 205.1
+  },
+  {
+    "rank": 350,
+    "id": "8445537865",
+    "nameKo": "장자호수공원",
+    "name": "Jangja Lake Park",
+    "lines": [
+      "8"
+    ],
+    "area15": 2.6,
+    "area30": 9.2,
+    "area60": 38.4
+  },
+  {
+    "rank": 351,
+    "id": "355173569",
+    "nameKo": "산성",
+    "name": "Sanseong",
+    "lines": [
+      "8"
+    ],
+    "area15": 2.5,
+    "area30": 34.7,
+    "area60": 291.1
+  },
+  {
+    "rank": 352,
+    "id": "5896031469",
+    "nameKo": "평택",
+    "name": "Pyeongtaek",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.5,
+    "area30": 18.1,
+    "area60": 194.3
+  },
+  {
+    "rank": 353,
+    "id": "5899116544",
+    "nameKo": "도봉",
+    "name": "Dobong",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.5,
+    "area30": 22.3,
+    "area60": 202.4
+  },
+  {
+    "rank": 354,
+    "id": "5911861549",
+    "nameKo": "상록수",
+    "name": "Sangnoksu",
+    "lines": [
+      "4"
+    ],
+    "area15": 2.5,
+    "area30": 24.5,
+    "area60": 251.4
+  },
+  {
+    "rank": 355,
+    "id": "5915757374",
+    "nameKo": "상일동",
+    "name": "Sangil-dong",
+    "lines": [
+      "5"
+    ],
+    "area15": 2.5,
+    "area30": 21.5,
+    "area60": 198.8
+  },
+  {
+    "rank": 356,
+    "id": "6033314427",
+    "nameKo": "구로디지털단지",
+    "name": "Guro Digital Complex",
+    "lines": [
+      "2"
+    ],
+    "area15": 2.5,
+    "area30": 20.4,
+    "area60": 339.6
+  },
+  {
+    "rank": 357,
+    "id": "6035746724",
+    "nameKo": "선바위",
+    "name": "Seonbawi",
+    "lines": [
+      "4"
+    ],
+    "area15": 2.5,
+    "area30": 26.7,
+    "area60": 455.7
+  },
+  {
+    "rank": 358,
+    "id": "7287966313",
+    "nameKo": "매탄권선",
+    "name": "Maetan·Gwonseon",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 2.5,
+    "area30": 16.7,
+    "area60": 167.9
+  },
+  {
+    "rank": 359,
+    "id": "10795263940",
+    "nameKo": "금정",
+    "name": "Geumjeong",
+    "lines": [
+      "1",
+      "4"
+    ],
+    "area15": 2.4,
+    "area30": 41.2,
+    "area60": 500.6
+  },
+  {
+    "rank": 360,
+    "id": "5349743239",
+    "nameKo": "중앙",
+    "name": "Jungang",
+    "lines": [
+      "4",
+      "bundang"
+    ],
+    "area15": 2.4,
+    "area30": 17.9,
+    "area60": 223.8
+  },
+  {
+    "rank": 361,
+    "id": "5448542683",
+    "nameKo": "미사",
+    "name": "Misa",
+    "lines": [
+      "5"
+    ],
+    "area15": 2.4,
+    "area30": 18.5,
+    "area60": 166.4
+  },
+  {
+    "rank": 362,
+    "id": "5694832466",
+    "nameKo": "신답",
+    "name": "Sindap",
+    "lines": [
+      "2"
+    ],
+    "area15": 2.4,
+    "area30": 33.7,
+    "area60": 384
+  },
+  {
+    "rank": 363,
+    "id": "5902086016",
+    "nameKo": "동인천",
+    "name": "Dongincheon",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.4,
+    "area30": 18,
+    "area60": 204
+  },
+  {
+    "rank": 364,
+    "id": "5902086056",
+    "nameKo": "간석",
+    "name": "Ganseok",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.4,
+    "area30": 18.2,
+    "area60": 233.2
+  },
+  {
+    "rank": 365,
+    "id": "12455789582",
+    "nameKo": "킨텍스",
+    "name": "Kintex",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 2.3,
+    "area30": 9.3,
+    "area60": 54.2
+  },
+  {
+    "rank": 366,
+    "id": "2028067305",
+    "nameKo": "압구정",
+    "name": "Apgujeong",
+    "lines": [
+      "3"
+    ],
+    "area15": 2.3,
+    "area30": 40.2,
+    "area60": 487.3
+  },
+  {
+    "rank": 367,
+    "id": "2102704507",
+    "nameKo": "대청",
+    "name": "Daecheong",
+    "lines": [
+      "3"
+    ],
+    "area15": 2.3,
+    "area30": 31.6,
+    "area60": 359.7
+  },
+  {
+    "rank": 368,
+    "id": "5894856838",
+    "nameKo": "천안",
+    "name": "Cheonan",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.3,
+    "area30": 25.6,
+    "area60": 242.8
+  },
+  {
+    "rank": 369,
+    "id": "5907964982",
+    "nameKo": "호구포",
+    "name": "Hogupo",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 2.3,
+    "area30": 24.4,
+    "area60": 214.7
+  },
+  {
+    "rank": 370,
+    "id": "7287965143",
+    "nameKo": "신갈",
+    "name": "Singal",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 2.3,
+    "area30": 20.9,
+    "area60": 236.1
+  },
+  {
+    "rank": 371,
+    "id": "7872218729",
+    "nameKo": "사리",
+    "name": "Sari",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 2.3,
+    "area30": 9.4,
+    "area60": 86
+  },
+  {
+    "rank": 372,
+    "id": "8334213103",
+    "nameKo": "능곡",
+    "name": "Neunggok",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 2.3,
+    "area30": 50.4,
+    "area60": 635
+  },
+  {
+    "rank": 373,
+    "id": "8566458091",
+    "nameKo": "하남검단산",
+    "name": "Hanam Geomdansan",
+    "lines": [
+      "5"
+    ],
+    "area15": 2.3,
+    "area30": 11.5,
+    "area60": 99.7
+  },
+  {
+    "rank": 374,
+    "id": "10814394643",
+    "nameKo": "구래",
+    "name": "Gurae",
+    "lines": [
+      "airport"
+    ],
+    "area15": 2.2,
+    "area30": 18.2,
+    "area60": 112
+  },
+  {
+    "rank": 375,
+    "id": "1906756417",
+    "nameKo": "양재시민의숲",
+    "name": "Yangjae Citizen's Forest",
+    "lines": [
+      "shinbundang"
+    ],
+    "area15": 2.2,
+    "area30": 42.8,
+    "area60": 513.1
+  },
+  {
+    "rank": 376,
+    "id": "1994703290",
+    "nameKo": "신반포",
+    "name": "Sinbanpo",
+    "lines": [
+      "9"
+    ],
+    "area15": 2.2,
+    "area30": 36.8,
+    "area60": 479.9
+  },
+  {
+    "rank": 377,
+    "id": "3216255723",
+    "nameKo": "도화",
+    "name": "Dohwa",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.2,
+    "area30": 22.4,
+    "area60": 212.2
+  },
+  {
+    "rank": 378,
+    "id": "3642451903",
+    "nameKo": "광교중앙",
+    "name": "Gwanggyo Jungang",
+    "lines": [
+      "shinbundang"
+    ],
+    "area15": 2.2,
+    "area30": 19.8,
+    "area60": 165.7
+  },
+  {
+    "rank": 379,
+    "id": "5347811352",
+    "nameKo": "산본",
+    "name": "Sanbon",
+    "lines": [
+      "4"
+    ],
+    "area15": 2.2,
+    "area30": 15.2,
+    "area60": 245
+  },
+  {
+    "rank": 380,
+    "id": "5856128334",
+    "nameKo": "용답",
+    "name": "Yongdap",
+    "lines": [
+      "2"
+    ],
+    "area15": 2.2,
+    "area30": 33.1,
+    "area60": 373.7
+  },
+  {
+    "rank": 381,
+    "id": "5894856995",
+    "nameKo": "쌍용",
+    "name": "Ssangyong",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.2,
+    "area30": 12.3,
+    "area60": 109.3
+  },
+  {
+    "rank": 382,
+    "id": "5896286341",
+    "nameKo": "송탄",
+    "name": "Songtan",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.2,
+    "area30": 9.8,
+    "area60": 117.6
+  },
+  {
+    "rank": 383,
+    "id": "5900500302",
+    "nameKo": "부천",
+    "name": "Bucheon",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.2,
+    "area30": 11.8,
+    "area60": 232.3
+  },
+  {
+    "rank": 384,
+    "id": "5902086070",
+    "nameKo": "백운",
+    "name": "Baegun",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.2,
+    "area30": 19.2,
+    "area60": 238.5
+  },
+  {
+    "rank": 385,
+    "id": "5907964905",
+    "nameKo": "남동인더스파크",
+    "name": "Namdong Induspark",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 2.2,
+    "area30": 18.3,
+    "area60": 197.4
+  },
+  {
+    "rank": 386,
+    "id": "5910775260",
+    "nameKo": "신포",
+    "name": "Sinpo",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 2.2,
+    "area30": 17.5,
+    "area60": 177.3
+  },
+  {
+    "rank": 387,
+    "id": "6041674928",
+    "nameKo": "독바위",
+    "name": "Dokbawi",
+    "lines": [
+      "6"
+    ],
+    "area15": 2.2,
+    "area30": 19.2,
+    "area60": 298.5
+  },
+  {
+    "rank": 388,
+    "id": "7864301049",
+    "nameKo": "오목천",
+    "name": "Omokcheon",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 2.2,
+    "area30": 10.5,
+    "area60": 116.5
+  },
+  {
+    "rank": 389,
+    "id": "8445537827",
+    "nameKo": "암사역사공원",
+    "name": "Amsa History Park",
+    "lines": [
+      "8"
+    ],
+    "area15": 2.2,
+    "area30": 11.8,
+    "area60": 229.1
+  },
+  {
+    "rank": 390,
+    "id": "9589229146",
+    "nameKo": "진접",
+    "name": "Jinjeop",
+    "lines": [
+      "4"
+    ],
+    "area15": 2.2,
+    "area30": 9.3,
+    "area60": 84.7
+  },
+  {
+    "rank": 391,
+    "id": "2533971240",
+    "nameKo": "이촌",
+    "name": "Ichon (National Museum of Korea)",
+    "lines": [
+      "4",
+      "gyeongui"
+    ],
+    "area15": 2.1,
+    "area30": 63,
+    "area60": 540.2
+  },
+  {
+    "rank": 392,
+    "id": "3426723663",
+    "nameKo": "당정",
+    "name": "Dangjeong",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.1,
+    "area30": 32.1,
+    "area60": 382.8
+  },
+  {
+    "rank": 393,
+    "id": "355173386",
+    "nameKo": "방화",
+    "name": "Banghwa",
+    "lines": [
+      "5"
+    ],
+    "area15": 2.1,
+    "area30": 14.2,
+    "area60": 313.9
+  },
+  {
+    "rank": 394,
+    "id": "355173448",
+    "nameKo": "한강진",
+    "name": "Hangang-jin",
+    "lines": [
+      "6"
+    ],
+    "area15": 2.1,
+    "area30": 37.2,
+    "area60": 460.6
+  },
+  {
+    "rank": 395,
+    "id": "5893288218",
+    "nameKo": "강매",
+    "name": "Gangmae",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 2.1,
+    "area30": 22.9,
+    "area60": 436.4
+  },
+  {
+    "rank": 396,
+    "id": "5896286321",
+    "nameKo": "진위",
+    "name": "Jinwi",
+    "lines": [
+      "1"
+    ],
+    "area15": 2.1,
+    "area30": 12.1,
+    "area60": 110.5
+  },
+  {
+    "rank": 397,
+    "id": "5902085994",
+    "nameKo": "인천",
+    "name": "Incheon",
+    "lines": [
+      "1",
+      "bundang"
+    ],
+    "area15": 2.1,
+    "area30": 19.7,
+    "area60": 216.2
+  },
+  {
+    "rank": 398,
+    "id": "619039778",
+    "nameKo": "정왕",
+    "name": "Jeongwang",
+    "lines": [
+      "4",
+      "bundang"
+    ],
+    "area15": 2.1,
+    "area30": 19.7,
+    "area60": 250.1
+  },
+  {
+    "rank": 399,
+    "id": "7872228251",
+    "nameKo": "고색",
+    "name": "Gosaek",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 2.1,
+    "area30": 17.2,
+    "area60": 220.4
+  },
+  {
+    "rank": 400,
+    "id": "12119884933",
+    "nameKo": "구리",
+    "name": "Guri",
+    "lines": [
+      "8",
+      "gyeongui"
+    ],
+    "area15": 2,
+    "area30": 17.9,
+    "area60": 298.7
+  },
+  {
+    "rank": 401,
+    "id": "1725220163",
+    "nameKo": "기흥",
+    "name": "Giheung",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 2,
+    "area30": 18,
+    "area60": 209.2
+  },
+  {
+    "rank": 402,
+    "id": "3426723681",
+    "nameKo": "성균관대",
+    "name": "Sungkyunkwan University",
+    "lines": [
+      "1"
+    ],
+    "area15": 2,
+    "area30": 23.8,
+    "area60": 296.1
+  },
+  {
+    "rank": 403,
+    "id": "4718341773",
+    "nameKo": "두정",
+    "name": "Dujeong",
+    "lines": [
+      "1"
+    ],
+    "area15": 2,
+    "area30": 11.5,
+    "area60": 104.7
+  },
+  {
+    "rank": 404,
+    "id": "5438824808",
+    "nameKo": "오리",
+    "name": "Ori",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 2,
+    "area30": 23.3,
+    "area60": 274.9
+  },
+  {
+    "rank": 405,
+    "id": "5894856981",
+    "nameKo": "봉명",
+    "name": "Bongmyeong",
+    "lines": [
+      "1"
+    ],
+    "area15": 2,
+    "area30": 11.5,
+    "area60": 95.9
+  },
+  {
+    "rank": 406,
+    "id": "5896638421",
+    "nameKo": "안양",
+    "name": "Anyang",
+    "lines": [
+      "1"
+    ],
+    "area15": 2,
+    "area30": 36.6,
+    "area60": 520.6
+  },
+  {
+    "rank": 407,
+    "id": "5907965001",
+    "nameKo": "인천논현",
+    "name": "Incheon Nonhyeon",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 2,
+    "area30": 13.7,
+    "area60": 176.3
+  },
+  {
+    "rank": 408,
+    "id": "5907965062",
+    "nameKo": "소래포구",
+    "name": "Soraepogu",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 2,
+    "area30": 14.6,
+    "area60": 192.9
+  },
+  {
+    "rank": 409,
+    "id": "5911861708",
+    "nameKo": "안산",
+    "name": "Ansan",
+    "lines": [
+      "4",
+      "bundang"
+    ],
+    "area15": 2,
+    "area30": 37.9,
+    "area60": 300
+  },
+  {
+    "rank": 410,
+    "id": "12119884931",
+    "nameKo": "다산",
+    "name": "Dasan",
+    "lines": [
+      "8"
+    ],
+    "area15": 1.9,
+    "area30": 8.2,
+    "area60": 50.6
+  },
+  {
+    "rank": 411,
+    "id": "12119884932",
+    "nameKo": "동구릉",
+    "name": "Donggureung",
+    "lines": [
+      "8"
+    ],
+    "area15": 1.9,
+    "area30": 11.3,
+    "area60": 157.7
+  },
+  {
+    "rank": 412,
+    "id": "2066387615",
+    "nameKo": "신길온천",
+    "name": "Singiloncheon",
+    "lines": [
+      "4",
+      "bundang"
+    ],
+    "area15": 1.9,
+    "area30": 38.5,
+    "area60": 333.5
+  },
+  {
+    "rank": 413,
+    "id": "3426723675",
+    "nameKo": "명학",
+    "name": "Myeonghak",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.9,
+    "area30": 13.4,
+    "area60": 264.1
+  },
+  {
+    "rank": 414,
+    "id": "5340688293",
+    "nameKo": "고촌",
+    "name": "Gochon",
+    "lines": [
+      "airport"
+    ],
+    "area15": 1.9,
+    "area30": 30.1,
+    "area60": 562.4
+  },
+  {
+    "rank": 415,
+    "id": "5347802254",
+    "nameKo": "수리산",
+    "name": "Surisan",
+    "lines": [
+      "4"
+    ],
+    "area15": 1.9,
+    "area30": 25.3,
+    "area60": 258.9
+  },
+  {
+    "rank": 416,
+    "id": "5519310088",
+    "nameKo": "도농",
+    "name": "Donong",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 1.9,
+    "area30": 15.8,
+    "area60": 264
+  },
+  {
+    "rank": 417,
+    "id": "5896399353",
+    "nameKo": "화서",
+    "name": "Hwaseo",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.9,
+    "area30": 20.1,
+    "area60": 279.3
+  },
+  {
+    "rank": 418,
+    "id": "5896638408",
+    "nameKo": "석수",
+    "name": "Seoksu",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.9,
+    "area30": 23.7,
+    "area60": 335.5
+  },
+  {
+    "rank": 419,
+    "id": "5900500349",
+    "nameKo": "개봉",
+    "name": "Gaebong",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.9,
+    "area30": 24.3,
+    "area60": 435.1
+  },
+  {
+    "rank": 420,
+    "id": "5919544811",
+    "nameKo": "운서",
+    "name": "Unseo",
+    "lines": [
+      "airport"
+    ],
+    "area15": 1.9,
+    "area30": 7.4,
+    "area60": 69.7
+  },
+  {
+    "rank": 421,
+    "id": "6102706367",
+    "nameKo": "중앙보훈병원",
+    "name": "VHS Medical Center",
+    "lines": [
+      "9"
+    ],
+    "area15": 1.9,
+    "area30": 19.7,
+    "area60": 258.5
+  },
+  {
+    "rank": 422,
+    "id": "7287966289",
+    "nameKo": "청명",
+    "name": "Cheongmyeong",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 1.9,
+    "area30": 15.5,
+    "area60": 167.4
+  },
+  {
+    "rank": 423,
+    "id": "9589229143",
+    "nameKo": "별내별가람",
+    "name": "Byeollaebyeolgaram",
+    "lines": [
+      "4"
+    ],
+    "area15": 1.9,
+    "area30": 6.8,
+    "area60": 82.5
+  },
+  {
+    "rank": 424,
+    "id": "9589229145",
+    "nameKo": "오남",
+    "name": "Onam",
+    "lines": [
+      "4"
+    ],
+    "area15": 1.9,
+    "area30": 10.5,
+    "area60": 132.6
+  },
+  {
+    "rank": 425,
+    "id": "11433141478",
+    "nameKo": "소요산",
+    "name": "Soyosan",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.8,
+    "area30": 12.4,
+    "area60": 79.5
+  },
+  {
+    "rank": 426,
+    "id": "1914727373",
+    "nameKo": "보정",
+    "name": "Bojeong",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 1.8,
+    "area30": 20.4,
+    "area60": 269
+  },
+  {
+    "rank": 427,
+    "id": "1994702763",
+    "nameKo": "흑석",
+    "name": "Heukseok",
+    "lines": [
+      "9"
+    ],
+    "area15": 1.8,
+    "area30": 35.6,
+    "area60": 467.8
+  },
+  {
+    "rank": 428,
+    "id": "3426723670",
+    "nameKo": "독산",
+    "name": "Doksan",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.8,
+    "area30": 20.1,
+    "area60": 330
+  },
+  {
+    "rank": 429,
+    "id": "5050088095",
+    "nameKo": "덕계",
+    "name": "Deokgye",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.8,
+    "area30": 15.3,
+    "area60": 168.8
+  },
+  {
+    "rank": 430,
+    "id": "5890637492",
+    "nameKo": "덕소",
+    "name": "Deokso",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 1.8,
+    "area30": 13.6,
+    "area60": 205.2
+  },
+  {
+    "rank": 431,
+    "id": "5890637513",
+    "nameKo": "도심",
+    "name": "Dosim",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 1.8,
+    "area30": 11.3,
+    "area60": 113.3
+  },
+  {
+    "rank": 432,
+    "id": "5900500358",
+    "nameKo": "구일",
+    "name": "Guil",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.8,
+    "area30": 17.7,
+    "area60": 353
+  },
+  {
+    "rank": 433,
+    "id": "5902086034",
+    "nameKo": "제물포",
+    "name": "Jemulpo",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.8,
+    "area30": 20.4,
+    "area60": 205
+  },
+  {
+    "rank": 434,
+    "id": "6033364507",
+    "nameKo": "양천구청",
+    "name": "Yangcheon-gu Office",
+    "lines": [
+      "2"
+    ],
+    "area15": 1.8,
+    "area30": 20.9,
+    "area60": 314.9
+  },
+  {
+    "rank": 435,
+    "id": "8566458081",
+    "nameKo": "강일",
+    "name": "Gangil",
+    "lines": [
+      "5"
+    ],
+    "area15": 1.8,
+    "area30": 19.3,
+    "area60": 171.9
+  },
+  {
+    "rank": 436,
+    "id": "12455789584",
+    "nameKo": "운정중앙",
+    "name": "Unjeongjungang",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 1.7,
+    "area30": 9.7,
+    "area60": 47.4
+  },
+  {
+    "rank": 437,
+    "id": "355173411",
+    "nameKo": "봉화산",
+    "name": "Bonghwasan",
+    "lines": [
+      "6"
+    ],
+    "area15": 1.7,
+    "area30": 24.2,
+    "area60": 268.2
+  },
+  {
+    "rank": 438,
+    "id": "4954074038",
+    "nameKo": "병점",
+    "name": "Byeongjeom",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.7,
+    "area30": 16,
+    "area60": 226.4
+  },
+  {
+    "rank": 439,
+    "id": "5340678916",
+    "nameKo": "양촌",
+    "name": "Yangchon",
+    "lines": [
+      "airport"
+    ],
+    "area15": 1.7,
+    "area30": 13.1,
+    "area60": 90.9
+  },
+  {
+    "rank": 440,
+    "id": "5889532187",
+    "nameKo": "용문",
+    "name": "Yongmun",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 1.7,
+    "area30": 6.5,
+    "area60": 44.2
+  },
+  {
+    "rank": 441,
+    "id": "5890637453",
+    "nameKo": "양원",
+    "name": "Yangwon",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 1.7,
+    "area30": 29.1,
+    "area60": 354.6
+  },
+  {
+    "rank": 442,
+    "id": "5891336948",
+    "nameKo": "곡산",
+    "name": "Goksan",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 1.7,
+    "area30": 14.3,
+    "area60": 191
+  },
+  {
+    "rank": 443,
+    "id": "5899527479",
+    "nameKo": "외대앞",
+    "name": "Hankuk University of Foreign Studies",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.7,
+    "area30": 24.4,
+    "area60": 353.5
+  },
+  {
+    "rank": 444,
+    "id": "6050655863",
+    "nameKo": "까치울",
+    "name": "Kkachiul",
+    "lines": [
+      "7"
+    ],
+    "area15": 1.7,
+    "area30": 22.1,
+    "area60": 316.4
+  },
+  {
+    "rank": 445,
+    "id": "7287965175",
+    "nameKo": "상갈",
+    "name": "Sanggal",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 1.7,
+    "area30": 22.7,
+    "area60": 215.2
+  },
+  {
+    "rank": 446,
+    "id": "11433141474",
+    "nameKo": "전곡",
+    "name": "Jeongok",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.6,
+    "area30": 6.5,
+    "area60": 51.5
+  },
+  {
+    "rank": 447,
+    "id": "3174423993",
+    "nameKo": "오류동",
+    "name": "Oryu-dong",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.6,
+    "area30": 11.7,
+    "area60": 256.9
+  },
+  {
+    "rank": 448,
+    "id": "355173131",
+    "nameKo": "대야미",
+    "name": "Daeyami",
+    "lines": [
+      "4"
+    ],
+    "area15": 1.6,
+    "area30": 22.1,
+    "area60": 273.9
+  },
+  {
+    "rank": 449,
+    "id": "4520040946",
+    "nameKo": "망월사",
+    "name": "Mangwolsa (Shinhan University)",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.6,
+    "area30": 26.2,
+    "area60": 210.7
+  },
+  {
+    "rank": 450,
+    "id": "5050088100",
+    "nameKo": "양주",
+    "name": "Yangju",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.6,
+    "area30": 18.8,
+    "area60": 194.1
+  },
+  {
+    "rank": 451,
+    "id": "5910775684",
+    "nameKo": "연수",
+    "name": "Yeonsu",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 1.6,
+    "area30": 17.9,
+    "area60": 187.4
+  },
+  {
+    "rank": 452,
+    "id": "3426723651",
+    "nameKo": "가산디지털단지",
+    "name": "Gasan Digital Complex",
+    "lines": [
+      "1",
+      "7"
+    ],
+    "area15": 1.5,
+    "area30": 16.8,
+    "area60": 344.5
+  },
+  {
+    "rank": 453,
+    "id": "3605365336",
+    "nameKo": "남위례",
+    "name": "Namwirye",
+    "lines": [
+      "8"
+    ],
+    "area15": 1.5,
+    "area30": 27.4,
+    "area60": 279.5
+  },
+  {
+    "rank": 454,
+    "id": "5325300810",
+    "nameKo": "개화",
+    "name": "Gaehwa",
+    "lines": [
+      "9"
+    ],
+    "area15": 1.5,
+    "area30": 10.4,
+    "area60": 228.6
+  },
+  {
+    "rank": 455,
+    "id": "5902086894",
+    "nameKo": "송내",
+    "name": "Songnae",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.5,
+    "area30": 21,
+    "area60": 253.4
+  },
+  {
+    "rank": 456,
+    "id": "5919544751",
+    "nameKo": "영종",
+    "name": "Yeongjong",
+    "lines": [
+      "airport"
+    ],
+    "area15": 1.5,
+    "area30": 8.8,
+    "area60": 179
+  },
+  {
+    "rank": 457,
+    "id": "4063596085",
+    "nameKo": "양정",
+    "name": "Yangjung",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 1.4,
+    "area30": 13,
+    "area60": 201
+  },
+  {
+    "rank": 458,
+    "id": "5050088102",
+    "nameKo": "녹양",
+    "name": "Nogyang",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.4,
+    "area30": 13.6,
+    "area60": 155.6
+  },
+  {
+    "rank": 459,
+    "id": "5304357332",
+    "nameKo": "오산대",
+    "name": "Osan College",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.4,
+    "area30": 8.7,
+    "area60": 61.1
+  },
+  {
+    "rank": 460,
+    "id": "5304357423",
+    "nameKo": "서정리",
+    "name": "Seojeong-ri",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.4,
+    "area30": 9.3,
+    "area60": 87.3
+  },
+  {
+    "rank": 461,
+    "id": "5773411578",
+    "nameKo": "광명",
+    "name": "Gwangmyeong",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.4,
+    "area30": 6.3,
+    "area60": 114.8
+  },
+  {
+    "rank": 462,
+    "id": "5890636978",
+    "nameKo": "응봉",
+    "name": "Eungbong",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 1.4,
+    "area30": 16.8,
+    "area60": 324.8
+  },
+  {
+    "rank": 463,
+    "id": "4045715667",
+    "nameKo": "금릉",
+    "name": "Geumneung",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 1.3,
+    "area30": 8.8,
+    "area60": 141.4
+  },
+  {
+    "rank": 464,
+    "id": "5304357345",
+    "nameKo": "오산",
+    "name": "Osan",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.3,
+    "area30": 23.2,
+    "area60": 282.7
+  },
+  {
+    "rank": 465,
+    "id": "5890164134",
+    "nameKo": "운길산",
+    "name": "Ungisan",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 1.3,
+    "area30": 6.2,
+    "area60": 45
+  },
+  {
+    "rank": 466,
+    "id": "5896638413",
+    "nameKo": "관악",
+    "name": "Gwanak",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.3,
+    "area30": 13.4,
+    "area60": 267
+  },
+  {
+    "rank": 467,
+    "id": "5899116510",
+    "nameKo": "녹천",
+    "name": "Nokcheon",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.3,
+    "area30": 20.6,
+    "area60": 212.5
+  },
+  {
+    "rank": 468,
+    "id": "8334213085",
+    "nameKo": "행신",
+    "name": "Haengsin",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 1.3,
+    "area30": 10.4,
+    "area60": 306.6
+  },
+  {
+    "rank": 469,
+    "id": "3740158509",
+    "nameKo": "광교",
+    "name": "Gwanggyo",
+    "lines": [
+      "shinbundang"
+    ],
+    "area15": 1.2,
+    "area30": 14.4,
+    "area60": 126.4
+  },
+  {
+    "rank": 470,
+    "id": "4939679248",
+    "nameKo": "덕정",
+    "name": "Deokjeong (Seojeong College)",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.2,
+    "area30": 8.3,
+    "area60": 88.9
+  },
+  {
+    "rank": 471,
+    "id": "4974511637",
+    "nameKo": "반월",
+    "name": "Banwol",
+    "lines": [
+      "4"
+    ],
+    "area15": 1.2,
+    "area30": 16.8,
+    "area60": 206.9
+  },
+  {
+    "rank": 472,
+    "id": "5889529441",
+    "nameKo": "국수",
+    "name": "Guksu",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 1.2,
+    "area30": 3.4,
+    "area60": 43.8
+  },
+  {
+    "rank": 473,
+    "id": "5891334845",
+    "nameKo": "한국항공대",
+    "name": "Korea Aerospace Univ.",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 1.2,
+    "area30": 21.1,
+    "area60": 385.9
+  },
+  {
+    "rank": 474,
+    "id": "5893030216",
+    "nameKo": "한남",
+    "name": "Hannam",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 1.2,
+    "area30": 19.4,
+    "area60": 381.8
+  },
+  {
+    "rank": 475,
+    "id": "5907965080",
+    "nameKo": "월곶",
+    "name": "Wolgot",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 1.2,
+    "area30": 21.2,
+    "area60": 255.6
+  },
+  {
+    "rank": 476,
+    "id": "7185807400",
+    "nameKo": "신내",
+    "name": "Sinnae",
+    "lines": [
+      "6"
+    ],
+    "area15": 1.2,
+    "area30": 7.1,
+    "area60": 152.5
+  },
+  {
+    "rank": 477,
+    "id": "5890815514",
+    "nameKo": "문산",
+    "name": "Munsan",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 1.1,
+    "area30": 7.2,
+    "area60": 60.7
+  },
+  {
+    "rank": 478,
+    "id": "5895868462",
+    "nameKo": "성환",
+    "name": "Seonghwan",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.1,
+    "area30": 14.4,
+    "area60": 170.7
+  },
+  {
+    "rank": 479,
+    "id": "5896284769",
+    "nameKo": "세마",
+    "name": "Sema",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.1,
+    "area30": 9.8,
+    "area60": 176.8
+  },
+  {
+    "rank": 480,
+    "id": "5904958056",
+    "nameKo": "서동탄",
+    "name": "Seodongtan",
+    "lines": [
+      "1"
+    ],
+    "area15": 1.1,
+    "area30": 10,
+    "area60": 121.4
+  },
+  {
+    "rank": 481,
+    "id": "5907762741",
+    "nameKo": "대림",
+    "name": "Daerim(Guro-gu Office)",
+    "lines": [
+      "2",
+      "7"
+    ],
+    "area15": 1.1,
+    "area30": 40.7,
+    "area60": 431.7
+  },
+  {
+    "rank": 482,
+    "id": "7872218776",
+    "nameKo": "어천",
+    "name": "Eocheon",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 1.1,
+    "area30": 7.2,
+    "area60": 96.7
+  },
+  {
+    "rank": 483,
+    "id": "4151479522",
+    "nameKo": "수색",
+    "name": "Susaek",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 1,
+    "area30": 21.4,
+    "area60": 332.9
+  },
+  {
+    "rank": 484,
+    "id": "5889529470",
+    "nameKo": "오빈",
+    "name": "Obin",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 1,
+    "area30": 4.2,
+    "area60": 37.7
+  },
+  {
+    "rank": 485,
+    "id": "5889532072",
+    "nameKo": "원덕",
+    "name": "Wondeok",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 1,
+    "area30": 6.7,
+    "area60": 81.5
+  },
+  {
+    "rank": 486,
+    "id": "5894857008",
+    "nameKo": "아산",
+    "name": "Asan",
+    "lines": [
+      "1"
+    ],
+    "area15": 0.9,
+    "area30": 22.5,
+    "area60": 221.8
+  },
+  {
+    "rank": 487,
+    "id": "10989473140",
+    "nameKo": "연천",
+    "name": "Yeoncheon",
+    "lines": [
+      "1"
+    ],
+    "area15": 0.8,
+    "area30": 5.2,
+    "area60": 66.4
+  },
+  {
+    "rank": 488,
+    "id": "11433141476",
+    "nameKo": "청산",
+    "name": "Cheongsan",
+    "lines": [
+      "1"
+    ],
+    "area15": 0.8,
+    "area30": 5,
+    "area60": 25.2
+  },
+  {
+    "rank": 489,
+    "id": "12119884929",
+    "nameKo": "별내",
+    "name": "Byeollae",
+    "lines": [
+      "8"
+    ],
+    "area15": 0.8,
+    "area30": 7.9,
+    "area60": 128
+  },
+  {
+    "rank": 490,
+    "id": "5204025132",
+    "nameKo": "계양",
+    "name": "Gyeyang",
+    "lines": [
+      "airport"
+    ],
+    "area15": 0.8,
+    "area30": 10.6,
+    "area60": 385.6
+  },
+  {
+    "rank": 491,
+    "id": "5304357449",
+    "nameKo": "평택지제",
+    "name": "Pyeongtaek Jije",
+    "lines": [
+      "1"
+    ],
+    "area15": 0.8,
+    "area30": 16.3,
+    "area60": 198.7
+  },
+  {
+    "rank": 492,
+    "id": "5890164147",
+    "nameKo": "양수",
+    "name": "Yangsu",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 0.8,
+    "area30": 9.8,
+    "area60": 77.8
+  },
+  {
+    "rank": 493,
+    "id": "5890815220",
+    "nameKo": "월롱",
+    "name": "Wollong",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 0.8,
+    "area30": 7,
+    "area60": 78.9
+  },
+  {
+    "rank": 494,
+    "id": "5890815486",
+    "nameKo": "파주",
+    "name": "Paju",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 0.8,
+    "area30": 7.3,
+    "area60": 76.8
+  },
+  {
+    "rank": 495,
+    "id": "5919544815",
+    "nameKo": "공항화물청사",
+    "name": "Airport Cargo Terminal",
+    "lines": [
+      "airport"
+    ],
+    "area15": 0.8,
+    "area30": 7.8,
+    "area60": 108
+  },
+  {
+    "rank": 496,
+    "id": "8874550904",
+    "nameKo": "신창",
+    "name": "Sinchang",
+    "lines": [
+      "1"
+    ],
+    "area15": 0.8,
+    "area30": 6.9,
+    "area60": 59.1
+  },
+  {
+    "rank": 497,
+    "id": "2090733291",
+    "nameKo": "대곡",
+    "name": "Daegok",
+    "lines": [
+      "3",
+      "gyeongui"
+    ],
+    "area15": 0.7,
+    "area30": 6.6,
+    "area60": 93.1
+  },
+  {
+    "rank": 498,
+    "id": "5889529458",
+    "nameKo": "아신",
+    "name": "Asin",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 0.7,
+    "area30": 8,
+    "area60": 93.9
+  },
+  {
+    "rank": 499,
+    "id": "5893030217",
+    "nameKo": "서빙고",
+    "name": "Seobinggo",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 0.7,
+    "area30": 28.9,
+    "area60": 444
+  },
+  {
+    "rank": 500,
+    "id": "7863473544",
+    "nameKo": "야목",
+    "name": "Yamok",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 0.7,
+    "area30": 6.9,
+    "area60": 114.1
+  },
+  {
+    "rank": 501,
+    "id": "9357694474",
+    "nameKo": "남태령",
+    "name": "Namtaeryeong",
+    "lines": [
+      "4"
+    ],
+    "area15": 0.7,
+    "area30": 17.9,
+    "area60": 363.8
+  },
+  {
+    "rank": 502,
+    "id": "10743068855",
+    "nameKo": "운정",
+    "name": "Unjeong",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 0.6,
+    "area30": 9.1,
+    "area60": 49
+  },
+  {
+    "rank": 503,
+    "id": "2111940162",
+    "nameKo": "장암",
+    "name": "Jangam",
+    "lines": [
+      "7"
+    ],
+    "area15": 0.6,
+    "area30": 14.5,
+    "area60": 201.8
+  },
+  {
+    "rank": 504,
+    "id": "5889529431",
+    "nameKo": "신원",
+    "name": "Sinwon",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 0.6,
+    "area30": 4.5,
+    "area60": 56.5
+  },
+  {
+    "rank": 505,
+    "id": "5891337071",
+    "nameKo": "야당",
+    "name": "Yadang",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 0.6,
+    "area30": 19.5,
+    "area60": 226.9
+  },
+  {
+    "rank": 506,
+    "id": "4881356285",
+    "nameKo": "동두천",
+    "name": "Dongducheon",
+    "lines": [
+      "1"
+    ],
+    "area15": 0.5,
+    "area30": 8.3,
+    "area60": 83
+  },
+  {
+    "rank": 507,
+    "id": "5890164130",
+    "nameKo": "팔당",
+    "name": "Paldang",
+    "lines": [
+      "gyeongui"
+    ],
+    "area15": 0.5,
+    "area30": 6.2,
+    "area60": 99.9
+  },
+  {
+    "rank": 508,
+    "id": "5895878220",
+    "nameKo": "직산",
+    "name": "Jiksan",
+    "lines": [
+      "1"
+    ],
+    "area15": 0.4,
+    "area30": 5,
+    "area60": 37.2
+  },
+  {
+    "rank": 509,
+    "id": "5907965096",
+    "nameKo": "달월",
+    "name": "Dalwol",
+    "lines": [
+      "bundang"
+    ],
+    "area15": 0.4,
+    "area30": 13.2,
+    "area60": 224.8
+  },
+  {
+    "rank": 510,
+    "id": "5907965098",
+    "nameKo": "오이도",
+    "name": "Oido",
+    "lines": [
+      "4",
+      "bundang"
+    ],
+    "area15": 0.4,
+    "area30": 6.7,
+    "area60": 94.7
+  },
+  {
+    "rank": 511,
+    "id": "5919544824",
+    "nameKo": "인천공항1터미널",
+    "name": "Incheon Int'l Airport Terminal 1",
+    "lines": [
+      "airport"
+    ],
+    "area15": 0.3,
+    "area30": 3.1,
+    "area60": 53.8
+  },
+  {
+    "rank": 512,
+    "id": "5919544740",
+    "nameKo": "청라국제도시",
+    "name": "Cheongna International City",
+    "lines": [
+      "airport"
+    ],
+    "area15": 0.1,
+    "area30": 9.9,
+    "area60": 252.9
+  },
+  {
+    "rank": 513,
+    "id": "5919544837",
+    "nameKo": "인천공항2터미널",
+    "name": "Incheon Airport Terminal 2",
+    "lines": [
+      "airport"
+    ],
+    "area15": 0.1,
+    "area30": 0.2,
+    "area60": 8
+  },
+  {
+    "rank": 514,
+    "id": "3212614903",
+    "nameKo": "영등포",
+    "name": "Yeongdeungpo",
+    "lines": [
+      "1"
+    ],
+    "area15": 0,
+    "area30": 0,
+    "area60": 0
+  },
+  {
+    "rank": 515,
+    "id": "5890637419",
+    "nameKo": "상봉",
+    "name": "Sangbong",
+    "lines": [
+      "7",
+      "gyeongui"
+    ],
+    "area15": 0,
+    "area30": 0,
+    "area60": 0
+  },
+  {
+    "rank": 516,
+    "id": "5896399383",
+    "nameKo": "세류",
+    "name": "Seryu",
+    "lines": [
+      "1"
+    ],
+    "area15": 0,
+    "area30": 11.5,
+    "area60": 245.8
+  }
+]

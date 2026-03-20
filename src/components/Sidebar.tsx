@@ -11,10 +11,12 @@ export default function Sidebar() {
   const enabledLines = useMapStore((s) => s.enabledLines);
   const isochronesLoading = useMapStore((s) => s.isochronesLoading);
   const sidebarOpen = useMapStore((s) => s.sidebarOpen);
+  const statsPanelOpen = useMapStore((s) => s.statsPanelOpen);
   const selectStation = useMapStore((s) => s.selectStation);
   const setIntervals = useMapStore((s) => s.setIntervals);
   const toggleLine = useMapStore((s) => s.toggleLine);
   const toggleSidebar = useMapStore((s) => s.toggleSidebar);
+  const toggleStatsPanel = useMapStore((s) => s.toggleStatsPanel);
 
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -231,6 +233,14 @@ export default function Sidebar() {
             GitHub
           </a>
         </p>
+
+        {/* Data panel toggle — pinned to bottom */}
+        <button
+          className={`data-panel-btn ${statsPanelOpen ? "active" : ""}`}
+          onClick={toggleStatsPanel}
+        >
+          Data & Analysis {statsPanelOpen ? "\u2039" : "\u203A"}
+        </button>
 
       </div>
     </>

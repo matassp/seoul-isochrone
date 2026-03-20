@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import MapView from "./components/MapView";
 import Sidebar from "./components/Sidebar";
+import StatsPanel from "./components/StatsPanel";
 import { useMapStore } from "./store/useMapStore";
 import { STATIONS } from "./data/stations";
 import { NAME_OVERRIDES } from "./data/nameOverrides";
@@ -52,6 +53,7 @@ export default function App() {
     <div className="app">
       <Sidebar />
       <MapView />
+      <StatsPanel />
     </div>
   );
 }

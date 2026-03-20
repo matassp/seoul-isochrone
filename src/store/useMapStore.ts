@@ -10,6 +10,7 @@ interface MapState {
   isochrones: IsochroneCollection | null;
   isochronesLoading: boolean;
   sidebarOpen: boolean;
+  statsPanelOpen: boolean;
 
   setStations: (stations: Station[]) => void;
   selectStation: (station: Station | null) => void;
@@ -18,6 +19,7 @@ interface MapState {
   setIsochrones: (iso: IsochroneCollection | null) => void;
   setIsochronesLoading: (loading: boolean) => void;
   toggleSidebar: () => void;
+  toggleStatsPanel: () => void;
 }
 
 const ALL_LINES = new Set<LineId>([
@@ -33,6 +35,7 @@ export const useMapStore = create<MapState>((set) => ({
   isochrones: null,
   isochronesLoading: false,
   sidebarOpen: true,
+  statsPanelOpen: false,
 
   setStations: (stations) => set({ stations }),
   // Spread to ensure a new reference on every call so [selectedStation] effects always re-run,
@@ -52,4 +55,5 @@ export const useMapStore = create<MapState>((set) => ({
   setIsochrones: (iso) => set({ isochrones: iso, isochronesLoading: false }),
   setIsochronesLoading: (loading) => set({ isochronesLoading: loading }),
   toggleSidebar: () => set((state) => ({ sidebarOpen: !state.sidebarOpen })),
+  toggleStatsPanel: () => set((state) => ({ statsPanelOpen: !state.statsPanelOpen })),
 }));
