@@ -20,6 +20,9 @@ function drawPill(ctx: CanvasRenderingContext2D, x: number, y: number, w: number
 }
 
 function createStationImage(lines: string[]): ImageData {
+  const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const pillBorder = isDark ? "#484542" : "#c8c8c8";
+  const pillBg    = isDark ? "#2a2926" : "#fff";
   const dotR = 4;
 
   if (lines.length <= 1) {
@@ -60,10 +63,10 @@ function createStationImage(lines: string[]): ImageData {
   const oy = (height - pillH) / 2;
 
   drawPill(ctx, ox - borderW, oy - borderW, pillW + borderW * 2, pillH + borderW * 2, cornerR + borderW);
-  ctx.fillStyle = "#c8c8c8";
+  ctx.fillStyle = pillBorder;
   ctx.fill();
   drawPill(ctx, ox, oy, pillW, pillH, cornerR);
-  ctx.fillStyle = "#fff";
+  ctx.fillStyle = pillBg;
   ctx.fill();
 
   const cy = height / 2;
@@ -256,7 +259,7 @@ export default function MapView() {
           });
         }
       } catch {
-        console.warn("Could not load subway line geometries");
+        if (import.meta.env.DEV) console.warn("Could not load subway line geometries");
       }
 
       // ── Station dots + labels (on top of everything) ──
@@ -348,9 +351,14 @@ export default function MapView() {
         if (station) selectStation(station);
       });
 
+      let rafId: number | null = null;
       map.on("mousemove", (e) => {
-        const features = map.queryRenderedFeatures(e.point, { layers: ["station-icons"] });
-        map.getCanvas().style.cursor = features.length > 0 ? "pointer" : "";
+        if (rafId !== null) return;
+        rafId = requestAnimationFrame(() => {
+          rafId = null;
+          const features = map.queryRenderedFeatures(e.point, { layers: ["station-icons"] });
+          map.getCanvas().style.cursor = features.length > 0 ? "pointer" : "";
+        });
       });
 
       // ── Apply current state to freshly-created layers ──
@@ -415,19 +423,23 @@ export default function MapView() {
     const el = document.createElement("div");
     el.className = "station-pulse-marker";
     const primaryColor = LINE_COLORS[lines[0] as LineId] ?? "#333";
+    const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const pillBg     = dark ? "#2a2926" : "#fff";
+    const pillBorder = dark ? "#484542" : "#c8c8c8";
+    const dotBorder  = dark ? "#2a2926" : "#fff";
 
     if (lines.length <= 1) {
       el.style.cssText = `width:20px;height:20px;position:relative;display:flex;align-items:center;justify-content:center;`;
       const ring = document.createElement("div");
       ring.style.cssText = `position:absolute;width:20px;height:20px;border-radius:50%;border:2.5px solid ${primaryColor};animation:pulse-ring 1.6s ease-out infinite;opacity:0;`;
       const dot = document.createElement("div");
-      dot.style.cssText = `width:10px;height:10px;border-radius:50%;background:${primaryColor};border:2px solid #fff;box-shadow:0 0 0 2px ${primaryColor};`;
+      dot.style.cssText = `width:10px;height:10px;border-radius:50%;background:${primaryColor};border:2px solid ${dotBorder};box-shadow:0 0 0 2px ${primaryColor};`;
       el.appendChild(ring);
       el.appendChild(dot);
     } else {
       el.style.cssText = "position:relative;display:flex;align-items:center;justify-content:center;";
       const pill = document.createElement("div");
-      pill.style.cssText = `display:flex;align-items:center;gap:3px;padding:4px 7px;background:#fff;border-radius:999px;border:1.5px solid #c8c8c8;box-shadow:0 1px 4px rgba(0,0,0,0.25);animation:pulse-pill 1.6s ease-out infinite;`;
+      pill.style.cssText = `display:flex;align-items:center;gap:3px;padding:4px 7px;background:${pillBg};border-radius:999px;border:1.5px solid ${pillBorder};box-shadow:0 1px 4px rgba(0,0,0,0.25);animation:pulse-pill 1.6s ease-out infinite;`;
       lines.forEach((line) => {
         const dot = document.createElement("div");
         dot.style.cssText = `width:9px;height:9px;border-radius:50%;background:${LINE_COLORS[line as LineId] ?? "#888"};flex-shrink:0;`;
@@ -493,6 +505,9 @@ export default function MapView() {
   return (
     <div className="map-wrapper">
       <div ref={mapContainer} className="map-container" />
+      <div role="status" aria-live="polite" className="sr-only">
+        {isochronesLoading ? "Loading isochrone data…" : selectedStation ? `Showing isochrone for ${selectedStation.name}` : ""}
+      </div>
       {selectedStation && (
         <div className="station-chip" key={selectedStation.id}>
           <div className="station-chip-names">
@@ -508,8 +523,8 @@ export default function MapView() {
               </span>
             ))}
           </div>
-          {isochronesLoading && <span className="chip-spinner" />}
-          <button className="station-chip-close" onClick={() => selectStation(null)}>✕</button>
+          {isochronesLoading && <span className="chip-spinner" aria-hidden="true" />}
+          <button className="station-chip-close" aria-label="Deselect station" onClick={() => selectStation(null)}>✕</button>
         </div>
       )}
       <div className="map-legend">

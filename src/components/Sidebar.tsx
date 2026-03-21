@@ -1,7 +1,7 @@
 import { useState, useMemo, useRef, useEffect } from "react";
 import Fuse from "fuse.js";
 import { useMapStore } from "../store/useMapStore";
-import { LINE_COLORS, LINE_NAMES, ISOCHRONE_INTERVALS } from "../constants/lines";
+import { LINE_COLORS, LINE_NAMES, ISOCHRONE_INTERVALS, ISOCHRONE_STROKES, ISOCHRONE_COLORS } from "../constants/lines";
 import type { LineId, Station } from "../types";
 
 export default function Sidebar() {
@@ -83,6 +83,8 @@ export default function Sidebar() {
       <button
         className="sidebar-toggle"
         onClick={toggleSidebar}
+        aria-label={sidebarOpen ? "Close sidebar" : "Open sidebar"}
+        aria-expanded={sidebarOpen}
         style={{ left: sidebarOpen ? 332 : 12 }}
       >
         {sidebarOpen ? "\u2039" : "\u203A"}
@@ -104,12 +106,20 @@ export default function Sidebar() {
             value={query}
             onChange={(e) => { setQuery(e.target.value); setActiveIndex(-1); }}
             onKeyDown={handleSearchKeyDown}
+            role="combobox"
+            aria-autocomplete="list"
+            aria-expanded={results.length > 0}
+            aria-controls="search-results-list"
+            aria-activedescendant={activeIndex >= 0 ? `search-result-${activeIndex}` : undefined}
           />
           {results.length > 0 && (
-            <ul className="search-results" ref={listRef}>
+            <ul className="search-results" ref={listRef} role="listbox" id="search-results-list">
               {results.map((s, idx) => (
                 <li
                   key={s.id}
+                  id={`search-result-${idx}`}
+                  role="option"
+                  aria-selected={idx === activeIndex}
                   className={idx === activeIndex ? "active" : ""}
                   onClick={() => handleSelectStation(s)}
                   onMouseEnter={() => setActiveIndex(idx)}
@@ -141,7 +151,7 @@ export default function Sidebar() {
               {selectedStation.name !== selectedStation.nameKo && (
                 <span className="selected-en">{selectedStation.name}</span>
               )}
-              <button className="deselect" onClick={() => selectStation(null)}>
+              <button className="deselect" aria-label="Deselect station" onClick={() => selectStation(null)}>
                 &times;
               </button>
             </div>
@@ -156,7 +166,7 @@ export default function Sidebar() {
                 </span>
               ))}
             </div>
-            {isochronesLoading && <div className="loading">Loading…</div>}
+            {isochronesLoading && <div className="loading" role="status" aria-live="polite">Loading…</div>}
           </div>
         )}
 
@@ -164,15 +174,22 @@ export default function Sidebar() {
         <div className="section">
           <h3>Travel Time</h3>
           <div className="interval-pills">
-            {ISOCHRONE_INTERVALS.map((min) => (
-              <button
-                key={min}
-                className={`interval-pill ${intervals.includes(min) ? "active" : ""}`}
-                onClick={() => toggleInterval(min)}
-              >
-                {min}m
-              </button>
-            ))}
+            {ISOCHRONE_INTERVALS.map((min, i) => {
+              const active = intervals.includes(min);
+              return (
+                <button
+                  key={min}
+                  className={`interval-pill ${active ? "active" : ""}`}
+                  onClick={() => toggleInterval(min)}
+                  style={{
+                    borderTopColor: ISOCHRONE_STROKES[i],
+                    ...(active ? { background: ISOCHRONE_COLORS[i], borderColor: ISOCHRONE_STROKES[i], color: "var(--text-primary)" } : {}),
+                  }}
+                >
+                  {min}m
+                </button>
+              );
+            })}
           </div>
           <div className="section-note">Subway + walking time from station</div>
         </div>
@@ -200,7 +217,7 @@ export default function Sidebar() {
 
         {/* About */}
         <div className="about-section">
-          <button className="about-toggle" onClick={() => setAboutOpen((o) => !o)}>
+          <button className="about-toggle" onClick={() => setAboutOpen((o) => !o)} aria-expanded={aboutOpen}>
             <span>About this project</span>
             <span className="about-chevron">{aboutOpen ? "−" : "+"}</span>
           </button>

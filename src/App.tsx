@@ -19,6 +19,7 @@ export default function App() {
   const stations = useMapStore((s) => s.stations);
   const selectedStation = useMapStore((s) => s.selectedStation);
   const selectStation = useMapStore((s) => s.selectStation);
+  const sidebarOpen = useMapStore((s) => s.sidebarOpen);
 
   // Starts false when there is a station ID in the URL (restore must happen first)
   const [urlRestored, setUrlRestored] = useState(!INITIAL_URL_STATION_ID);
@@ -50,7 +51,7 @@ export default function App() {
   }, [selectedStation, urlRestored]);
 
   return (
-    <div className="app">
+    <div className={`app${sidebarOpen ? " sidebar-open" : ""}`}>
       <Sidebar />
       <MapView />
       <StatsPanel />

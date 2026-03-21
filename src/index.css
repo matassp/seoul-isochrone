@@ -69,8 +69,8 @@
     --text-primary:   #f0ede8;
     --text-secondary: #d0ccc6;
     --text-muted:     #888880;
-    --text-faint:     #5a5852;
-    --text-deselect:  #4a4844;
+    --text-faint:     #7a7870;
+    --text-deselect:  #6a6762;
 
     --shadow-sm:      0 1px 4px rgba(0, 0, 0, 0.5);
     --shadow-md:      0 4px 16px rgba(0, 0, 0, 0.4);

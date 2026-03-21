@@ -63,9 +63,19 @@ export default function StatsPanel() {
                   <tr
                     key={r.id}
                     className={`ranking-row${selectedStation?.id === r.id ? " active" : ""}`}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Select ${r.name} station`}
                     onClick={() => {
                       const s = stations.find((st) => st.id === r.id);
                       if (s) selectStation(s);
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        const s = stations.find((st) => st.id === r.id);
+                        if (s) selectStation(s);
+                      }
                     }}
                   >
                     <td className="ranking-rank">{r.rank}</td>
