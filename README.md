@@ -4,14 +4,106 @@
 
 An interactive map showing transit reachability across the Seoul Metro network — useful for apartment hunting, commute planning, or exploring the city.
 
+[**Live demo →**](https://matassp.github.io/seoul-isochrone/)
+
+---
+
 ## Features
 
-- **516 stations** across Lines 1–9, Bundang, Shinbundang, Gyeongui-Jungang, and Airport Railroad
-- **Isochrone rings** at 15, 30, and 60 minutes (subway + walking)
-- **Peak / off-peak toggle** — pre-computed for 08:00 and 14:00 weekday departures
-- **Line filter** — show/hide individual lines
+- **518 stations** across Lines 1–9, Bundang, Shinbundang, Gyeongui-Jungang, and Airport Railroad
+- **Isochrone rings** at 15, 30, and 60 minutes (subway + walking, off-peak 14:00 weekday)
 - **Station search** — Korean (강남역) and English (Gangnam)
-- Fast — isochrones are static GeoJSON served from CDN, no routing server at runtime
+- **Line filter** — show/hide individual lines
+- **Accessibility ranking** — data panel with top-15 stations by reachable area
+- **Shareable URLs** — selected station encoded as `?s=<id>`
+- **Fast** — isochrones are static GeoJSON served from CDN, no routing server at runtime
+
+---
+
+## Architecture
+
+Isochrones are **pre-computed once** at build time and shipped as static GeoJSON. No routing server runs at runtime.
+
+```mermaid
+flowchart LR
+    subgraph build["Build pipeline (Docker, run once)"]
+        OSM["South Korea OSM\n(Geofabrik)"]
+        GTFS["Seoul Metro GTFS\n(bundled, 2024)"]
+        GH["GraphHopper\nPT mode"]
+        script["computeIsochrones.ts\n518 stations × 3 intervals"]
+        OSM --> GH
+        GTFS --> GH
+        GH --> script
+    end
+
+    subgraph output["Static assets"]
+        geojson["public/data/isochrones/\n{stationId}.geojson\n(518 files)"]
+        stations["public/data/stations.geojson"]
+        lines["public/data/lines.geojson"]
+        rankings["public/data/rankings.json"]
+        script --> geojson
+    end
+
+    subgraph runtime["Runtime (GitHub Pages CDN)"]
+        app["React app"]
+        cache["LRU cache\n(50 entries)"]
+        geojson -->|"fetch ~200ms"| cache
+        cache --> app
+    end
+```
+
+### Runtime data flow
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Sidebar
+    participant Store as Zustand Store
+    participant Loader as isochroneLoader
+    participant CDN
+
+    User->>Sidebar: clicks / searches station
+    Sidebar->>Store: selectStation(station)
+    Store->>Store: reset isochrones → null
+    Store->>Loader: loadIsochrone(stationId)
+    Loader->>Loader: check LRU cache
+    alt cache hit
+        Loader-->>Store: return cached GeoJSON
+    else cache miss
+        Loader->>CDN: GET /data/isochrones/{id}.geojson
+        CDN-->>Loader: GeoJSON (~50–200KB)
+        Loader-->>Store: setIsochrones(data)
+    end
+    Store->>MapView: render isochrone polygons
+    Store->>URL: replaceState(?s=stationId)
+```
+
+---
+
+## Component Structure
+
+```mermaid
+graph TD
+    App --> Sidebar
+    App --> MapView
+    App --> StatsPanel
+
+    Sidebar --> SearchInput["Search input\n(Fuse.js)"]
+    Sidebar --> LineFilter["Line filter\n(13 lines)"]
+    Sidebar --> IntervalPills["Interval pills\n(15 / 30 / 60 min)"]
+    Sidebar --> AboutSection["About section"]
+    Sidebar --> DataPanelBtn["Data & Analysis toggle"]
+
+    MapView --> StationLayer["Station icons\n(canvas-drawn, per line combo)"]
+    MapView --> IsochroneLayer["Isochrone fill + stroke layers"]
+    MapView --> PulseMarker["Pulse marker\n(ring or multi-line pill)"]
+    MapView --> ChipOverlay["Station chip overlay"]
+    MapView --> LegendOverlay["Legend overlay"]
+
+    StatsPanel --> RankingTable["Top-15 accessibility ranking"]
+```
+
+---
 
 ## Tech Stack
 
@@ -19,35 +111,22 @@ An interactive map showing transit reachability across the Seoul Metro network �
 |-------|--------|
 | Framework | React 18 + TypeScript |
 | Map | MapLibre GL JS |
-| Basemap | MapTiler Dataviz |
-| Routing (build-time) | GraphHopper + Seoul GTFS + South Korea OSM |
+| Basemap | MapTiler Dataviz (light + dark) |
+| Routing (build-time only) | GraphHopper + Seoul Metro GTFS + South Korea OSM |
 | State | Zustand |
+| Search | Fuse.js |
 | Build | Vite |
-| Deploy | Vercel |
+| Deploy | GitHub Pages |
 
-## Architecture
-
-Isochrones are **pre-computed once** and shipped as static GeoJSON files. No routing server runs at runtime.
-
-```
-Build pipeline (local Docker, run once / on GTFS update)
-├── GraphHopper + Seoul Metro GTFS + South Korea OSM (Geofabrik)
-├── For each of 516 stations × 2 time profiles (off-peak, peak)
-│   └── Query isochrone at 15 / 30 / 60 min → save GeoJSON
-└── Output: public/data/isochrones/{off-peak,peak}/*.geojson
-
-Runtime (static site, Vercel CDN)
-└── User clicks station → fetch /data/isochrones/{profile}/{id}.geojson (~200ms)
-```
+---
 
 ## Local Development
 
 ### Prerequisites
 
 - Node.js 18+, pnpm
-- Docker (for building isochrones)
 - [MapTiler API key](https://cloud.maptiler.com) (free tier)
-- KTDB GTFS download (free, from [ktdb.go.kr](https://www.ktdb.go.kr))
+- Docker (only needed to regenerate isochrones)
 
 ### Setup
 
@@ -60,34 +139,49 @@ cp .env.example .env
 pnpm dev
 ```
 
-The app will load with station dots but no isochrones (those are gitignored due to size). To regenerate isochrones, follow the build pipeline below.
+Pre-computed isochrones are **not** checked in (too large). The app loads with station dots but no isochrone polygons until you either regenerate them or add the files manually.
 
-### Build Pipeline
+### Regenerating Isochrones
 
 ```bash
-# 1. Fetch station data from OpenStreetMap
+# 1. Fetch station locations from OpenStreetMap
 pnpm run fetch-stations
 
-# 2. Download GTFS from ktdb.go.kr → place as docker/gtfs/seoul-metro.gtfs.zip
+# 2. Download South Korea OSM extract → docker/data/south-korea-latest.osm.pbf
+#    https://download.geofabrik.de/asia/south-korea.html
+#    A 2024 Seoul Metro GTFS is already bundled at docker/gtfs/seoul-metro.gtfs.zip
 
-# 3. Start GraphHopper (ingests GTFS + OSM, takes ~5 min first run)
+# 3. Start GraphHopper (ingests GTFS + OSM, ~5 min on first run)
 docker compose -f docker/docker-compose.yml up graphhopper
 
-# 4. Compute isochrones (both profiles, ~1000 GraphHopper requests)
+# 4. Compute all isochrones (~518 requests at concurrency=2)
 pnpm run compute-isochrones
 
-# 5. Shut down Docker, run the app
+# 5. Shut down Docker
 docker compose -f docker/docker-compose.yml down
-pnpm dev
 ```
 
-The OSM extract (`south-korea-latest.osm.pbf`) must be placed in `docker/data/` before starting GraphHopper. Download from [Geofabrik](https://download.geofabrik.de/asia/south-korea.html).
+GraphHopper runs at `http://localhost:8989` by default. Override with `GH_URL=http://...`.
+
+---
+
+## Isochrone File Format
+
+Each `public/data/isochrones/<station-id>.geojson` is a GeoJSON `FeatureCollection` with up to 3 features (one per interval). Feature properties:
+
+```json
+{ "interval": 15, "stationId": "1797562528" }
+```
+
+Intervals: **15 / 30 / 60 minutes** — off-peak, 14:00 weekday departure.
+
+---
 
 ## Data Sources
 
 | Data | Source | License |
 |------|--------|---------|
 | Station locations | OpenStreetMap Overpass API | ODbL |
-| Metro timetables | KTDB 대중교통 GTFS (`ktdb.go.kr`) | Public |
+| Metro timetables | Seoul Metro GTFS (2024, bundled) | Public |
 | Street network | Geofabrik South Korea OSM extract | ODbL |
-| Basemap tiles | MapTiler | Commercial (free tier) |
+| Basemap tiles | MapTiler Dataviz | Commercial (free tier) |
