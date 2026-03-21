@@ -404,7 +404,6 @@
   font-size: 12px;
   font-weight: 600;
   border: 1px solid var(--border-input);
-  border-top-width: 2.5px;
   border-radius: 0;
   background: transparent;
   cursor: pointer;
