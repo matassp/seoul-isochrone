@@ -46,61 +46,10 @@ flowchart LR
 
     subgraph runtime["Runtime (GitHub Pages CDN)"]
         app["React app"]
-        cache["LRU cache\n(50 entries)"]
+        cache["FIFO cache\n(50 entries)"]
         geojson -->|"fetch ~200ms"| cache
         cache --> app
     end
-```
-
-### Runtime data flow
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant Sidebar
-    participant Store as Zustand Store
-    participant Loader as isochroneLoader
-    participant CDN
-
-    User->>Sidebar: clicks / searches station
-    Sidebar->>Store: selectStation(station)
-    Store->>Store: reset isochrones → null
-    Store->>Loader: loadIsochrone(stationId)
-    Loader->>Loader: check LRU cache
-    alt cache hit
-        Loader-->>Store: return cached GeoJSON
-    else cache miss
-        Loader->>CDN: GET /data/isochrones/{id}.geojson
-        CDN-->>Loader: GeoJSON (~50–200KB)
-        Loader-->>Store: setIsochrones(data)
-    end
-    Store->>MapView: render isochrone polygons
-    Store->>URL: replaceState(?s=stationId)
-```
-
----
-
-## Component Structure
-
-```mermaid
-graph TD
-    App --> Sidebar
-    App --> MapView
-    App --> StatsPanel
-
-    Sidebar --> SearchInput["Search input\n(Fuse.js)"]
-    Sidebar --> LineFilter["Line filter\n(13 lines)"]
-    Sidebar --> IntervalPills["Interval pills\n(15 / 30 / 60 min)"]
-    Sidebar --> AboutSection["About section"]
-    Sidebar --> DataPanelBtn["Data & Analysis toggle"]
-
-    MapView --> StationLayer["Station icons\n(canvas-drawn, per line combo)"]
-    MapView --> IsochroneLayer["Isochrone fill + stroke layers"]
-    MapView --> PulseMarker["Pulse marker\n(ring or multi-line pill)"]
-    MapView --> ChipOverlay["Station chip overlay"]
-    MapView --> LegendOverlay["Legend overlay"]
-
-    StatsPanel --> RankingTable["Top-15 accessibility ranking"]
 ```
 
 ---
