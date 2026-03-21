@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Don't crawl raw data files
+Disallow: /seoul-isochrone/data/isochrones/
+Disallow: /seoul-isochrone/data/stations.geojson
+
+Sitemap: https://matassp.github.io/seoul-isochrone/sitemap.xml

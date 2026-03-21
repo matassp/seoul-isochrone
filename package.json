@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "fetch-stations": "tsx scripts/fetchStations.ts",
-"compute-isochrones": "tsx scripts/computeIsochrones.ts"
+    "compute-isochrones": "tsx scripts/computeIsochrones.ts"
   },
   "dependencies": {
     "@turf/turf": "^7.3.4",
@@ -29,6 +29,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
+    "sharp": "^0.34.5",
     "tsx": "^4.21.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.48.0",
